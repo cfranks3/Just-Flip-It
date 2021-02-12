@@ -18,6 +18,23 @@ class DashboardViewController: UIViewController {
     
     @IBOutlet weak var profitLabel: UILabel!
     @IBOutlet weak var inventoryValueLabel: UILabel!
+    @IBOutlet weak var numberOfSalesLabel: UILabel!
+    
+    // MARK: - IBActions
+    
+    @IBAction func helpButtonTapped(_ sender: UIButton) {
+        let helpMessage = """
+        Begin by adding an item to your inventory. After saving, the item will be added and your inventory value will update. Tap on the report a sale button when one of your items sells. If you'd like to remove or edit your item prior to a sale, open your inventory and locate your item.
+        """
+        let alert = UIAlertController(title: "How to use this app",
+                                      message: helpMessage,
+                                      preferredStyle: .alert)
+        let action = UIAlertAction(title: "OK",
+                                   style: .cancel,
+                                   handler: nil)
+        alert.addAction(action)
+        present(alert, animated: true)
+    }
     
     // MARK: - Lifecycle
     
