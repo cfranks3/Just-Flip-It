@@ -101,9 +101,8 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EwC-5x-YcT">
-                                <rect key="frame" x="169" y="616" width="37" height="33"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EwC-5x-YcT">
+                                <rect key="frame" x="169" y="614" width="37" height="33"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                 <state key="normal" title="Help"/>
                                 <connections>
@@ -118,6 +117,8 @@
                             <constraint firstItem="IqQ-vf-IDx" firstAttribute="top" secondItem="4K0-pi-MKc" secondAttribute="top" constant="6" id="SLo-md-UYc"/>
                             <constraint firstItem="YUf-jM-zd6" firstAttribute="top" secondItem="IqQ-vf-IDx" secondAttribute="bottom" constant="20" id="VzM-UB-QHc"/>
                             <constraint firstItem="YUf-jM-zd6" firstAttribute="leading" secondItem="4K0-pi-MKc" secondAttribute="leading" constant="20" id="bPV-sH-BlQ"/>
+                            <constraint firstItem="4K0-pi-MKc" firstAttribute="bottom" secondItem="EwC-5x-YcT" secondAttribute="bottom" constant="20" id="emP-lk-I4Q"/>
+                            <constraint firstItem="EwC-5x-YcT" firstAttribute="centerX" secondItem="4nO-QO-VQD" secondAttribute="centerX" id="nOP-xr-mFP"/>
                             <constraint firstItem="IqQ-vf-IDx" firstAttribute="leading" secondItem="4K0-pi-MKc" secondAttribute="leading" constant="20" id="zCV-rZ-B2i"/>
                         </constraints>
                     </view>
