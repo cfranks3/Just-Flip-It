@@ -9,6 +9,33 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Settings View Controller-->
+        <scene sceneID="DVW-M9-lks">
+            <objects>
+                <viewController id="CWE-Vr-0sn" customClass="SettingsViewController" customModule="FlippingApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Qze-Av-mn1">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6VD-Yz-8Ze">
+                                <rect key="frame" x="132" y="317" width="111" height="33"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                <state key="normal" title="Reset All Data"/>
+                                <connections>
+                                    <action selector="resetDataButtonTapped:" destination="CWE-Vr-0sn" eventType="touchUpInside" id="8nK-s0-WFp"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="px9-DC-9hL"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="Yfj-ub-hd1"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="c83-4d-gOZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1145" y="-820"/>
+        </scene>
         <!--Dashboard-->
         <scene sceneID="vtw-Vd-i6C">
             <objects>
@@ -123,6 +150,11 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Dashboard" id="g49-Xd-kdr">
+                        <barButtonItem key="leftBarButtonItem" title="Settings" id="1z2-la-tnj">
+                            <connections>
+                                <segue destination="CWE-Vr-0sn" kind="show" identifier="SettingsSegue" id="Zgu-gH-pGQ"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="gSc-HG-P0j">
                             <connections>
                                 <segue destination="c8i-jJ-Jcz" kind="show" identifier="AddItemSegue" id="xS6-kw-SB6"/>
