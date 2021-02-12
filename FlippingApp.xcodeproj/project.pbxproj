@@ -15,6 +15,7 @@
 		E3B2BF5A25D67BA90026DBB9 /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3B2BF5925D67BA90026DBB9 /* DashboardViewController.swift */; };
 		E3B2BF5D25D67E940026DBB9 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3B2BF5C25D67E940026DBB9 /* Item.swift */; };
 		E3B2BF6025D67EB30026DBB9 /* ItemController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3B2BF5F25D67EB30026DBB9 /* ItemController.swift */; };
+		E3B2BF6325D682C60026DBB9 /* AddItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3B2BF6225D682C60026DBB9 /* AddItemViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		E3B2BF5925D67BA90026DBB9 /* DashboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
 		E3B2BF5C25D67E940026DBB9 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		E3B2BF5F25D67EB30026DBB9 /* ItemController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemController.swift; sourceTree = "<group>"; };
+		E3B2BF6225D682C60026DBB9 /* AddItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +86,7 @@
 			isa = PBXGroup;
 			children = (
 				E3B2BF5925D67BA90026DBB9 /* DashboardViewController.swift */,
+				E3B2BF6225D682C60026DBB9 /* AddItemViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -188,6 +191,7 @@
 				E3B2BF5A25D67BA90026DBB9 /* DashboardViewController.swift in Sources */,
 				E3B2BF6025D67EB30026DBB9 /* ItemController.swift in Sources */,
 				E3B2BF4025D675010026DBB9 /* SceneDelegate.swift in Sources */,
+				E3B2BF6325D682C60026DBB9 /* AddItemViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
