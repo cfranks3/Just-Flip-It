@@ -25,11 +25,6 @@ class DashboardViewController: UIViewController {
         super.viewDidLoad()
         itemController.loadItems()
         calculateInventoryValue()
-        updateViews()
-    }
-    
-    func updateViews() {
-        inventoryValueLabel.text = "$\(inventoryValue)"
     }
     
     // MARK: - Methods
@@ -38,6 +33,11 @@ class DashboardViewController: UIViewController {
         inventoryValue = 0
         for item in itemController.listedItems {
             inventoryValue += item.listingPrice
+        }
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .currency
+        if let formattedValue = formatter.string(from: inventoryValue as NSNumber) {
+            inventoryValueLabel.text = formattedValue
         }
     }
     
@@ -57,7 +57,6 @@ extension DashboardViewController: AddItemViewControllerDelegate {
     
     func itemWasAdded() {
         calculateInventoryValue()
-        updateViews()
     }
 
 }
