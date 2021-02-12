@@ -18,7 +18,22 @@ class ItemController {
     
     func addListedItem(with item: Item) {
         listedItems.append(item)
-        saveItem()
+        saveItems()
+    }
+    
+    func removeListedItem(with item: Item) {
+        if listedItems.contains(item) {
+            listedItems.removeAll { $0 == item }
+        } else {
+            NSLog("Error: Nonexistent item could not be removed.")
+        }
+    }
+    
+    // Permanently deletes all stored data!
+    func resetData() {
+        soldItems.removeAll()
+        listedItems.removeAll()
+        saveItems()
     }
     
     // MARK: - Persistence
@@ -35,7 +50,7 @@ class ItemController {
     }
     
     // Saving data
-    func saveItem() {
+    func saveItems() {
         let encoder = PropertyListEncoder()
         
         do {
