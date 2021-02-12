@@ -9,6 +9,10 @@ import UIKit
 
 class DashboardViewController: UIViewController {
     
+    // MARK: - Properties
+    
+    let itemController = ItemController()
+    
     // MARK: - IBOutlets
     
     @IBOutlet weak var profitLabel: UILabel!

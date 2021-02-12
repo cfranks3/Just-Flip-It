@@ -7,7 +7,7 @@
 
 import UIKit
 
-struct Item {
+struct Item: Codable {
     
     // MARK: - Properties
     
