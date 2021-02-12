@@ -56,8 +56,10 @@ class DashboardViewController: UIViewController {
                     inventoryValue += item.listingPrice
                     count -= 1
                 }
-            } else {
+            } else if item.quantity == 1 {
                 inventoryValue += item.listingPrice
+            } else {
+                continue
             }
         }
         
