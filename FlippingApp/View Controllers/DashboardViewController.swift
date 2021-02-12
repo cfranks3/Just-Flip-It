@@ -24,7 +24,6 @@ class DashboardViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         itemController.loadItems()
-        itemController.resetData() // <---
         calculateInventoryValue()
     }
     
@@ -43,7 +42,6 @@ class DashboardViewController: UIViewController {
             } else {
                 inventoryValue += item.listingPrice
             }
-            
         }
         
         let formatter = NumberFormatter()
@@ -62,7 +60,7 @@ class DashboardViewController: UIViewController {
             addItemVC.delegate = self
         }
     }
-
+    
 }
 
 extension DashboardViewController: AddItemViewControllerDelegate {
@@ -70,5 +68,5 @@ extension DashboardViewController: AddItemViewControllerDelegate {
     func itemWasAdded() {
         calculateInventoryValue()
     }
-
+    
 }

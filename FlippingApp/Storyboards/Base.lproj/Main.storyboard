@@ -5,6 +5,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -58,11 +59,37 @@
                                     </stackView>
                                 </subviews>
                             </stackView>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="YUf-jM-zd6">
+                                <rect key="frame" x="20" y="259" width="335" height="160"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="160" id="3Bm-gx-Esx"/>
+                                </constraints>
+                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="vFm-ow-gLy">
+                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="JTM-4b-Dh4">
+                                        <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="XzM-Vs-7yt">
+                                            <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </collectionViewCellContentView>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="4K0-pi-MKc"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="YUf-jM-zd6" firstAttribute="top" secondItem="IqQ-vf-IDx" secondAttribute="bottom" constant="20" id="IWh-wZ-Zm6"/>
                             <constraint firstItem="IqQ-vf-IDx" firstAttribute="top" secondItem="4K0-pi-MKc" secondAttribute="top" constant="6" id="SLo-md-UYc"/>
+                            <constraint firstItem="YUf-jM-zd6" firstAttribute="leading" secondItem="4K0-pi-MKc" secondAttribute="leading" constant="20" id="fd3-4j-jb6"/>
+                            <constraint firstItem="4K0-pi-MKc" firstAttribute="trailing" secondItem="YUf-jM-zd6" secondAttribute="trailing" constant="20" id="jqF-z8-VQ3"/>
                             <constraint firstItem="IqQ-vf-IDx" firstAttribute="leading" secondItem="4K0-pi-MKc" secondAttribute="leading" constant="20" id="zCV-rZ-B2i"/>
                         </constraints>
                     </view>
@@ -80,7 +107,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dwc-fI-z26" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="352.17391304347831" y="-145.3125"/>
+            <point key="canvasLocation" x="351.19999999999999" y="-146.17691154422789"/>
         </scene>
         <!--New Item-->
         <scene sceneID="v0v-eu-efc">

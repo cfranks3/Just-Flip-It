@@ -47,10 +47,10 @@ class AddItemViewController: UIViewController {
     }
     
     // MARK: - Lifecycle
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         titleTextField.becomeFirstResponder()
     }
-
+    
 }
