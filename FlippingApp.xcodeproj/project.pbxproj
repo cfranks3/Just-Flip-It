@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		E3B2BF3E25D675010026DBB9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3B2BF3D25D675010026DBB9 /* AppDelegate.swift */; };
 		E3B2BF4025D675010026DBB9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3B2BF3F25D675010026DBB9 /* SceneDelegate.swift */; };
-		E3B2BF4225D675010026DBB9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3B2BF4125D675010026DBB9 /* ViewController.swift */; };
 		E3B2BF4525D675010026DBB9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E3B2BF4325D675010026DBB9 /* Main.storyboard */; };
 		E3B2BF4725D675020026DBB9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E3B2BF4625D675020026DBB9 /* Assets.xcassets */; };
 		E3B2BF4A25D675020026DBB9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E3B2BF4825D675020026DBB9 /* LaunchScreen.storyboard */; };
@@ -19,7 +18,6 @@
 		E3B2BF3A25D675010026DBB9 /* FlippingApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FlippingApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E3B2BF3D25D675010026DBB9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E3B2BF3F25D675010026DBB9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		E3B2BF4125D675010026DBB9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		E3B2BF4425D675010026DBB9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		E3B2BF4625D675020026DBB9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E3B2BF4925D675020026DBB9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -56,15 +54,54 @@
 		E3B2BF3C25D675010026DBB9 /* FlippingApp */ = {
 			isa = PBXGroup;
 			children = (
-				E3B2BF3D25D675010026DBB9 /* AppDelegate.swift */,
-				E3B2BF3F25D675010026DBB9 /* SceneDelegate.swift */,
-				E3B2BF4125D675010026DBB9 /* ViewController.swift */,
-				E3B2BF4325D675010026DBB9 /* Main.storyboard */,
+				E3B2BF5225D67ADB0026DBB9 /* Resources */,
+				E3B2BF5425D67B050026DBB9 /* Models */,
+				E3B2BF5525D67B0A0026DBB9 /* Model Controllers */,
+				E3B2BF5325D67AFC0026DBB9 /* View Controllers */,
+				E3B2BF5625D67B220026DBB9 /* Storyboards */,
 				E3B2BF4625D675020026DBB9 /* Assets.xcassets */,
-				E3B2BF4825D675020026DBB9 /* LaunchScreen.storyboard */,
-				E3B2BF4B25D675020026DBB9 /* Info.plist */,
 			);
 			path = FlippingApp;
+			sourceTree = "<group>";
+		};
+		E3B2BF5225D67ADB0026DBB9 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				E3B2BF3D25D675010026DBB9 /* AppDelegate.swift */,
+				E3B2BF3F25D675010026DBB9 /* SceneDelegate.swift */,
+				E3B2BF4B25D675020026DBB9 /* Info.plist */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		E3B2BF5325D67AFC0026DBB9 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "View Controllers";
+			sourceTree = "<group>";
+		};
+		E3B2BF5425D67B050026DBB9 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		E3B2BF5525D67B0A0026DBB9 /* Model Controllers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Model Controllers";
+			sourceTree = "<group>";
+		};
+		E3B2BF5625D67B220026DBB9 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				E3B2BF4825D675020026DBB9 /* LaunchScreen.storyboard */,
+				E3B2BF4325D675010026DBB9 /* Main.storyboard */,
+			);
+			path = Storyboards;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -137,7 +174,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E3B2BF4225D675010026DBB9 /* ViewController.swift in Sources */,
 				E3B2BF3E25D675010026DBB9 /* AppDelegate.swift in Sources */,
 				E3B2BF4025D675010026DBB9 /* SceneDelegate.swift in Sources */,
 			);
@@ -288,7 +324,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = JA7B9846WV;
-				INFOPLIST_FILE = FlippingApp/Info.plist;
+				INFOPLIST_FILE = FlippingApp/Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -307,7 +343,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = JA7B9846WV;
-				INFOPLIST_FILE = FlippingApp/Info.plist;
+				INFOPLIST_FILE = FlippingApp/Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
