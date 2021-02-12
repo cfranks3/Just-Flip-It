@@ -9,6 +9,8 @@ import UIKit
 
 class ItemGroupCollectionViewCell: UICollectionViewCell {
     
+    // MARK: - IBOutlets
     
+    @IBOutlet weak var groupLabel: UILabel!
     
 }

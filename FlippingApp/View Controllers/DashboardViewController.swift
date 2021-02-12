@@ -11,8 +11,12 @@ class DashboardViewController: UIViewController {
     
     // MARK: - Properties
     
-    let itemController = ItemController()
     var inventoryValue: Double = 0
+    let itemController = ItemController()
+    let collectionViewCategories: [String] = [
+        "Inventory",
+        "Sales",
+    ]
     
     // MARK: - IBOutlets
     
@@ -86,10 +90,38 @@ class DashboardViewController: UIViewController {
     
 }
 
+// MARK: - Protocol methods
+
 extension DashboardViewController: AddItemViewControllerDelegate {
     
     func itemWasAdded() {
         calculateInventoryValue()
+    }
+    
+}
+
+// MARK: - Collection view delegate & data source
+
+extension DashboardViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return collectionViewCategories.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ItemCell", for: indexPath) as! ItemGroupCollectionViewCell
+        
+        cell.groupLabel.text = self.collectionViewCategories[indexPath.row]
+        
+        cell.layer.borderColor = UIColor(rgb: 0x00B290).cgColor
+        cell.layer.borderWidth = 2
+        cell.layer.cornerRadius = 12
+        
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        // TODO: Pop up modal view that contains info
     }
     
 }
