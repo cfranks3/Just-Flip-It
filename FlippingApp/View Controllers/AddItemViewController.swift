@@ -7,11 +7,16 @@
 
 import UIKit
 
+protocol AddItemViewControllerDelegate {
+    func itemWasAdded()
+}
+
 class AddItemViewController: UIViewController {
     
     // MARK: - Properties
     
     var itemController: ItemController?
+    var delegate: AddItemViewControllerDelegate?
     
     // MARK: - IBOutlets
     
@@ -36,6 +41,7 @@ class AddItemViewController: UIViewController {
                             listingPrice: Double(listingPrice) ?? 0,
                             quantity: Int(quantity) ?? 0)
             itemController?.addListedItem(with: item)
+            delegate?.itemWasAdded()
             navigationController?.popViewController(animated: true)
         }
     }
