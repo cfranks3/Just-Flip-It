@@ -23,6 +23,17 @@ class DashboardViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        itemController.loadItems()
+        print(itemController.listedItems)
+    }
+    
+    // MARK: - Navigation
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "AddItemSegue" {
+            let addItemVC = segue.destination as? AddItemViewController
+            addItemVC?.itemController = itemController
+        }
     }
 
 }

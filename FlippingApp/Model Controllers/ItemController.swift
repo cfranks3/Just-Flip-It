@@ -14,6 +14,13 @@ class ItemController {
     var listedItems: [Item] = []
     var soldItems: [Item] = []
     
+    // MARK: - Methods
+    
+    func addListedItem(with item: Item) {
+        listedItems.append(item)
+        saveItem()
+    }
+    
     // MARK: - Persistence
     
     // Documents directory
