@@ -24,6 +24,7 @@ class DashboardViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         itemController.loadItems()
+        itemController.resetData() // <---
         calculateInventoryValue()
     }
     
@@ -31,9 +32,20 @@ class DashboardViewController: UIViewController {
     
     func calculateInventoryValue() {
         inventoryValue = 0
+        
         for item in itemController.listedItems {
-            inventoryValue += item.listingPrice
+            if item.quantity > 1 {
+                var count = item.quantity
+                while count > 0 {
+                    inventoryValue += item.listingPrice
+                    count -= 1
+                }
+            } else {
+                inventoryValue += item.listingPrice
+            }
+            
         }
+        
         let formatter = NumberFormatter()
         formatter.numberStyle = .currency
         if let formattedValue = formatter.string(from: inventoryValue as NSNumber) {
