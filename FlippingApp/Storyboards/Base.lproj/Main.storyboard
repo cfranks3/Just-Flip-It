@@ -308,7 +308,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title of Item" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zg5-sR-SR9">
-                                <rect key="frame" x="117" y="40" width="141" height="33.5"/>
+                                <rect key="frame" x="62.5" y="40" width="250" height="33.5"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="250" id="KAD-AE-QFn"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
