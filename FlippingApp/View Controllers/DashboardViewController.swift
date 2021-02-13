@@ -11,9 +11,8 @@ class DashboardViewController: UIViewController {
     
     // MARK: - Properties
     
-    var inventoryValue: Double = 0
-    var profit: Double = 0
     let itemController = ItemController()
+    let formatter = NumberFormatter()
     let collectionViewCategories: [String] = [
         "Inventory",
         "Sales",
@@ -46,55 +45,17 @@ class DashboardViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         itemController.load()
-        calculateInventoryValue()
-        calculateProfit()
-        calculateSales()
+        updateViews()
     }
     
-    // MARK: - Methods
-    
-    func calculateInventoryValue() {
-        inventoryValue = 0
-        
-        for item in itemController.inventory {
-            if item.quantity > 1 {
-                var count = item.quantity
-                while count > 0 {
-                    inventoryValue += item.listingPrice
-                    count -= 1
-                }
-            } else if item.quantity == 1 {
-                inventoryValue += item.listingPrice
-            } else {
-                continue
-            }
-        }
-        
-        let formatter = NumberFormatter()
+    func updateViews() {
         formatter.numberStyle = .currency
-        if let formattedValue = formatter.string(from: inventoryValue as NSNumber) {
-            inventoryValueLabel.text = formattedValue
-        }
-    }
-    
-    func calculateProfit() {
-        profit = 0
+        profitLabel.text = formatter.string(from: itemController.calculateProfit() as NSNumber)
+        inventoryValueLabel.text = formatter.string(from: itemController.calculateInventoryValue() as NSNumber)
         
-        let formatter = NumberFormatter()
-        formatter.numberStyle = .currency
-        if let formattedValue = formatter.string(from: profit as NSNumber) {
-            profitLabel.text = formattedValue
-        }
-    }
-    
-    func calculateSales() {
-        itemController.sales = 0
-        
-        let formatter = NumberFormatter()
         formatter.numberStyle = .decimal
-        if let formattedValue = formatter.string(from: itemController.sales as NSNumber) {
-            numberOfSalesLabel.text = formattedValue
-        }
+        numberOfSalesLabel.text = formatter.string(from: itemController.calculateSales() as NSNumber)
+        
     }
     
     // MARK: - Navigation
@@ -118,7 +79,7 @@ class DashboardViewController: UIViewController {
 extension DashboardViewController: AddItemViewControllerDelegate {
     
     func itemWasAdded() {
-        calculateInventoryValue()
+        updateViews()
     }
     
 }
