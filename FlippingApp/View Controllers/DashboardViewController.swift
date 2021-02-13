@@ -105,7 +105,16 @@ extension DashboardViewController: UICollectionViewDelegate, UICollectionViewDat
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        // TODO: Pop up modal view that contains info
+        let selection = collectionViewCategories[indexPath.row]
+        if selection == "Inventory" {
+            guard let inventoryVC = storyboard?.instantiateViewController(identifier: "InventoryVC") as? InventoryViewController else { return}
+            
+            present(inventoryVC, animated: true, completion: nil)
+        } else if selection == "Sales" {
+            // TODO
+        } else {
+            NSLog("Error: invalid collection view option tapped.")
+        }
     }
     
 }

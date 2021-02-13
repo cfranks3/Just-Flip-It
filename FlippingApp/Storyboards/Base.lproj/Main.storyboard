@@ -194,6 +194,35 @@
             </objects>
             <point key="canvasLocation" x="351.19999999999999" y="-146.17691154422789"/>
         </scene>
+        <!--Inventory View Controller-->
+        <scene sceneID="tyb-64-SEs">
+            <objects>
+                <viewController storyboardIdentifier="InventoryVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="uFe-HX-OXW" customClass="InventoryViewController" customModule="FlippingApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="heG-Mc-ap3">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hello" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="etR-jh-wy5">
+                                <rect key="frame" x="156.5" y="307" width="62.5" height="33.5"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Wkk-DU-bDP"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="etR-jh-wy5" firstAttribute="centerX" secondItem="heG-Mc-ap3" secondAttribute="centerX" id="BMC-Fb-9bv"/>
+                            <constraint firstItem="etR-jh-wy5" firstAttribute="centerY" secondItem="heG-Mc-ap3" secondAttribute="centerY" id="xuJ-IN-YGb"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="WC8-Gk-23m"/>
+                    <modalPageSheetSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="f3y-Ad-3Is" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="351" y="532"/>
+        </scene>
         <!--New Item-->
         <scene sceneID="v0v-eu-efc">
             <objects>
