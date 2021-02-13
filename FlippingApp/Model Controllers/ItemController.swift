@@ -114,8 +114,12 @@ class ItemController {
     
     func processSale(sold item: Item, listed oldItem: Item) {
         soldItems.append(item)
-        if inventory.contains(oldItem) {
-            inventory.removeAll(where: { $0 == oldItem })
+        if oldItem.quantity == 1 {
+            if inventory.contains(oldItem) {
+                inventory.removeAll(where: { $0 == oldItem })
+            }
+        } else {
+            oldItem.quantity -= item.quantity
         }
         delegate?.saleWasMade()
         save()

@@ -40,7 +40,7 @@ class InventoryViewController: UIViewController, UITableViewDelegate, UITableVie
         let cell = tableView.dequeueReusableCell(withIdentifier: "ItemCell", for: indexPath) as! ItemTableViewCell
         cell.itemNameLabel.text = filteredItems[indexPath.row].title
         let formattedQuantity = formatter.string(from: (filteredItems[indexPath.row].quantity) as NSNumber)
-        cell.itemQuantityLabel.text = formattedQuantity
+        cell.itemQuantityLabel.text = "Quantity: \(formattedQuantity ?? "-1")"
         
         formatter.numberStyle = .currency
         if let listingPrice = filteredItems[indexPath.row].listingPrice {
