@@ -121,6 +121,17 @@ extension DashboardViewController: UICollectionViewDelegate, UICollectionViewDat
         return cell
     }
     
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        
+        let totalCellWidth = 128 * collectionViewCategories.count
+        let totalSpacingWidth = 10 * (collectionViewCategories.count - 1)
+        
+        let leftInset = (CGFloat(view.frame.size.width) - CGFloat(totalCellWidth + totalSpacingWidth)) / 2
+        let rightInset = leftInset
+        
+        return UIEdgeInsets(top: 0, left: leftInset, bottom: 0, right: rightInset)
+    }
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let selection = collectionViewCategories[indexPath.row]
         guard let inventoryVC = storyboard?.instantiateViewController(identifier: "InventoryVC") as? ItemListViewController else { return}

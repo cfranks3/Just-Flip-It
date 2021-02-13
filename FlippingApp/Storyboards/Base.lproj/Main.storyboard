@@ -109,7 +109,7 @@
                                 </subviews>
                             </stackView>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="YUf-jM-zd6">
-                                <rect key="frame" x="20" y="485" width="335" height="120"/>
+                                <rect key="frame" x="0.0" y="485" width="375" height="120"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="120" id="kGx-jr-vJ3"/>
@@ -180,8 +180,8 @@
                             <constraint firstItem="IqQ-vf-IDx" firstAttribute="top" secondItem="4K0-pi-MKc" secondAttribute="top" constant="6" id="SLo-md-UYc"/>
                             <constraint firstItem="4K0-pi-MKc" firstAttribute="bottom" secondItem="EwC-5x-YcT" secondAttribute="bottom" constant="20" id="emP-lk-I4Q"/>
                             <constraint firstItem="EwC-5x-YcT" firstAttribute="centerX" secondItem="4nO-QO-VQD" secondAttribute="centerX" id="nOP-xr-mFP"/>
-                            <constraint firstItem="YUf-jM-zd6" firstAttribute="leading" secondItem="4K0-pi-MKc" secondAttribute="leading" constant="20" id="pPd-NG-5bW"/>
-                            <constraint firstItem="4K0-pi-MKc" firstAttribute="trailing" secondItem="YUf-jM-zd6" secondAttribute="trailing" constant="20" id="sI7-UI-y6l"/>
+                            <constraint firstItem="YUf-jM-zd6" firstAttribute="leading" secondItem="4K0-pi-MKc" secondAttribute="leading" id="pPd-NG-5bW"/>
+                            <constraint firstItem="4K0-pi-MKc" firstAttribute="trailing" secondItem="YUf-jM-zd6" secondAttribute="trailing" id="sI7-UI-y6l"/>
                             <constraint firstItem="IqQ-vf-IDx" firstAttribute="leading" secondItem="4K0-pi-MKc" secondAttribute="leading" constant="20" id="zCV-rZ-B2i"/>
                         </constraints>
                     </view>

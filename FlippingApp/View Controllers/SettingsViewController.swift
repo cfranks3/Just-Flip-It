@@ -17,8 +17,16 @@ class SettingsViewController: UIViewController {
     // MARK: - IBActions
     
     @IBAction func resetDataButtonTapped(_ sender: UIButton) {
-        itemController?.resetData()
-        delegate?.itemWasAdded()
+        let alert = UIAlertController(title: "Warning!", message: "Proceeding will permanently delete all stored user data. This includes all sales, profit, and inventory. This cannot be reversed.", preferredStyle: .alert)
+        let confirm = UIAlertAction(title: "I Understand", style: .destructive) { (_) in
+            self.itemController?.resetData()
+            self.delegate?.itemWasAdded()
+        }
+        let cancel = UIAlertAction(title: "Nevermind", style: .cancel, handler: nil)
+        alert.addAction(confirm)
+        alert.addAction(cancel)
+        present(alert, animated: true, completion: nil)
+        
     }
-
+    
 }

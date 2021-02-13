@@ -79,7 +79,7 @@ class ItemListViewController: UIViewController, UITableViewDelegate, UITableView
                 return item.title.range(of: searchText, options: .caseInsensitive) != nil
             })
         }
-
+        
         tableView.reloadData()
     }
     
@@ -93,7 +93,7 @@ class ItemListViewController: UIViewController, UITableViewDelegate, UITableView
             }
         }
     }
-
+    
 }
 
 extension ItemListViewController: ItemDetailDelegate {

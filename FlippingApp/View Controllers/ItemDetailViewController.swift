@@ -72,5 +72,5 @@ class ItemDetailViewController: UIViewController {
         formatter.numberStyle = .currency
         soldPriceTextField.placeholder = formatter.string(from: listingPrice as NSNumber)
     }
-
+    
 }
