@@ -18,6 +18,7 @@ class InventoryViewController: UIViewController, UITableViewDelegate, UITableVie
     
     var itemController: ItemController?
     var filteredItems: [Item]!
+    var saleMode: Bool = false
     
     // MARK: - Lifecycle
     
@@ -56,6 +57,10 @@ class InventoryViewController: UIViewController, UITableViewDelegate, UITableVie
         })
 
         tableView.reloadData()
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
     }
 
 }

@@ -40,6 +40,14 @@ class DashboardViewController: UIViewController {
         present(alert, animated: true)
     }
     
+    @IBAction func reportButtonTapped(_ sender: UIButton) {
+        guard let inventoryVC = storyboard?.instantiateViewController(identifier: "InventoryVC") as? InventoryViewController else { return }
+        inventoryVC.itemController = itemController
+        inventoryVC.saleMode = true
+        present(inventoryVC, animated: true, completion: nil)
+    }
+    
+    
     // MARK: - Lifecycle
     
     override func viewDidLoad() {

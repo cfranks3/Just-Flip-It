@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		E32BBB1125D7861400E770CD /* InventoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E32BBB1025D7861400E770CD /* InventoryViewController.swift */; };
 		E32BBB1525D793E700E770CD /* ItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E32BBB1425D793E700E770CD /* ItemTableViewCell.swift */; };
+		E32BBB1825D7AFA700E770CD /* ItemDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E32BBB1725D7AFA700E770CD /* ItemDetailViewController.swift */; };
 		E368B39925D715C5000FBB0E /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E368B39825D715C5000FBB0E /* SettingsViewController.swift */; };
 		E368B39C25D72CCD000FBB0E /* RGBExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E368B39B25D72CCD000FBB0E /* RGBExtension.swift */; };
 		E3B2BF3E25D675010026DBB9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3B2BF3D25D675010026DBB9 /* AppDelegate.swift */; };
@@ -26,6 +27,7 @@
 /* Begin PBXFileReference section */
 		E32BBB1025D7861400E770CD /* InventoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryViewController.swift; sourceTree = "<group>"; };
 		E32BBB1425D793E700E770CD /* ItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemTableViewCell.swift; sourceTree = "<group>"; };
+		E32BBB1725D7AFA700E770CD /* ItemDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDetailViewController.swift; sourceTree = "<group>"; };
 		E368B39825D715C5000FBB0E /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		E368B39B25D72CCD000FBB0E /* RGBExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RGBExtension.swift; sourceTree = "<group>"; };
 		E3B2BF3A25D675010026DBB9 /* FlippingApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FlippingApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -99,6 +101,7 @@
 			children = (
 				E3B2BF5925D67BA90026DBB9 /* DashboardViewController.swift */,
 				E32BBB1025D7861400E770CD /* InventoryViewController.swift */,
+				E32BBB1725D7AFA700E770CD /* ItemDetailViewController.swift */,
 				E3B2BF6225D682C60026DBB9 /* AddItemViewController.swift */,
 				E368B39825D715C5000FBB0E /* SettingsViewController.swift */,
 			);
@@ -211,6 +214,7 @@
 			files = (
 				E3B2BF5D25D67E940026DBB9 /* Item.swift in Sources */,
 				E3B2BF3E25D675010026DBB9 /* AppDelegate.swift in Sources */,
+				E32BBB1825D7AFA700E770CD /* ItemDetailViewController.swift in Sources */,
 				E368B39C25D72CCD000FBB0E /* RGBExtension.swift in Sources */,
 				E3B2BF5A25D67BA90026DBB9 /* DashboardViewController.swift in Sources */,
 				E3B2BF6025D67EB30026DBB9 /* ItemController.swift in Sources */,
