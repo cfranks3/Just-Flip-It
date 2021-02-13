@@ -7,13 +7,28 @@
 
 import UIKit
 
-struct Item: Codable, Equatable {
-    
-    // MARK: - Properties
+class Item: NSObject, Codable {
     
     var title: String
     var purchasePrice: Double
-    var listingPrice: Double
+    var listingPrice: Double?
+    var soldPrice: Double?
     var quantity: Int
+    
+    // New item
+    init(title: String, purchasePrice: Double, listingPrice: Double, quantity: Int) {
+        self.title = title
+        self.purchasePrice = purchasePrice
+        self.listingPrice = listingPrice
+        self.quantity = quantity
+    }
+    
+    // Sold item
+    init(title: String, purchasePrice: Double, soldPrice: Double, quantity: Int) {
+        self.title = title
+        self.purchasePrice = purchasePrice
+        self.soldPrice = soldPrice
+        self.quantity = quantity
+    }
     
 }

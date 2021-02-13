@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol ItemControllerDelegate {
+    func saleWasMade()
+}
+
 class ItemController {
     
     // MARK: - Properties
@@ -17,6 +21,8 @@ class ItemController {
     var sales = 0
     var inventoryValue: Double = 0
     var profit: Double = 0
+    
+    var delegate: ItemControllerDelegate?
     
     // MARK: - Methods
     
@@ -47,11 +53,15 @@ class ItemController {
             if item.quantity > 1 {
                 var count = item.quantity
                 while count > 0 {
-                    inventoryValue += item.listingPrice
-                    count -= 1
+                    if let listingPrice = item.listingPrice {
+                        inventoryValue += listingPrice
+                        count -= 1
+                    }
                 }
             } else if item.quantity == 1 {
-                inventoryValue += item.listingPrice
+                if let listingPrice = item.listingPrice {
+                    inventoryValue += listingPrice
+                }
             } else {
                 continue
             }
@@ -67,11 +77,15 @@ class ItemController {
             if item.quantity > 1 {
                 var count = item.quantity
                 while count > 0 {
-                    profit += (item.listingPrice - item.purchasePrice)
-                    count -= 1
+                    if let soldPrice = item.soldPrice {
+                        profit += (soldPrice) - item.purchasePrice
+                        count -= 1
+                    }
                 }
             } else if item.quantity == 1 {
-                profit += (item.listingPrice - item.purchasePrice)
+                if let soldPrice = item.soldPrice {
+                    profit += (soldPrice) - item.purchasePrice
+                }
             } else {
                 continue
             }
@@ -96,6 +110,15 @@ class ItemController {
             }
         }
         return sales
+    }
+    
+    func processSale(sold item: Item, listed oldItem: Item) {
+        soldItems.append(item)
+        if inventory.contains(oldItem) {
+            inventory.removeAll(where: { $0 == oldItem })
+        }
+        delegate?.saleWasMade()
+        save()
     }
     
     // MARK: - Persistence

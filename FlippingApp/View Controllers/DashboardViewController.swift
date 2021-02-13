@@ -43,7 +43,7 @@ class DashboardViewController: UIViewController {
     @IBAction func reportButtonTapped(_ sender: UIButton) {
         guard let inventoryVC = storyboard?.instantiateViewController(identifier: "InventoryVC") as? InventoryViewController else { return }
         inventoryVC.itemController = itemController
-        inventoryVC.saleMode = true
+        inventoryVC.filteredItems = itemController.inventory
         present(inventoryVC, animated: true, completion: nil)
     }
     
@@ -53,6 +53,7 @@ class DashboardViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         itemController.load()
+        itemController.delegate = self
         updateViews()
     }
     
@@ -92,6 +93,14 @@ extension DashboardViewController: AddItemViewControllerDelegate {
     
 }
 
+extension DashboardViewController: ItemControllerDelegate {
+    
+    func saleWasMade() {
+        updateViews()
+    }
+    
+}
+
 // MARK: - Collection view delegate & data source
 
 extension DashboardViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
@@ -117,7 +126,7 @@ extension DashboardViewController: UICollectionViewDelegate, UICollectionViewDat
         if selection == "Inventory" {
             guard let inventoryVC = storyboard?.instantiateViewController(identifier: "InventoryVC") as? InventoryViewController else { return}
             inventoryVC.itemController = itemController
-            
+            inventoryVC.filteredItems = itemController.inventory
             present(inventoryVC, animated: true, completion: nil)
         } else if selection == "Sales" {
             // TODO

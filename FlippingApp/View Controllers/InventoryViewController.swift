@@ -18,14 +18,13 @@ class InventoryViewController: UIViewController, UITableViewDelegate, UITableVie
     
     var itemController: ItemController?
     var filteredItems: [Item]!
-    var saleMode: Bool = false
+    var saleMade: Bool = false
     
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         searchBar.delegate = self
-        filteredItems = itemController?.inventory
     }
     
     // MARK: - Table view delegate
@@ -44,8 +43,10 @@ class InventoryViewController: UIViewController, UITableViewDelegate, UITableVie
         cell.itemQuantityLabel.text = formattedQuantity
         
         formatter.numberStyle = .currency
-        let formattedNumber = formatter.string(from: (filteredItems[indexPath.row].listingPrice) as NSNumber)
-        cell.valueLabel.text = "\(formattedNumber ?? "-1")"
+        if let listingPrice = filteredItems[indexPath.row].listingPrice {
+            let formattedNumber = formatter.string(from: listingPrice as NSNumber)
+            cell.valueLabel.text = "\(formattedNumber ?? "-1")"
+        }
         
         return cell
     }
@@ -59,8 +60,21 @@ class InventoryViewController: UIViewController, UITableViewDelegate, UITableVie
         tableView.reloadData()
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "ItemSegue" {
+            guard let detailVC = segue.destination as? ItemDetailViewController else { return }
+            if let indexPath = tableView.indexPath(for: sender as! ItemTableViewCell) {
+                detailVC.item = filteredItems[indexPath.row]
+                detailVC.itemController = itemController
+                detailVC.delegate = self
+            }
+        }
     }
 
+}
+
+extension InventoryViewController: ItemDetailDelegate {
+    func saleWasMade() {
+        presentingViewController?.dismiss(animated: true, completion: nil)
+    }
 }
