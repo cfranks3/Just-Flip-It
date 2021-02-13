@@ -44,6 +44,8 @@ class DashboardViewController: UIViewController {
         guard let inventoryVC = storyboard?.instantiateViewController(identifier: "InventoryVC") as? ItemListViewController else { return }
         inventoryVC.itemController = itemController
         inventoryVC.filteredItems = itemController.inventory
+        inventoryVC.viewingSold = false
+        inventoryVC.delegate = self
         present(inventoryVC, animated: true, completion: nil)
     }
     
@@ -101,6 +103,12 @@ extension DashboardViewController: ItemControllerDelegate {
     
 }
 
+extension DashboardViewController: ItemListDelegate {
+    func itemWasDeleted() {
+        updateViews()
+    }
+}
+
 // MARK: - Collection view delegate & data source
 
 extension DashboardViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
@@ -139,11 +147,14 @@ extension DashboardViewController: UICollectionViewDelegate, UICollectionViewDat
         if selection == "Inventory" {
             inventoryVC.searchType = "inventory"
             inventoryVC.filteredItems = itemController.inventory
+            inventoryVC.viewingSold = false
+            inventoryVC.delegate = self
             present(inventoryVC, animated: true, completion: nil)
         } else if selection == "Sales" {
             inventoryVC.searchType = "soldItems"
             inventoryVC.filteredItems = itemController.soldItems
             inventoryVC.viewingSold = true
+            inventoryVC.delegate = self
             present(inventoryVC, animated: true, completion: nil)
         } else {
             NSLog("Error: invalid collection view option tapped.")

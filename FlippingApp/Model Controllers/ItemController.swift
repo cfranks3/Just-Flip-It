@@ -24,7 +24,7 @@ class ItemController {
     
     var delegate: ItemControllerDelegate?
     
-    // MARK: - Methods
+    // MARK: - CRUD Methods
     
     func addListedItem(with item: Item) {
         inventory.append(item)
@@ -39,10 +39,16 @@ class ItemController {
         }
     }
     
-    // Permanently deletes all stored data!
     func resetData() {
         soldItems.removeAll()
         inventory.removeAll()
+        save()
+    }
+    
+    func deleteItem(with item: Item) {
+        if inventory.contains(item) {
+            inventory.removeAll(where: { $0 == item })
+        }
         save()
     }
     

@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol ItemListDelegate {
+    func itemWasDeleted()
+}
+
 class ItemListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
     
     // MARK: - IBOutlets
@@ -20,6 +24,7 @@ class ItemListViewController: UIViewController, UITableViewDelegate, UITableView
     var filteredItems: [Item]!
     var searchType: String!
     var viewingSold: Bool?
+    var delegate: ItemListDelegate?
     
     // MARK: - Lifecycle
     
@@ -62,6 +67,12 @@ class ItemListViewController: UIViewController, UITableViewDelegate, UITableView
         if let listingPrice = filteredItems[indexPath.row].listingPrice {
             let formattedNumber = formatter.string(from: listingPrice as NSNumber)
             cell.valueLabel.text = "\(formattedNumber ?? "-1")"
+        } else {
+            if let soldPrice = filteredItems[indexPath.row].soldPrice {
+                let formattedNumber = formatter.string(from: soldPrice as NSNumber)
+                cell.valueLabel.text = "\(formattedNumber ?? "-1")"
+            }
+            
         }
         
         return cell
@@ -82,6 +93,22 @@ class ItemListViewController: UIViewController, UITableViewDelegate, UITableView
         
         tableView.reloadData()
     }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+            if let viewingSold = viewingSold {
+                if !viewingSold {
+                    itemController?.deleteItem(with: filteredItems[indexPath.row])
+                    filteredItems.remove(at: indexPath.row)
+                    tableView.deleteRows(at: [indexPath], with: .bottom)
+                    delegate?.itemWasDeleted()
+                }
+            }
+        if filteredItems.count == 0 {
+            dismiss(animated: true, completion: nil)
+        }
+    }
+    
+    // MARK: - Navigation
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "ItemSegue" {
