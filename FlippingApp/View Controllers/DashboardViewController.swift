@@ -41,7 +41,7 @@ class DashboardViewController: UIViewController {
     }
     
     @IBAction func reportButtonTapped(_ sender: UIButton) {
-        guard let inventoryVC = storyboard?.instantiateViewController(identifier: "InventoryVC") as? InventoryViewController else { return }
+        guard let inventoryVC = storyboard?.instantiateViewController(identifier: "InventoryVC") as? ItemListViewController else { return }
         inventoryVC.itemController = itemController
         inventoryVC.filteredItems = itemController.inventory
         present(inventoryVC, animated: true, completion: nil)
@@ -123,13 +123,17 @@ extension DashboardViewController: UICollectionViewDelegate, UICollectionViewDat
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let selection = collectionViewCategories[indexPath.row]
+        guard let inventoryVC = storyboard?.instantiateViewController(identifier: "InventoryVC") as? ItemListViewController else { return}
+        inventoryVC.itemController = itemController
         if selection == "Inventory" {
-            guard let inventoryVC = storyboard?.instantiateViewController(identifier: "InventoryVC") as? InventoryViewController else { return}
-            inventoryVC.itemController = itemController
+            inventoryVC.searchType = "inventory"
             inventoryVC.filteredItems = itemController.inventory
             present(inventoryVC, animated: true, completion: nil)
         } else if selection == "Sales" {
-            // TODO
+            inventoryVC.searchType = "soldItems"
+            inventoryVC.filteredItems = itemController.soldItems
+            inventoryVC.viewingSold = true
+            present(inventoryVC, animated: true, completion: nil)
         } else {
             NSLog("Error: invalid collection view option tapped.")
         }

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class InventoryViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
+class ItemListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
     
     // MARK: - IBOutlets
     
@@ -18,13 +18,29 @@ class InventoryViewController: UIViewController, UITableViewDelegate, UITableVie
     
     var itemController: ItemController?
     var filteredItems: [Item]!
-    var saleMade: Bool = false
+    var searchType: String!
+    var viewingSold: Bool?
     
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         searchBar.delegate = self
+        preventSelling()
+    }
+    
+    // MARK: - Methods
+    
+    func preventSelling() {
+        if let viewingSold = viewingSold {
+            if viewingSold {
+                searchBar.placeholder = "Search for a sold item"
+                tableView.isUserInteractionEnabled = false
+            } else {
+                searchBar.placeholder = "Search your inventory"
+                tableView.isUserInteractionEnabled = true
+            }
+        }
     }
     
     // MARK: - Table view delegate
@@ -52,10 +68,17 @@ class InventoryViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        guard let data = itemController?.inventory else { return }
-        filteredItems = searchText.isEmpty ? data : data.filter({(item: Item) -> Bool in
-            return item.title.range(of: searchText, options: .caseInsensitive) != nil
-        })
+        if searchType == "inventory" {
+            guard let data = itemController?.inventory else { return }
+            filteredItems = searchText.isEmpty ? data : data.filter({(item: Item) -> Bool in
+                return item.title.range(of: searchText, options: .caseInsensitive) != nil
+            })
+        } else if searchType == "soldItems" {
+            guard let data = itemController?.soldItems else { return }
+            filteredItems = searchText.isEmpty ? data : data.filter({(item: Item) -> Bool in
+                return item.title.range(of: searchText, options: .caseInsensitive) != nil
+            })
+        }
 
         tableView.reloadData()
     }
@@ -73,7 +96,7 @@ class InventoryViewController: UIViewController, UITableViewDelegate, UITableVie
 
 }
 
-extension InventoryViewController: ItemDetailDelegate {
+extension ItemListViewController: ItemDetailDelegate {
     func saleWasMade() {
         presentingViewController?.dismiss(animated: true, completion: nil)
     }

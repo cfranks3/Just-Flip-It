@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		E32BBB1125D7861400E770CD /* InventoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E32BBB1025D7861400E770CD /* InventoryViewController.swift */; };
+		E32BBB1125D7861400E770CD /* ItemListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E32BBB1025D7861400E770CD /* ItemListViewController.swift */; };
 		E32BBB1525D793E700E770CD /* ItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E32BBB1425D793E700E770CD /* ItemTableViewCell.swift */; };
 		E32BBB1825D7AFA700E770CD /* ItemDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E32BBB1725D7AFA700E770CD /* ItemDetailViewController.swift */; };
 		E368B39925D715C5000FBB0E /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E368B39825D715C5000FBB0E /* SettingsViewController.swift */; };
@@ -25,7 +25,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		E32BBB1025D7861400E770CD /* InventoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryViewController.swift; sourceTree = "<group>"; };
+		E32BBB1025D7861400E770CD /* ItemListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemListViewController.swift; sourceTree = "<group>"; };
 		E32BBB1425D793E700E770CD /* ItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemTableViewCell.swift; sourceTree = "<group>"; };
 		E32BBB1725D7AFA700E770CD /* ItemDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDetailViewController.swift; sourceTree = "<group>"; };
 		E368B39825D715C5000FBB0E /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
@@ -100,7 +100,7 @@
 			isa = PBXGroup;
 			children = (
 				E3B2BF5925D67BA90026DBB9 /* DashboardViewController.swift */,
-				E32BBB1025D7861400E770CD /* InventoryViewController.swift */,
+				E32BBB1025D7861400E770CD /* ItemListViewController.swift */,
 				E32BBB1725D7AFA700E770CD /* ItemDetailViewController.swift */,
 				E3B2BF6225D682C60026DBB9 /* AddItemViewController.swift */,
 				E368B39825D715C5000FBB0E /* SettingsViewController.swift */,
@@ -220,7 +220,7 @@
 				E3B2BF6025D67EB30026DBB9 /* ItemController.swift in Sources */,
 				E3B2BF4025D675010026DBB9 /* SceneDelegate.swift in Sources */,
 				E3B2BF6925D69A060026DBB9 /* ItemGroupCollectionViewCell.swift in Sources */,
-				E32BBB1125D7861400E770CD /* InventoryViewController.swift in Sources */,
+				E32BBB1125D7861400E770CD /* ItemListViewController.swift in Sources */,
 				E3B2BF6325D682C60026DBB9 /* AddItemViewController.swift in Sources */,
 				E32BBB1525D793E700E770CD /* ItemTableViewCell.swift in Sources */,
 				E368B39925D715C5000FBB0E /* SettingsViewController.swift in Sources */,
