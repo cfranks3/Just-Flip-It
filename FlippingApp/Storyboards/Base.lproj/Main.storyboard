@@ -276,6 +276,10 @@
                     </view>
                     <navigationItem key="navigationItem" id="WC8-Gk-23m"/>
                     <modalPageSheetSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <connections>
+                        <outlet property="searchBar" destination="q1K-Ph-lWg" id="eBU-vA-MJ2"/>
+                        <outlet property="tableView" destination="W5o-l3-Usw" id="gCI-QZ-4Ig"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="f3y-Ad-3Is" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

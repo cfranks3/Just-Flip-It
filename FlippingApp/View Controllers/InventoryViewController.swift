@@ -7,17 +7,30 @@
 
 import UIKit
 
-class InventoryViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class InventoryViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
+    
+    // MARK: - IBOutlets
+    
+    @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet weak var tableView: UITableView!
     
     // MARK: - Properties
     
     var itemController: ItemController?
+    var filteredItems: [Item]!
+    
+    // MARK: - Lifecycle
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        searchBar.delegate = self
+        filteredItems = itemController?.inventory
+    }
     
     // MARK: - Table view delegate
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard let count = itemController?.inventory.count else { return 0 }
-        return count
+        return filteredItems.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -25,15 +38,24 @@ class InventoryViewController: UIViewController, UITableViewDelegate, UITableVie
         formatter.numberStyle = .decimal
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "ItemCell", for: indexPath) as! ItemTableViewCell
-        cell.itemNameLabel.text = itemController?.inventory[indexPath.row].title
-        let formattedQuantity = formatter.string(from: (itemController?.inventory[indexPath.row].quantity ?? 0) as NSNumber)
+        cell.itemNameLabel.text = filteredItems[indexPath.row].title
+        let formattedQuantity = formatter.string(from: (filteredItems[indexPath.row].quantity) as NSNumber)
         cell.itemQuantityLabel.text = formattedQuantity
         
         formatter.numberStyle = .currency
-        let formattedNumber = formatter.string(from: (itemController?.inventory[indexPath.row].listingPrice ?? 0) as NSNumber)
+        let formattedNumber = formatter.string(from: (filteredItems[indexPath.row].listingPrice) as NSNumber)
         cell.valueLabel.text = "\(formattedNumber ?? "-1")"
         
         return cell
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        guard let data = itemController?.inventory else { return }
+        filteredItems = searchText.isEmpty ? data : data.filter({(item: Item) -> Bool in
+            return item.title.range(of: searchText, options: .caseInsensitive) != nil
+        })
+
+        tableView.reloadData()
     }
 
 }
