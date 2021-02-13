@@ -53,8 +53,10 @@ class ItemController {
         save()
     }
     
-    func editItem(with item: Item, at index: Int) {
-        inventory[index] = item
+    func editItem(with item: Item, replacing oldItem: Item, at index: Int) {
+        if inventory[index] == oldItem {
+            inventory[index] = item
+        }
         delegate?.itemWasEdited()
         save()
     }

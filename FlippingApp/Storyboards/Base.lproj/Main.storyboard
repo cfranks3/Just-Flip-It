@@ -307,9 +307,9 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title of Item" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zg5-sR-SR9">
-                                <rect key="frame" x="62.5" y="40" width="250" height="33.5"/>
+                                <rect key="frame" x="87.5" y="40" width="200" height="33.5"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="250" id="KAD-AE-QFn"/>
+                                    <constraint firstAttribute="width" constant="200" id="KAD-AE-QFn"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
                                 <nil key="textColor"/>
@@ -405,30 +405,21 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EVa-eF-1l5">
-                                <rect key="frame" x="315.5" y="20" width="39.5" height="33"/>
+                                <rect key="frame" x="316" y="20" width="39" height="33"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                 <state key="normal" title="Save"/>
                                 <connections>
                                     <action selector="saveButtonTapped:" destination="q7h-kt-9yf" eventType="touchUpInside" id="fhn-AR-SCc"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title of Item" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2qU-Z7-mms">
-                                <rect key="frame" x="62.5" y="40" width="250" height="33.5"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="250" id="EOp-r3-M7N"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Current quantity: 1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PJy-2K-dyt">
-                                <rect key="frame" x="113.5" y="97.5" width="148.5" height="20.5"/>
+                                <rect key="frame" x="113.5" y="98" width="148.5" height="20.5"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="28" translatesAutoresizingMaskIntoConstraints="NO" id="2f5-Ip-uxp">
-                                <rect key="frame" x="20" y="178" width="150" height="153"/>
+                                <rect key="frame" x="20" y="178.5" width="150" height="153"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="UZk-vp-6oU">
                                         <rect key="frame" x="0.0" y="0.0" width="103.5" height="62.5"/>
@@ -467,18 +458,25 @@
                                     </stackView>
                                 </subviews>
                             </stackView>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FDF-y6-HAt">
+                                <rect key="frame" x="87.5" y="40" width="200" height="34"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="Umd-mZ-giV"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="uUX-06-uR2"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="2qU-Z7-mms" firstAttribute="top" secondItem="uUX-06-uR2" secondAttribute="top" constant="40" id="15M-zY-NAA"/>
                             <constraint firstItem="2f5-Ip-uxp" firstAttribute="leading" secondItem="uUX-06-uR2" secondAttribute="leading" constant="20" id="A7h-Df-hpb"/>
                             <constraint firstItem="2f5-Ip-uxp" firstAttribute="top" secondItem="PJy-2K-dyt" secondAttribute="bottom" constant="60" id="BAr-7H-cpS"/>
+                            <constraint firstItem="PJy-2K-dyt" firstAttribute="top" secondItem="FDF-y6-HAt" secondAttribute="bottom" constant="24" id="HKA-EM-O3K"/>
                             <constraint firstItem="EVa-eF-1l5" firstAttribute="top" secondItem="uUX-06-uR2" secondAttribute="top" constant="20" id="TTF-wC-M7C"/>
-                            <constraint firstItem="PJy-2K-dyt" firstAttribute="top" secondItem="2qU-Z7-mms" secondAttribute="bottom" constant="24" id="fuZ-vG-6S1"/>
+                            <constraint firstItem="FDF-y6-HAt" firstAttribute="top" secondItem="uUX-06-uR2" secondAttribute="top" constant="40" id="Ted-LB-UdQ"/>
                             <constraint firstItem="PJy-2K-dyt" firstAttribute="centerX" secondItem="gtJ-26-Y4U" secondAttribute="centerX" id="kvZ-og-xhJ"/>
-                            <constraint firstItem="2qU-Z7-mms" firstAttribute="centerX" secondItem="gtJ-26-Y4U" secondAttribute="centerX" id="mmd-Jn-v2a"/>
-                            <constraint firstItem="EVa-eF-1l5" firstAttribute="leading" secondItem="2qU-Z7-mms" secondAttribute="trailing" constant="3" id="oU4-vz-rMf"/>
+                            <constraint firstItem="FDF-y6-HAt" firstAttribute="centerX" secondItem="gtJ-26-Y4U" secondAttribute="centerX" id="ppK-Na-jj0"/>
                             <constraint firstItem="uUX-06-uR2" firstAttribute="trailing" secondItem="EVa-eF-1l5" secondAttribute="trailing" constant="20" id="zD7-pu-NtT"/>
                         </constraints>
                     </view>
@@ -487,7 +485,7 @@
                         <outlet property="listingPriceTextField" destination="VAz-nL-aBd" id="Y1g-sc-Wxd"/>
                         <outlet property="quantityLabel" destination="PJy-2K-dyt" id="D6W-Da-ahS"/>
                         <outlet property="quantityTextField" destination="Eid-Ju-pCO" id="bbw-VI-CG0"/>
-                        <outlet property="titleLabel" destination="2qU-Z7-mms" id="uCi-Ah-6am"/>
+                        <outlet property="titleTextField" destination="FDF-y6-HAt" id="CbO-JF-tMp"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6Mj-bq-Hup" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

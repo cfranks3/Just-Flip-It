@@ -22,7 +22,7 @@ class EditItemViewController: UIViewController {
     
     // MARK: - IBOutlets
     
-    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var quantityLabel: UILabel!
     @IBOutlet weak var quantityTextField: UITextField!
     @IBOutlet weak var listingPriceTextField: UITextField!
@@ -30,15 +30,17 @@ class EditItemViewController: UIViewController {
     // MARK: - IBActions
     
     @IBAction func saveButtonTapped(_ sender: UIButton) {
+        guard let item = item else { return }
+        guard let index = index else { return }
         if let quantity = quantityTextField.text,
            !quantity.isEmpty,
            let listingPrice = listingPriceTextField.text,
-           !listingPrice.isEmpty,
-           let title = item?.title,
-           let index = index,
-           let purchasePrice = item?.purchasePrice {
-            let editedItem = Item(title: title, purchasePrice: purchasePrice, listingPrice: Double(listingPrice) ?? 0, quantity: Int(quantity) ?? 0)
-            itemController?.editItem(with: editedItem, at: index)
+           !listingPrice.isEmpty {
+            let editedItem = Item(title: titleTextField.text ?? item.title,
+                                  purchasePrice: item.purchasePrice,
+                                  listingPrice: Double(listingPrice) ?? 0,
+                                  quantity: Int(quantity) ?? 0)
+            itemController?.editItem(with: editedItem, replacing: item, at: index)
             delegate?.itemWasEdited()
             presentingViewController?.dismiss(animated: true, completion: nil)
         }
@@ -57,7 +59,7 @@ class EditItemViewController: UIViewController {
         let formatter = NumberFormatter()
         
         formatter.numberStyle = .decimal
-        titleLabel.text = item?.title
+        titleTextField.text = item?.title
         quantityLabel.text = "Current quantity: \(formatter.string(from: quantity as NSNumber) ?? "-1")"
         quantityTextField.text = "\(quantity)"
         formatter.numberStyle = .currency
