@@ -10,6 +10,7 @@
 		E32BBB1125D7861400E770CD /* ItemListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E32BBB1025D7861400E770CD /* ItemListViewController.swift */; };
 		E32BBB1525D793E700E770CD /* ItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E32BBB1425D793E700E770CD /* ItemTableViewCell.swift */; };
 		E32BBB1825D7AFA700E770CD /* ItemDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E32BBB1725D7AFA700E770CD /* ItemDetailViewController.swift */; };
+		E32BBB2325D869DF00E770CD /* EditItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E32BBB2225D869DF00E770CD /* EditItemViewController.swift */; };
 		E368B39925D715C5000FBB0E /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E368B39825D715C5000FBB0E /* SettingsViewController.swift */; };
 		E368B39C25D72CCD000FBB0E /* RGBExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E368B39B25D72CCD000FBB0E /* RGBExtension.swift */; };
 		E3B2BF3E25D675010026DBB9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3B2BF3D25D675010026DBB9 /* AppDelegate.swift */; };
@@ -28,6 +29,7 @@
 		E32BBB1025D7861400E770CD /* ItemListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemListViewController.swift; sourceTree = "<group>"; };
 		E32BBB1425D793E700E770CD /* ItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemTableViewCell.swift; sourceTree = "<group>"; };
 		E32BBB1725D7AFA700E770CD /* ItemDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDetailViewController.swift; sourceTree = "<group>"; };
+		E32BBB2225D869DF00E770CD /* EditItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditItemViewController.swift; sourceTree = "<group>"; };
 		E368B39825D715C5000FBB0E /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		E368B39B25D72CCD000FBB0E /* RGBExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RGBExtension.swift; sourceTree = "<group>"; };
 		E3B2BF3A25D675010026DBB9 /* FlippingApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FlippingApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -103,6 +105,7 @@
 				E32BBB1025D7861400E770CD /* ItemListViewController.swift */,
 				E32BBB1725D7AFA700E770CD /* ItemDetailViewController.swift */,
 				E3B2BF6225D682C60026DBB9 /* AddItemViewController.swift */,
+				E32BBB2225D869DF00E770CD /* EditItemViewController.swift */,
 				E368B39825D715C5000FBB0E /* SettingsViewController.swift */,
 			);
 			path = "View Controllers";
@@ -213,6 +216,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E3B2BF5D25D67E940026DBB9 /* Item.swift in Sources */,
+				E32BBB2325D869DF00E770CD /* EditItemViewController.swift in Sources */,
 				E3B2BF3E25D675010026DBB9 /* AppDelegate.swift in Sources */,
 				E32BBB1825D7AFA700E770CD /* ItemDetailViewController.swift in Sources */,
 				E368B39C25D72CCD000FBB0E /* RGBExtension.swift in Sources */,

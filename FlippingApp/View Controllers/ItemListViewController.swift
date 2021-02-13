@@ -108,17 +108,12 @@ class ItemListViewController: UIViewController, UITableViewDelegate, UITableView
         }
     }
     
-    // MARK: - Navigation
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "ItemSegue" {
-            guard let detailVC = segue.destination as? ItemDetailViewController else { return }
-            if let indexPath = tableView.indexPath(for: sender as! ItemTableViewCell) {
-                detailVC.item = filteredItems[indexPath.row]
-                detailVC.itemController = itemController
-                detailVC.delegate = self
-            }
-        }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let editVC = storyboard?.instantiateViewController(identifier: "EditVC") as? EditItemViewController else { return }
+        editVC.item = filteredItems[indexPath.row]
+        editVC.itemController = itemController
+        //editVC.delegate = self
+        present(editVC, animated: true, completion: nil)
     }
     
 }
