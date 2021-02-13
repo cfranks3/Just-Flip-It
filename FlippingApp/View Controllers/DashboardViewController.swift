@@ -108,6 +108,7 @@ extension DashboardViewController: UICollectionViewDelegate, UICollectionViewDat
         let selection = collectionViewCategories[indexPath.row]
         if selection == "Inventory" {
             guard let inventoryVC = storyboard?.instantiateViewController(identifier: "InventoryVC") as? InventoryViewController else { return}
+            inventoryVC.itemController = itemController
             
             present(inventoryVC, animated: true, completion: nil)
         } else if selection == "Sales" {
