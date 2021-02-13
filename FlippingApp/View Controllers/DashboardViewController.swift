@@ -12,6 +12,7 @@ class DashboardViewController: UIViewController {
     // MARK: - Properties
     
     var inventoryValue: Double = 0
+    var profit: Double = 0
     let itemController = ItemController()
     let collectionViewCategories: [String] = [
         "Inventory",
@@ -44,8 +45,10 @@ class DashboardViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        itemController.loadItems()
+        itemController.load()
         calculateInventoryValue()
+        calculateProfit()
+        calculateSales()
     }
     
     // MARK: - Methods
@@ -53,7 +56,7 @@ class DashboardViewController: UIViewController {
     func calculateInventoryValue() {
         inventoryValue = 0
         
-        for item in itemController.listedItems {
+        for item in itemController.inventory {
             if item.quantity > 1 {
                 var count = item.quantity
                 while count > 0 {
@@ -71,6 +74,26 @@ class DashboardViewController: UIViewController {
         formatter.numberStyle = .currency
         if let formattedValue = formatter.string(from: inventoryValue as NSNumber) {
             inventoryValueLabel.text = formattedValue
+        }
+    }
+    
+    func calculateProfit() {
+        profit = 0
+        
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .currency
+        if let formattedValue = formatter.string(from: profit as NSNumber) {
+            profitLabel.text = formattedValue
+        }
+    }
+    
+    func calculateSales() {
+        itemController.sales = 0
+        
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .decimal
+        if let formattedValue = formatter.string(from: itemController.sales as NSNumber) {
+            numberOfSalesLabel.text = formattedValue
         }
     }
     
