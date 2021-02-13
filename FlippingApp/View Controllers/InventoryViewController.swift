@@ -7,11 +7,11 @@
 
 import UIKit
 
-protocol ItemListDelegate {
+protocol InventoryDelegate {
     func itemWasDeleted()
 }
 
-class ItemListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
+class InventoryViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
     
     // MARK: - IBOutlets
     
@@ -24,7 +24,8 @@ class ItemListViewController: UIViewController, UITableViewDelegate, UITableView
     var filteredItems: [Item]!
     var searchType: String!
     var viewingSold: Bool?
-    var delegate: ItemListDelegate?
+    var readyToSell: Bool?
+    var delegate: InventoryDelegate?
     
     // MARK: - Lifecycle
     
@@ -109,17 +110,36 @@ class ItemListViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let editVC = storyboard?.instantiateViewController(identifier: "EditVC") as? EditItemViewController else { return }
-        editVC.item = filteredItems[indexPath.row]
-        editVC.itemController = itemController
-        //editVC.delegate = self
-        present(editVC, animated: true, completion: nil)
+        if let readyToSell = readyToSell {
+            if readyToSell {
+                guard let saleVC = storyboard?.instantiateViewController(identifier: "SaleVC") as? ItemSaleViewController else { return }
+                saleVC.item = filteredItems[indexPath.row]
+                saleVC.delegate = self
+                saleVC.itemController = itemController
+                present(saleVC, animated: true, completion: nil)
+            } else {
+                guard let editVC = storyboard?.instantiateViewController(identifier: "EditVC") as? EditItemViewController else { return }
+                editVC.item = filteredItems[indexPath.row]
+                editVC.itemController = itemController
+                editVC.delegate = self
+                editVC.index = indexPath.row
+                present(editVC, animated: true, completion: nil)
+            }
+        }
     }
     
 }
 
-extension ItemListViewController: ItemDetailDelegate {
+// MARK: - Protocol methods
+
+extension InventoryViewController: ItemControllerDelegate {
     func saleWasMade() {
+        presentingViewController?.dismiss(animated: true, completion: nil)
+    }
+}
+
+extension InventoryViewController: EditItemDelegate {
+    func itemWasEdited() {
         presentingViewController?.dismiss(animated: true, completion: nil)
     }
 }

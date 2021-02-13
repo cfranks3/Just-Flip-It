@@ -41,11 +41,12 @@ class DashboardViewController: UIViewController {
     }
     
     @IBAction func reportButtonTapped(_ sender: UIButton) {
-        guard let inventoryVC = storyboard?.instantiateViewController(identifier: "InventoryVC") as? ItemListViewController else { return }
+        guard let inventoryVC = storyboard?.instantiateViewController(identifier: "InventoryVC") as? InventoryViewController else { return }
         inventoryVC.itemController = itemController
         inventoryVC.filteredItems = itemController.inventory
         inventoryVC.viewingSold = false
         inventoryVC.delegate = self
+        inventoryVC.readyToSell = true
         present(inventoryVC, animated: true, completion: nil)
     }
     
@@ -66,7 +67,6 @@ class DashboardViewController: UIViewController {
         
         formatter.numberStyle = .decimal
         numberOfSalesLabel.text = formatter.string(from: itemController.calculateSales() as NSNumber)
-        
     }
     
     // MARK: - Navigation
@@ -87,26 +87,23 @@ class DashboardViewController: UIViewController {
 
 // MARK: - Protocol methods
 
-extension DashboardViewController: AddItemViewControllerDelegate {
-    
-    func itemWasAdded() {
+extension DashboardViewController: AddItemViewControllerDelegate, ItemControllerDelegate, InventoryDelegate, EditItemDelegate {
+    func itemWasEdited() {
         updateViews()
     }
-    
-}
-
-extension DashboardViewController: ItemControllerDelegate {
     
     func saleWasMade() {
         updateViews()
     }
     
-}
-
-extension DashboardViewController: ItemListDelegate {
     func itemWasDeleted() {
         updateViews()
     }
+    
+    func itemWasAdded() {
+        updateViews()
+    }
+    
 }
 
 // MARK: - Collection view delegate & data source
@@ -142,18 +139,20 @@ extension DashboardViewController: UICollectionViewDelegate, UICollectionViewDat
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let selection = collectionViewCategories[indexPath.row]
-        guard let inventoryVC = storyboard?.instantiateViewController(identifier: "InventoryVC") as? ItemListViewController else { return}
+        guard let inventoryVC = storyboard?.instantiateViewController(identifier: "InventoryVC") as? InventoryViewController else { return}
         inventoryVC.itemController = itemController
         if selection == "Inventory" {
             inventoryVC.searchType = "inventory"
             inventoryVC.filteredItems = itemController.inventory
             inventoryVC.viewingSold = false
+            inventoryVC.readyToSell = false
             inventoryVC.delegate = self
             present(inventoryVC, animated: true, completion: nil)
         } else if selection == "Sales" {
             inventoryVC.searchType = "soldItems"
             inventoryVC.filteredItems = itemController.soldItems
             inventoryVC.viewingSold = true
+            inventoryVC.readyToSell = false
             inventoryVC.delegate = self
             present(inventoryVC, animated: true, completion: nil)
         } else {

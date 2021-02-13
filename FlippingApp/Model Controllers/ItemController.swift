@@ -9,6 +9,7 @@ import UIKit
 
 protocol ItemControllerDelegate {
     func saleWasMade()
+    func itemWasEdited()
 }
 
 class ItemController {
@@ -49,6 +50,12 @@ class ItemController {
         if inventory.contains(item) {
             inventory.removeAll(where: { $0 == item })
         }
+        save()
+    }
+    
+    func editItem(with item: Item, at index: Int) {
+        inventory[index] = item
+        delegate?.itemWasEdited()
         save()
     }
     

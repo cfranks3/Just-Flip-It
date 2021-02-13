@@ -1,5 +1,5 @@
 //
-//  ItemDetailViewController.swift
+//  ItemSaleViewController.swift
 //  FlippingApp
 //
 //  Created by Bronson Mullens on 2/12/21.
@@ -7,17 +7,13 @@
 
 import UIKit
 
-protocol ItemDetailDelegate {
-    func saleWasMade()
-}
-
-class ItemDetailViewController: UIViewController {
+class ItemSaleViewController: UIViewController {
     
     // MARK: - Properties
     
     var itemController: ItemController?
     var item: Item?
-    var delegate: ItemDetailDelegate?
+    var delegate: ItemControllerDelegate?
     
     // MARK: - IBOutlets
     
@@ -52,6 +48,8 @@ class ItemDetailViewController: UIViewController {
             }
         }
     }
+    
+    // MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
