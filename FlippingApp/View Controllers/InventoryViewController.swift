@@ -32,19 +32,17 @@ class InventoryViewController: UIViewController, UITableViewDelegate, UITableVie
     override func viewDidLoad() {
         super.viewDidLoad()
         searchBar.delegate = self
-        preventSelling()
+        changeSearchBarPlaceholder()
     }
     
     // MARK: - Methods
     
-    func preventSelling() {
+    func changeSearchBarPlaceholder() {
         if let viewingSold = viewingSold {
             if viewingSold {
                 searchBar.placeholder = "Search for a sold item"
-                tableView.isUserInteractionEnabled = false
             } else {
                 searchBar.placeholder = "Search your inventory"
-                tableView.isUserInteractionEnabled = true
             }
         }
     }
@@ -100,7 +98,12 @@ class InventoryViewController: UIViewController, UITableViewDelegate, UITableVie
                 if !viewingSold {
                     itemController?.deleteItem(with: filteredItems[indexPath.row])
                     filteredItems.remove(at: indexPath.row)
-                    tableView.deleteRows(at: [indexPath], with: .bottom)
+                    tableView.deleteRows(at: [indexPath], with: .fade)
+                    delegate?.itemWasDeleted()
+                } else {
+                    itemController?.deleteItem(with: filteredItems[indexPath.row])
+                    filteredItems.remove(at: indexPath.row)
+                    tableView.deleteRows(at: [indexPath], with: .fade)
                     delegate?.itemWasDeleted()
                 }
             }
@@ -111,13 +114,13 @@ class InventoryViewController: UIViewController, UITableViewDelegate, UITableVie
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let readyToSell = readyToSell {
-            if readyToSell {
+            if readyToSell && searchType != "inventory" {
                 guard let saleVC = storyboard?.instantiateViewController(identifier: "SaleVC") as? ItemSaleViewController else { return }
                 saleVC.item = filteredItems[indexPath.row]
                 saleVC.delegate = self
                 saleVC.itemController = itemController
                 present(saleVC, animated: true, completion: nil)
-            } else {
+            } else if searchType == "inventory" {
                 guard let editVC = storyboard?.instantiateViewController(identifier: "EditVC") as? EditItemViewController else { return }
                 editVC.item = filteredItems[indexPath.row]
                 editVC.itemController = itemController

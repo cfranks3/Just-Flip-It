@@ -49,6 +49,8 @@ class ItemController {
     func deleteItem(with item: Item) {
         if inventory.contains(item) {
             inventory.removeAll(where: { $0 == item })
+        } else if soldItems.contains(item) {
+            soldItems.removeAll(where: { $0 == item })
         }
         save()
     }
