@@ -119,7 +119,7 @@ extension DashboardViewController: UICollectionViewDelegate, UICollectionViewDat
         
         cell.groupLabel.text = self.collectionViewCategories[indexPath.row]
         
-        cell.layer.borderColor = UIColor(rgb: 0x00B290).cgColor
+        cell.layer.borderColor = UIColor(rgb: 0x219ebc).cgColor
         cell.layer.borderWidth = 2
         cell.layer.cornerRadius = 12
         
