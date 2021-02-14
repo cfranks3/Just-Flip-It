@@ -110,7 +110,7 @@
                                 </subviews>
                             </stackView>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="YUf-jM-zd6">
-                                <rect key="frame" x="0.0" y="742.33333333333337" width="428" height="120"/>
+                                <rect key="frame" x="0.0" y="726.33333333333337" width="428" height="120"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="120" id="kGx-jr-vJ3"/>
@@ -153,7 +153,7 @@
                                 </connections>
                             </collectionView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EwC-5x-YcT">
-                                <rect key="frame" x="202" y="882.33333333333337" width="24.333333333333343" height="23.666666666666629"/>
+                                <rect key="frame" x="202" y="866.33333333333337" width="24.333333333333343" height="23.666666666666629"/>
                                 <state key="normal">
                                     <imageReference key="image" image="info.circle" catalog="system" symbolScale="large"/>
                                 </state>
@@ -163,7 +163,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wIH-Iw-h1u">
-                                <rect key="frame" x="150.66666666666666" y="671.33333333333337" width="126.99999999999997" height="39"/>
+                                <rect key="frame" x="150.66666666666666" y="655.33333333333337" width="126.99999999999997" height="39"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
                                 <state key="normal" title="Report a Sale">
                                     <color key="titleColor" red="0.12941176470588234" green="0.61960784313725492" blue="0.73725490196078436" alpha="0.84705882352941175" colorSpace="calibratedRGB"/>
@@ -181,7 +181,7 @@
                             <constraint firstItem="wIH-Iw-h1u" firstAttribute="centerX" secondItem="4nO-QO-VQD" secondAttribute="centerX" id="D2e-x2-Tr9"/>
                             <constraint firstItem="YUf-jM-zd6" firstAttribute="top" secondItem="wIH-Iw-h1u" secondAttribute="bottom" constant="32" id="NeT-3x-Daw"/>
                             <constraint firstItem="IqQ-vf-IDx" firstAttribute="top" secondItem="4K0-pi-MKc" secondAttribute="top" constant="6" id="SLo-md-UYc"/>
-                            <constraint firstAttribute="bottom" secondItem="EwC-5x-YcT" secondAttribute="bottom" constant="20" id="SbJ-LL-mob"/>
+                            <constraint firstAttribute="bottom" secondItem="EwC-5x-YcT" secondAttribute="bottom" constant="36" id="SbJ-LL-mob"/>
                             <constraint firstItem="EwC-5x-YcT" firstAttribute="centerX" secondItem="4nO-QO-VQD" secondAttribute="centerX" id="ajq-Tc-kjb"/>
                             <constraint firstItem="YUf-jM-zd6" firstAttribute="leading" secondItem="4K0-pi-MKc" secondAttribute="leading" id="pPd-NG-5bW"/>
                             <constraint firstItem="4K0-pi-MKc" firstAttribute="trailing" secondItem="YUf-jM-zd6" secondAttribute="trailing" id="sI7-UI-y6l"/>
