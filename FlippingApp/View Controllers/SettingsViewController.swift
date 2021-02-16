@@ -19,6 +19,7 @@ class SettingsViewController: UIViewController {
     @IBAction func resetDataButtonTapped(_ sender: UIButton) {
         let alert = UIAlertController(title: "Warning!", message: "Proceeding will permanently delete all stored user data. This includes all sales, profit, and inventory. This cannot be reversed.", preferredStyle: .alert)
         let confirm = UIAlertAction(title: "I Understand", style: .destructive) { (_) in
+            UserDefaults.standard.setValue(false, forKey: "gnomes")
             self.itemController?.resetData()
             self.delegate?.itemWasAdded()
         }

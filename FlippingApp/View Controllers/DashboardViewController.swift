@@ -67,6 +67,12 @@ class DashboardViewController: UIViewController {
         
         formatter.numberStyle = .decimal
         numberOfSalesLabel.text = formatter.string(from: itemController.calculateSales() as NSNumber)
+
+        if UserDefaults.standard.bool(forKey: "gnomes") {
+            title = "Gnomeboard"
+        } else {
+            title = "Dashboard"
+        }
     }
     
     // MARK: - Navigation

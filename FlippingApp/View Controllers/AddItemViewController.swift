@@ -28,6 +28,12 @@ class AddItemViewController: UIViewController {
     // MARK: - IBActions
     
     @IBAction func saveButtonTapped(_ sender: UIBarButtonItem) {
+        if titleTextField.text == "Gnomes!" {
+            UserDefaults.standard.setValue(true, forKey: "gnomes")
+        } else if titleTextField.text == "Gnomes Be Gone!" {
+            UserDefaults.standard.setValue(false, forKey: "gnomes")
+        }
+
         if let title = titleTextField.text,
            !title.isEmpty,
            let purchasePrice = purchasePriceTextField.text,
