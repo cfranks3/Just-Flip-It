@@ -24,7 +24,7 @@ class ItemSaleViewController: UIViewController {
     
     // MARK: - IBAction
     
-    @IBAction func actionButtonTapped(_ sender: UIButton) {
+    @IBAction func doneButtonTapped(_ sender: UIButton) {
         if let quantitySold = amountSoldTextField.text,
            !quantitySold.isEmpty,
            let soldPrice = soldPriceTextField.text,
@@ -32,6 +32,11 @@ class ItemSaleViewController: UIViewController {
             guard let item = item else { return }
             if Int(quantitySold)! > item.quantity {
                 let alert = UIAlertController(title: "Invalid quantity", message: "You're attempting to mark \(quantitySold) items as sold, but you only had \(item.quantity) in your inventory. Fix your quantity or edit the original item's quantity before proceeding.", preferredStyle: .alert)
+                let action = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+                alert.addAction(action)
+                present(alert, animated: true, completion: nil)
+            } else if Int(quantitySold)! <= 0 {
+                let alert = UIAlertController(title: "Invalid quantity", message: "You're attempting to mark too few items as sold.", preferredStyle: .alert)
                 let action = UIAlertAction(title: "OK", style: .cancel, handler: nil)
                 alert.addAction(action)
                 present(alert, animated: true, completion: nil)

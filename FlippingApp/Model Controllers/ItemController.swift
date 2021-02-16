@@ -113,19 +113,7 @@ class ItemController {
     
     func calculateSales() -> Int {
         sales = 0
-        for item in soldItems {
-            if item.quantity > 1 {
-                var count = item.quantity
-                while count > 0 {
-                    sales += 1
-                    count -= 1
-                }
-            } else if item.quantity == 1 {
-                sales += 1
-            } else {
-                continue
-            }
-        }
+        sales += soldItems.count
         return sales
     }
     
