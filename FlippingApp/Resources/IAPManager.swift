@@ -18,7 +18,7 @@ final class IAPManager: NSObject, SKProductsRequestDelegate, SKPaymentTransactio
     
     // Add cases here as new IAPs are added
     enum Product: String, CaseIterable {
-        case tier1Tip
+        case tier1Tip = "JFITierOneTip"
         
         var count: Double {
             switch self {
@@ -37,7 +37,6 @@ final class IAPManager: NSObject, SKProductsRequestDelegate, SKPaymentTransactio
     }
     
     func productsRequest(_ request: SKProductsRequest, didReceive response: SKProductsResponse) {
-        print("Products returned: \(response.products.count)")
         self.products = response.products
     }
     
