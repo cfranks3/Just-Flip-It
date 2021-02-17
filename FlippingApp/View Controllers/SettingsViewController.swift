@@ -44,17 +44,8 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     override func viewDidLoad() {
         super.viewDidLoad()
         updateViews()
-        
-        IAPs.append(IAP(name: "Small Tip", handler: {
-            print("Test")
-            IAPManager.shared.purchase(product: .tier1Tip) { [weak self] tipped in
-                DispatchQueue.main.async {
-                    let currentTipped = self?.totalTipped ?? 0
-                    let newTipped = currentTipped + tipped
-                    UserDefaults.standard.setValue(newTipped, forKey: "tipped")
-                }
-            }
-        }))
+        appendIAPs()
+        configureNavBar()
     }
 
     func updateViews() {
@@ -164,6 +155,27 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         alert.addAction(cancel)
         present(alert, animated: true, completion: nil)
     }
+    
+    func appendIAPs() {
+        IAPs.append(IAP(name: "Small Tip", handler: {
+            IAPManager.shared.purchase(product: .tier1Tip) { [weak self] tipped in
+                DispatchQueue.main.async {
+                    let currentTipped = self?.totalTipped ?? 0
+                    let newTipped = currentTipped + tipped
+                    UserDefaults.standard.setValue(newTipped, forKey: "tipped")
+                }
+            }
+        }))
+    }
+    
+    func configureNavBar() {
+        if self.traitCollection.userInterfaceStyle == .dark {
+            navigationController?.navigationBar.barTintColor = .black
+        } else {
+            navigationController?.navigationBar.barTintColor = .white
+        }
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor(rgb: 0x457b9d)]
+    }
 
     // MARK: - Table view delegate
 
@@ -202,9 +214,6 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         default:
             NSLog("Error occured when attempting to select a settings option.")
         }
-    }
-    
-    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
     }
 
