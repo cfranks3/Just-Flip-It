@@ -13,6 +13,8 @@
 		E32BBB2325D869DF00E770CD /* EditItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E32BBB2225D869DF00E770CD /* EditItemViewController.swift */; };
 		E368B39925D715C5000FBB0E /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E368B39825D715C5000FBB0E /* SettingsViewController.swift */; };
 		E368B39C25D72CCD000FBB0E /* RGBExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E368B39B25D72CCD000FBB0E /* RGBExtension.swift */; };
+		E38D79E325DCC36D0004DE3A /* AppVersionExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E38D79E225DCC36D0004DE3A /* AppVersionExtension.swift */; };
+		E38D79E625DCC49A0004DE3A /* SettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E38D79E525DCC49A0004DE3A /* SettingsCell.swift */; };
 		E3B2BF3E25D675010026DBB9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3B2BF3D25D675010026DBB9 /* AppDelegate.swift */; };
 		E3B2BF4025D675010026DBB9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3B2BF3F25D675010026DBB9 /* SceneDelegate.swift */; };
 		E3B2BF4525D675010026DBB9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E3B2BF4325D675010026DBB9 /* Main.storyboard */; };
@@ -32,6 +34,8 @@
 		E32BBB2225D869DF00E770CD /* EditItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditItemViewController.swift; sourceTree = "<group>"; };
 		E368B39825D715C5000FBB0E /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		E368B39B25D72CCD000FBB0E /* RGBExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RGBExtension.swift; sourceTree = "<group>"; };
+		E38D79E225DCC36D0004DE3A /* AppVersionExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppVersionExtension.swift; sourceTree = "<group>"; };
+		E38D79E525DCC49A0004DE3A /* SettingsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCell.swift; sourceTree = "<group>"; };
 		E3B2BF3A25D675010026DBB9 /* FlippingApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FlippingApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E3B2BF3D25D675010026DBB9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E3B2BF3F25D675010026DBB9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -94,6 +98,7 @@
 				E3B2BF3F25D675010026DBB9 /* SceneDelegate.swift */,
 				E368B39B25D72CCD000FBB0E /* RGBExtension.swift */,
 				E3B2BF4B25D675020026DBB9 /* Info.plist */,
+				E38D79E225DCC36D0004DE3A /* AppVersionExtension.swift */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -141,6 +146,7 @@
 			children = (
 				E3B2BF6825D69A060026DBB9 /* ItemGroupCollectionViewCell.swift */,
 				E32BBB1425D793E700E770CD /* ItemTableViewCell.swift */,
+				E38D79E525DCC49A0004DE3A /* SettingsCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -221,6 +227,7 @@
 				E32BBB1825D7AFA700E770CD /* ItemSaleViewController.swift in Sources */,
 				E368B39C25D72CCD000FBB0E /* RGBExtension.swift in Sources */,
 				E3B2BF5A25D67BA90026DBB9 /* DashboardViewController.swift in Sources */,
+				E38D79E325DCC36D0004DE3A /* AppVersionExtension.swift in Sources */,
 				E3B2BF6025D67EB30026DBB9 /* ItemController.swift in Sources */,
 				E3B2BF4025D675010026DBB9 /* SceneDelegate.swift in Sources */,
 				E3B2BF6925D69A060026DBB9 /* ItemGroupCollectionViewCell.swift in Sources */,
@@ -228,6 +235,7 @@
 				E3B2BF6325D682C60026DBB9 /* AddItemViewController.swift in Sources */,
 				E32BBB1525D793E700E770CD /* ItemTableViewCell.swift in Sources */,
 				E368B39925D715C5000FBB0E /* SettingsViewController.swift in Sources */,
+				E38D79E625DCC49A0004DE3A /* SettingsCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

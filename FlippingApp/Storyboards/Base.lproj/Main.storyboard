@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Hli-VJ-UgN">
     <device id="retina6_7" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -18,23 +19,68 @@
                         <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6VD-Yz-8Ze">
-                                <rect key="frame" x="158.66666666666666" y="446.66666666666669" width="110.99999999999997" height="33"/>
-                                <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
-                                <state key="normal" title="Reset All Data"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="YXX-Bu-KuS">
+                                <rect key="frame" x="0.0" y="335" width="428" height="591"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SettingCell" textLabel="nuB-tb-ooM" style="IBUITableViewCellStyleDefault" id="ufU-TK-9A1" customClass="SettingsCell" customModule="FlippingApp" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="428" height="43.666667938232422"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ufU-TK-9A1" id="oVj-r1-ey8">
+                                            <rect key="frame" x="0.0" y="0.0" width="428" height="43.666667938232422"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Setting" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="nuB-tb-ooM">
+                                                    <rect key="frame" x="20" y="0.0" width="388" height="43.666667938232422"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="settingTypeLabel" destination="nuB-tb-ooM" id="kGI-2S-CtJ"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <sections/>
                                 <connections>
-                                    <action selector="resetDataButtonTapped:" destination="CWE-Vr-0sn" eventType="touchUpInside" id="8nK-s0-WFp"/>
+                                    <outlet property="dataSource" destination="CWE-Vr-0sn" id="EON-gD-pWL"/>
+                                    <outlet property="delegate" destination="CWE-Vr-0sn" id="j9B-Mh-pBS"/>
                                 </connections>
-                            </button>
+                            </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="App Version 0.0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gJ4-g2-IxZ">
+                                <rect key="frame" x="151" y="278" width="126" height="21"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="JFILogo" translatesAutoresizingMaskIntoConstraints="NO" id="ug9-ju-DTP">
+                                <rect key="frame" x="150" y="126" width="128" height="128"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="ug9-ju-DTP" secondAttribute="height" multiplier="1:1" id="gzI-UQ-lRj"/>
+                                    <constraint firstAttribute="width" constant="128" id="i7X-TN-9Rk"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="px9-DC-9hL"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="6VD-Yz-8Ze" firstAttribute="centerY" secondItem="Qze-Av-mn1" secondAttribute="centerY" id="C4B-yC-yah"/>
-                            <constraint firstItem="6VD-Yz-8Ze" firstAttribute="centerX" secondItem="Qze-Av-mn1" secondAttribute="centerX" id="QZR-gK-vMS"/>
+                            <constraint firstItem="gJ4-g2-IxZ" firstAttribute="centerX" secondItem="Qze-Av-mn1" secondAttribute="centerX" id="0LB-2U-B11"/>
+                            <constraint firstItem="px9-DC-9hL" firstAttribute="trailing" secondItem="YXX-Bu-KuS" secondAttribute="trailing" id="3wQ-yO-0Fx"/>
+                            <constraint firstAttribute="bottom" secondItem="YXX-Bu-KuS" secondAttribute="bottom" id="5rM-pq-4Cm"/>
+                            <constraint firstItem="YXX-Bu-KuS" firstAttribute="leading" secondItem="px9-DC-9hL" secondAttribute="leading" id="BAl-Gg-0jA"/>
+                            <constraint firstItem="ug9-ju-DTP" firstAttribute="top" secondItem="Qze-Av-mn1" secondAttribute="top" constant="126" id="SEa-K5-kk4"/>
+                            <constraint firstItem="gJ4-g2-IxZ" firstAttribute="top" secondItem="ug9-ju-DTP" secondAttribute="bottom" constant="24" id="cHh-eS-92V"/>
+                            <constraint firstItem="ug9-ju-DTP" firstAttribute="centerX" secondItem="Qze-Av-mn1" secondAttribute="centerX" id="cjm-wL-5Z8"/>
+                            <constraint firstItem="YXX-Bu-KuS" firstAttribute="top" secondItem="gJ4-g2-IxZ" secondAttribute="bottom" constant="36" id="y93-HV-0bv"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Yfj-ub-hd1"/>
+                    <connections>
+                        <outlet property="appLogoImageView" destination="ug9-ju-DTP" id="1Yu-Mv-dXF"/>
+                        <outlet property="appVersionLabel" destination="gJ4-g2-IxZ" id="4mp-Hd-Mmb"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="c83-4d-gOZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -236,13 +282,13 @@
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="YVZ-ZQ-gJx">
                                                     <rect key="frame" x="12" y="6" width="86.333333333333329" height="38.333333333333336"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Item Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dg4-7l-hq2">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Item Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dg4-7l-hq2">
                                                             <rect key="frame" x="0.0" y="0.0" width="86.333333333333329" height="20.333333333333332"/>
                                                             <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Quantity: 1" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RiA-rc-r93">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Quantity: 1" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RiA-rc-r93">
                                                             <rect key="frame" x="0.0" y="20.333333333333332" width="86.333333333333329" height="17.999999999999996"/>
                                                             <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                                             <nil key="textColor"/>
@@ -645,6 +691,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="JFILogo" width="1024" height="1024"/>
         <image name="info.circle" catalog="system" width="128" height="121"/>
         <image name="info.circle.fill" catalog="system" width="128" height="121"/>
         <systemColor name="systemBackgroundColor">

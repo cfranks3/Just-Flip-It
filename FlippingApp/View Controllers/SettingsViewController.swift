@@ -7,27 +7,54 @@
 
 import UIKit
 
-class SettingsViewController: UIViewController {
-    
+class SettingsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+
     // MARK: - Properties
-    
+
     var itemController: ItemController?
     var delegate: AddItemViewControllerDelegate?
-    
-    // MARK: - IBActions
-    
-    @IBAction func resetDataButtonTapped(_ sender: UIButton) {
-        let alert = UIAlertController(title: "Warning!", message: "Proceeding will permanently delete all stored user data. This includes all sales, profit, and inventory. This cannot be reversed.", preferredStyle: .alert)
-        let confirm = UIAlertAction(title: "I Understand", style: .destructive) { (_) in
-            UserDefaults.standard.setValue(false, forKey: "gnomes")
-            self.itemController?.resetData()
-            self.delegate?.itemWasAdded()
+    var settings: [String] = [
+        "What's New?",
+        "Twitter",
+        "Change Colors",
+        "Tip Jar",
+        "Helpful tips",
+        "Feedback",
+        "Rate the app",
+        "Privacy policy",
+        "Erase data",
+    ]
+
+    // MARK: - IBOutlets
+
+    @IBOutlet weak var appLogoImageView: UIImageView!
+    @IBOutlet weak var appVersionLabel: UILabel!
+
+    // MARK: - Lifecycle
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        updateViews()
+    }
+
+    func updateViews() {
+        appVersionLabel.text = "App Version \(UIApplication.appVersion!)"
+        appLogoImageView.layer.cornerRadius = 16
+    }
+
+    // MARK: - Table view delegate
+
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        settings.count
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "SettingCell", for: indexPath) as! SettingsCell
+        cell.settingTypeLabel.text = settings[indexPath.row]
+        if cell.settingTypeLabel.text == "Erase data" {
+            cell.settingTypeLabel.textColor = .systemRed
         }
-        let cancel = UIAlertAction(title: "Nevermind", style: .cancel, handler: nil)
-        alert.addAction(confirm)
-        alert.addAction(cancel)
-        present(alert, animated: true, completion: nil)
-        
+        return cell
     }
     
 }

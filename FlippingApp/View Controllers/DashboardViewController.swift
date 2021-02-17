@@ -85,7 +85,7 @@ class DashboardViewController: UIViewController {
         } else if segue.identifier == "SettingsSegue" {
             guard let settingsVC = segue.destination as? SettingsViewController else { return }
             settingsVC.itemController = itemController
-            settingsVC.delegate = self
+            //settingsVC.delegate = self
         }
     }
     
