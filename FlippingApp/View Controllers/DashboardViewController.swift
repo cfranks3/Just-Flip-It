@@ -26,20 +26,6 @@ class DashboardViewController: UIViewController {
     
     // MARK: - IBActions
     
-    @IBAction func helpButtonTapped(_ sender: UIButton) {
-        let helpMessage = """
-        Begin by adding an item to your inventory. After saving, the item will be added and your inventory value will update. Tap on the report a sale button when one of your items sells. If you'd like to remove or edit your item prior to a sale, open your inventory and locate your item.
-        """
-        let alert = UIAlertController(title: "How to use this app",
-                                      message: helpMessage,
-                                      preferredStyle: .alert)
-        let action = UIAlertAction(title: "OK",
-                                   style: .cancel,
-                                   handler: nil)
-        alert.addAction(action)
-        present(alert, animated: true)
-    }
-    
     @IBAction func reportButtonTapped(_ sender: UIButton) {
         guard let inventoryVC = storyboard?.instantiateViewController(identifier: "InventoryVC") as? InventoryViewController else { return }
         inventoryVC.itemController = itemController
@@ -47,6 +33,7 @@ class DashboardViewController: UIViewController {
         inventoryVC.viewingSold = false
         inventoryVC.delegate = self
         inventoryVC.readyToSell = true
+        inventoryVC.searchType = "inventory"
         present(inventoryVC, animated: true, completion: nil)
     }
     
@@ -73,6 +60,12 @@ class DashboardViewController: UIViewController {
         } else {
             title = "Dashboard"
         }
+
+        updateColors()
+    }
+
+    func updateColors() {
+        // TODO
     }
     
     // MARK: - Navigation
@@ -85,7 +78,7 @@ class DashboardViewController: UIViewController {
         } else if segue.identifier == "SettingsSegue" {
             guard let settingsVC = segue.destination as? SettingsViewController else { return }
             settingsVC.itemController = itemController
-            //settingsVC.delegate = self
+            settingsVC.delegate = self
         }
     }
     
