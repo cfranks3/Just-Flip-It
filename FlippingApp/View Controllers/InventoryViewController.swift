@@ -24,7 +24,6 @@ class InventoryViewController: UIViewController, UITableViewDelegate, UITableVie
     var filteredItems: [Item]!
     var searchType: String!
     var viewingSold: Bool?
-    var readyToSell: Bool?
     var delegate: InventoryDelegate?
     
     // MARK: - Lifecycle
@@ -88,6 +87,11 @@ class InventoryViewController: UIViewController, UITableViewDelegate, UITableVie
             filteredItems = searchText.isEmpty ? data : data.filter({(item: Item) -> Bool in
                 return item.title.range(of: searchText, options: .caseInsensitive) != nil
             })
+        } else if searchType == "selling" {
+            guard let data = itemController?.inventory else { return }
+            filteredItems = searchText.isEmpty ? data : data.filter({(item: Item) -> Bool in
+                return item.title.range(of: searchText, options: .caseInsensitive) != nil
+            })
         }
         
         tableView.reloadData()
@@ -113,8 +117,7 @@ class InventoryViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if let readyToSell = readyToSell {
-            if readyToSell && searchType != "inventory" {
+            if searchType == "selling" {
                 guard let saleVC = storyboard?.instantiateViewController(identifier: "SaleVC") as? ItemSaleViewController else { return }
                 saleVC.item = filteredItems[indexPath.row]
                 saleVC.delegate = self
@@ -128,7 +131,6 @@ class InventoryViewController: UIViewController, UITableViewDelegate, UITableVie
                 editVC.index = indexPath.row
                 present(editVC, animated: true, completion: nil)
             }
-        }
     }
     
 }

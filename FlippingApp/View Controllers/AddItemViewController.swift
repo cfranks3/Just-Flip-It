@@ -82,6 +82,12 @@ class AddItemViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         titleTextField.becomeFirstResponder()
+        if self.traitCollection.userInterfaceStyle == .dark {
+            navigationController?.navigationBar.barTintColor = .black
+        } else {
+            navigationController?.navigationBar.barTintColor = .white
+        }
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor(rgb: 0x457b9d)]
     }
     
 }

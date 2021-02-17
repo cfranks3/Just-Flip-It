@@ -13,6 +13,8 @@
 		E32BBB2325D869DF00E770CD /* EditItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E32BBB2225D869DF00E770CD /* EditItemViewController.swift */; };
 		E368B39925D715C5000FBB0E /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E368B39825D715C5000FBB0E /* SettingsViewController.swift */; };
 		E368B39C25D72CCD000FBB0E /* RGBExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E368B39B25D72CCD000FBB0E /* RGBExtension.swift */; };
+		E36A329225DD36C0006286DA /* IAPManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E36A329125DD36C0006286DA /* IAPManager.swift */; };
+		E36A329625DD387E006286DA /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E36A329525DD387E006286DA /* StoreKit.framework */; };
 		E38D79E325DCC36D0004DE3A /* AppVersionExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E38D79E225DCC36D0004DE3A /* AppVersionExtension.swift */; };
 		E38D79E625DCC49A0004DE3A /* SettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E38D79E525DCC49A0004DE3A /* SettingsCell.swift */; };
 		E3B2BF3E25D675010026DBB9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3B2BF3D25D675010026DBB9 /* AppDelegate.swift */; };
@@ -34,6 +36,9 @@
 		E32BBB2225D869DF00E770CD /* EditItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditItemViewController.swift; sourceTree = "<group>"; };
 		E368B39825D715C5000FBB0E /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		E368B39B25D72CCD000FBB0E /* RGBExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RGBExtension.swift; sourceTree = "<group>"; };
+		E36A329125DD36C0006286DA /* IAPManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IAPManager.swift; sourceTree = "<group>"; };
+		E36A329525DD387E006286DA /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		E36A329A25DD3FEA006286DA /* Configuration.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = Configuration.storekit; sourceTree = "<group>"; };
 		E38D79E225DCC36D0004DE3A /* AppVersionExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppVersionExtension.swift; sourceTree = "<group>"; };
 		E38D79E525DCC49A0004DE3A /* SettingsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCell.swift; sourceTree = "<group>"; };
 		E3B2BF3A25D675010026DBB9 /* FlippingApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FlippingApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -55,17 +60,27 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E36A329625DD387E006286DA /* StoreKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E36A329425DD387E006286DA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E36A329525DD387E006286DA /* StoreKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		E3B2BF3125D675010026DBB9 = {
 			isa = PBXGroup;
 			children = (
 				E3B2BF3C25D675010026DBB9 /* FlippingApp */,
 				E3B2BF3B25D675010026DBB9 /* Products */,
+				E36A329425DD387E006286DA /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -87,6 +102,7 @@
 				E3B2BF5325D67AFC0026DBB9 /* View Controllers */,
 				E3B2BF5625D67B220026DBB9 /* Storyboards */,
 				E3B2BF4625D675020026DBB9 /* Assets.xcassets */,
+				E36A329A25DD3FEA006286DA /* Configuration.storekit */,
 			);
 			path = FlippingApp;
 			sourceTree = "<group>";
@@ -99,6 +115,7 @@
 				E368B39B25D72CCD000FBB0E /* RGBExtension.swift */,
 				E3B2BF4B25D675020026DBB9 /* Info.plist */,
 				E38D79E225DCC36D0004DE3A /* AppVersionExtension.swift */,
+				E36A329125DD36C0006286DA /* IAPManager.swift */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -236,6 +253,7 @@
 				E32BBB1525D793E700E770CD /* ItemTableViewCell.swift in Sources */,
 				E368B39925D715C5000FBB0E /* SettingsViewController.swift in Sources */,
 				E38D79E625DCC49A0004DE3A /* SettingsCell.swift in Sources */,
+				E36A329225DD36C0006286DA /* IAPManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

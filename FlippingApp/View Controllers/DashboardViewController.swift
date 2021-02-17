@@ -23,17 +23,18 @@ class DashboardViewController: UIViewController {
     @IBOutlet weak var profitLabel: UILabel!
     @IBOutlet weak var inventoryValueLabel: UILabel!
     @IBOutlet weak var numberOfSalesLabel: UILabel!
+    @IBOutlet weak var recordSaleButton: UIButton!
+
     
     // MARK: - IBActions
     
-    @IBAction func reportButtonTapped(_ sender: UIButton) {
+    @IBAction func recordButtonTapped(_ sender: UIButton) {
         guard let inventoryVC = storyboard?.instantiateViewController(identifier: "InventoryVC") as? InventoryViewController else { return }
         inventoryVC.itemController = itemController
         inventoryVC.filteredItems = itemController.inventory
         inventoryVC.viewingSold = false
         inventoryVC.delegate = self
-        inventoryVC.readyToSell = true
-        inventoryVC.searchType = "inventory"
+        inventoryVC.searchType = "selling"
         present(inventoryVC, animated: true, completion: nil)
     }
     
@@ -45,6 +46,7 @@ class DashboardViewController: UIViewController {
         itemController.load()
         itemController.delegate = self
         updateViews()
+        
     }
     
     func updateViews() {
@@ -61,11 +63,20 @@ class DashboardViewController: UIViewController {
             title = "Dashboard"
         }
 
+        recordSaleButton.backgroundColor = UIColor(rgb: 0x457b9d)
+        recordSaleButton.layer.cornerRadius = 12
+        recordSaleButton.setTitleColor(.white, for: .normal)
+        recordSaleButton.titleLabel?.font = UIFont(name: "HelveticaNeue-Bold", size: 20)
+
+        navigationController?.navigationBar.barTintColor = .clear
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
+        navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
+
         updateColors()
     }
 
     func updateColors() {
-        // TODO
+        
     }
     
     // MARK: - Navigation
@@ -117,9 +128,8 @@ extension DashboardViewController: UICollectionViewDelegate, UICollectionViewDat
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ItemCell", for: indexPath) as! ItemGroupCollectionViewCell
         
         cell.groupLabel.text = self.collectionViewCategories[indexPath.row]
-        
-        cell.layer.borderColor = UIColor(rgb: 0x219ebc).cgColor
-        cell.layer.borderWidth = 2
+        cell.groupLabel.textColor = .white
+        cell.layer.backgroundColor = UIColor(rgb: 0x457b9d).cgColor
         cell.layer.cornerRadius = 12
         
         return cell
@@ -128,7 +138,7 @@ extension DashboardViewController: UICollectionViewDelegate, UICollectionViewDat
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         
         let totalCellWidth = 128 * collectionViewCategories.count
-        let totalSpacingWidth = 10 * (collectionViewCategories.count - 1)
+        let totalSpacingWidth = 60 * (collectionViewCategories.count - 1)
         
         let leftInset = (CGFloat(view.frame.size.width) - CGFloat(totalCellWidth + totalSpacingWidth)) / 2
         let rightInset = leftInset
@@ -144,14 +154,12 @@ extension DashboardViewController: UICollectionViewDelegate, UICollectionViewDat
             inventoryVC.searchType = "inventory"
             inventoryVC.filteredItems = itemController.inventory
             inventoryVC.viewingSold = false
-            inventoryVC.readyToSell = false
             inventoryVC.delegate = self
             present(inventoryVC, animated: true, completion: nil)
         } else if selection == "Sales" {
             inventoryVC.searchType = "soldItems"
             inventoryVC.filteredItems = itemController.soldItems
             inventoryVC.viewingSold = true
-            inventoryVC.readyToSell = false
             inventoryVC.delegate = self
             present(inventoryVC, animated: true, completion: nil)
         } else {

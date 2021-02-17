@@ -8,6 +8,11 @@
 import UIKit
 import StoreKit
 
+struct IAP {
+    var name: String
+    var handler: (() -> Void)
+}
+
 class SettingsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     // MARK: - Properties
@@ -17,7 +22,6 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     var settings: [String] = [
         "🗞 What's New?",
         "🐦 Twitter",
-        "🎨 Change Colors",
         "💰 Tip Jar",
         "🆘 Helpful Tips",
         "🦻🏻 Feedback",
@@ -25,6 +29,10 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         "⚖️ Privacy Policy",
         "🗑 Erase Data",
     ]
+    var IAPs = [IAP]()
+    var totalTipped: Double {
+        return UserDefaults.standard.double(forKey: "tipped")
+    }
 
     // MARK: - IBOutlets
 
@@ -36,6 +44,17 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     override func viewDidLoad() {
         super.viewDidLoad()
         updateViews()
+        
+        IAPs.append(IAP(name: "Small Tip", handler: {
+            print("Test")
+            IAPManager.shared.purchase(product: .tier1Tip) { [weak self] tipped in
+                DispatchQueue.main.async {
+                    let currentTipped = self?.totalTipped ?? 0
+                    let newTipped = currentTipped + tipped
+                    UserDefaults.standard.setValue(newTipped, forKey: "tipped")
+                }
+            }
+        }))
     }
 
     func updateViews() {
@@ -73,15 +92,23 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
            }
     }
 
-    func changeColors() {
-        print("Change colors")
-    }
-
     func tipJar() {
         let alert = UIAlertController(title: "Tip Jar", message: "Thank you for your generosity. All tips go toward the continuous development of my apps.", preferredStyle: .actionSheet)
-        let tier1TipAction = UIAlertAction(title: "Small tip ($0.99)", style: .default, handler: nil)
-        let tier5TipAction = UIAlertAction(title: "Big tip ($4.99)", style: .default, handler: nil)
-        let continuousTipAction = UIAlertAction(title: "Continuous tip ($0.99/mo)", style: .default, handler: nil)
+        let tier1TipAction = UIAlertAction(title: "Small tip ($0.99)", style: .default) { (_) in
+            self.IAPs[0].handler()
+        }
+        let tier5TipAction = UIAlertAction(title: "Big tip ($4.99)", style: .default) { (_) in
+            let alert = UIAlertController(title: "It's the thought that counts!", message: "This feature should be implemented in the next build.", preferredStyle: .alert)
+            let action = UIAlertAction(title: "Ok", style: .cancel, handler: nil)
+            alert.addAction(action)
+            self.present(alert, animated: true, completion: nil)
+        }
+        let continuousTipAction = UIAlertAction(title: "Continuous tip ($0.99/mo)", style: .default) { (_) in
+            let alert = UIAlertController(title: "It's the thought that counts!", message: "This feature should be implemented in the next build.", preferredStyle: .alert)
+            let action = UIAlertAction(title: "Ok", style: .cancel, handler: nil)
+            alert.addAction(action)
+            self.present(alert, animated: true, completion: nil)
+        }
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
 
         alert.addAction(tier1TipAction)
@@ -160,8 +187,6 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
             whatsNew()
         case "🐦 Twitter":
             twitter()
-        case "🎨 Change Colors":
-            changeColors()
         case "💰 Tip Jar":
             tipJar()
         case "🆘 Helpful Tips":
@@ -177,6 +202,10 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         default:
             NSLog("Error occured when attempting to select a settings option.")
         }
+    }
+    
+    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 
 }
