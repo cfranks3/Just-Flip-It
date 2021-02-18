@@ -46,7 +46,6 @@ class DashboardViewController: UIViewController {
         itemController.load()
         itemController.delegate = self
         updateViews()
-        
     }
     
     func updateViews() {

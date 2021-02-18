@@ -88,23 +88,9 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         let tier1TipAction = UIAlertAction(title: "Small tip ($0.99)", style: .default) { (_) in
             self.IAPs[0].handler()
         }
-        let tier5TipAction = UIAlertAction(title: "Big tip ($4.99)", style: .default) { (_) in
-            let alert = UIAlertController(title: "It's the thought that counts!", message: "This feature should be implemented in the next build.", preferredStyle: .alert)
-            let action = UIAlertAction(title: "Ok", style: .cancel, handler: nil)
-            alert.addAction(action)
-            self.present(alert, animated: true, completion: nil)
-        }
-        let continuousTipAction = UIAlertAction(title: "Continuous tip ($0.99/mo)", style: .default) { (_) in
-            let alert = UIAlertController(title: "It's the thought that counts!", message: "This feature should be implemented in the next build.", preferredStyle: .alert)
-            let action = UIAlertAction(title: "Ok", style: .cancel, handler: nil)
-            alert.addAction(action)
-            self.present(alert, animated: true, completion: nil)
-        }
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
 
         alert.addAction(tier1TipAction)
-        alert.addAction(tier5TipAction)
-        alert.addAction(continuousTipAction)
         alert.addAction(cancelAction)
 
         present(alert, animated: true, completion: nil)
