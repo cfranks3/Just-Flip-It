@@ -13,11 +13,6 @@ protocol InventoryDelegate {
 
 class InventoryViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
     
-    // MARK: - IBOutlets
-    
-    @IBOutlet weak var searchBar: UISearchBar!
-    @IBOutlet weak var tableView: UITableView!
-    
     // MARK: - Properties
     
     var itemController: ItemController?
@@ -25,6 +20,16 @@ class InventoryViewController: UIViewController, UITableViewDelegate, UITableVie
     var searchType: String!
     var viewingSold: Bool?
     var delegate: InventoryDelegate?
+    
+    // MARK: - IBOutlets
+    
+    @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet weak var tableView: UITableView!
+    
+    @IBAction func doneButtonTapped(_ sender: UIButton) {
+        presentingViewController?.dismiss(animated: true, completion: nil)
+    }
+    
     
     // MARK: - Lifecycle
     

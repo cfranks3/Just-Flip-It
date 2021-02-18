@@ -267,7 +267,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="q1K-Ph-lWg">
-                                <rect key="frame" x="0.0" y="0.0" width="428" height="56"/>
+                                <rect key="frame" x="0.0" y="0.0" width="346" height="56"/>
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="W5o-l3-Usw">
@@ -331,14 +331,24 @@
                                     <outlet property="delegate" destination="uFe-HX-OXW" id="XeF-Vh-pWe"/>
                                 </connections>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Os0-ge-j0U">
+                                <rect key="frame" x="370" y="12" width="38" height="30"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
+                                <state key="normal" title="Done"/>
+                                <connections>
+                                    <action selector="doneButtonTapped:" destination="uFe-HX-OXW" eventType="touchUpInside" id="SwD-yd-ez9"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Wkk-DU-bDP"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="q1K-Ph-lWg" firstAttribute="trailing" secondItem="Wkk-DU-bDP" secondAttribute="trailing" id="AJy-PR-3l7"/>
                             <constraint firstItem="q1K-Ph-lWg" firstAttribute="top" secondItem="Wkk-DU-bDP" secondAttribute="top" id="Dno-Wn-Bz5"/>
                             <constraint firstItem="W5o-l3-Usw" firstAttribute="top" secondItem="q1K-Ph-lWg" secondAttribute="bottom" id="MKe-fi-LLi"/>
+                            <constraint firstItem="Wkk-DU-bDP" firstAttribute="trailing" secondItem="Os0-ge-j0U" secondAttribute="trailing" constant="20" id="bLO-SX-XKH"/>
                             <constraint firstItem="Wkk-DU-bDP" firstAttribute="bottom" secondItem="W5o-l3-Usw" secondAttribute="bottom" id="j9I-Lw-Wpx"/>
+                            <constraint firstItem="Os0-ge-j0U" firstAttribute="top" secondItem="Wkk-DU-bDP" secondAttribute="top" constant="12" id="leI-dU-Gqa"/>
+                            <constraint firstItem="Os0-ge-j0U" firstAttribute="leading" secondItem="q1K-Ph-lWg" secondAttribute="trailing" constant="24" id="lfO-uy-2li"/>
                             <constraint firstItem="Wkk-DU-bDP" firstAttribute="trailing" secondItem="W5o-l3-Usw" secondAttribute="trailing" id="o7L-In-Rgm"/>
                             <constraint firstItem="q1K-Ph-lWg" firstAttribute="leading" secondItem="Wkk-DU-bDP" secondAttribute="leading" id="sdG-Bj-P3o"/>
                             <constraint firstItem="W5o-l3-Usw" firstAttribute="leading" secondItem="Wkk-DU-bDP" secondAttribute="leading" id="vKq-F1-bdW"/>
@@ -353,7 +363,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="f3y-Ad-3Is" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="351" y="532"/>
+            <point key="canvasLocation" x="350.46728971962614" y="531.31749460043204"/>
         </scene>
         <!--Item Sale View Controller-->
         <scene sceneID="Q0J-h2-GT8">
