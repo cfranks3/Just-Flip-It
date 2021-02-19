@@ -19,6 +19,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
 
     var itemController: ItemController?
     var delegate: AddItemViewControllerDelegate?
+    
     var settings: [String] = [
         "🗞 What's New?",
         "🐦 Twitter",
@@ -27,7 +28,10 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         "🦻🏻 Feedback",
         "⭐️ Rate the App",
         "⚖️ Privacy Policy",
-        "🗑 Erase All Data",
+        "🗑 Erase All Inventory",
+        "🗑 Erase All Sold Items",
+        "🗑 Erase All Custom Tags",
+        "⛔️ Erase All Data",
     ]
     var IAPs = [IAP]()
     var totalTipped: Double {
@@ -128,12 +132,49 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         let application = UIApplication.shared
         application.open(privacyPolicyURL)
     }
-
-    func eraseData() {
+    
+    func eraseInventory() {
+        let alert = UIAlertController(title: "Warning!", message: "Proceeding will permanently delete all stored inventory. This cannot be reversed.", preferredStyle: .alert)
+        let confirm = UIAlertAction(title: "I Understand", style: .destructive) { (_) in
+            self.itemController?.eraseAllInventory()
+            self.delegate?.itemWasAdded()
+        }
+        let cancel = UIAlertAction(title: "Nevermind", style: .cancel, handler: nil)
+        alert.addAction(confirm)
+        alert.addAction(cancel)
+        present(alert, animated: true, completion: nil)
+    }
+    
+    func eraseSoldItems() {
         let alert = UIAlertController(title: "Warning!", message: "Proceeding will permanently delete all stored user data. This includes all sales, profit, inventory, and tags. This cannot be reversed.", preferredStyle: .alert)
         let confirm = UIAlertAction(title: "I Understand", style: .destructive) { (_) in
             UserDefaults.standard.setValue(false, forKey: "gnomes")
-            self.itemController?.resetData()
+            self.itemController?.eraseAllSoldItems()
+            self.delegate?.itemWasAdded()
+        }
+        let cancel = UIAlertAction(title: "Nevermind", style: .cancel, handler: nil)
+        alert.addAction(confirm)
+        alert.addAction(cancel)
+        present(alert, animated: true, completion: nil)
+    }
+    
+    func eraseTags() {
+        let alert = UIAlertController(title: "Warning!", message: "Proceeding will permanently delete all stored user data. This includes all sales, profit, inventory, and tags. This cannot be reversed.", preferredStyle: .alert)
+        let confirm = UIAlertAction(title: "I Understand", style: .destructive) { (_) in
+            self.itemController?.eraseAllTags()
+            self.delegate?.itemWasAdded()
+        }
+        let cancel = UIAlertAction(title: "Nevermind", style: .cancel, handler: nil)
+        alert.addAction(confirm)
+        alert.addAction(cancel)
+        present(alert, animated: true, completion: nil)
+    }
+
+    func eraseAllData() {
+        let alert = UIAlertController(title: "Warning!", message: "Proceeding will permanently delete all stored user data. This includes all sales, profit, inventory, and tags. This cannot be reversed.", preferredStyle: .alert)
+        let confirm = UIAlertAction(title: "I Understand", style: .destructive) { (_) in
+            UserDefaults.standard.setValue(false, forKey: "gnomes")
+            self.itemController?.eraseAllData()
             self.delegate?.itemWasAdded()
         }
         let cancel = UIAlertAction(title: "Nevermind", style: .cancel, handler: nil)
@@ -195,8 +236,14 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
             rateTheApp()
         case "⚖️ Privacy Policy":
             privacyPolicy()
-        case "🗑 Erase All Data":
-            eraseData()
+        case "🗑 Erase All Inventory":
+            eraseInventory()
+        case "🗑 Erase All Sold Items":
+            eraseSoldItems()
+        case "🗑 Erase All Custom Tags":
+            eraseTags()
+        case "⛔️ Erase All Data":
+            eraseAllData()
         default:
             NSLog("Error occured when attempting to select a settings option.")
         }

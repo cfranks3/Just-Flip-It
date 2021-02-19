@@ -24,7 +24,8 @@ class DashboardViewController: UIViewController {
     @IBOutlet weak var inventoryValueLabel: UILabel!
     @IBOutlet weak var numberOfSalesLabel: UILabel!
     @IBOutlet weak var recordSaleButton: UIButton!
-
+    @IBOutlet weak var addButton: UIBarButtonItem!
+    
     
     // MARK: - IBActions
     
@@ -49,6 +50,7 @@ class DashboardViewController: UIViewController {
     }
     
     func updateViews() {
+        
         formatter.numberStyle = .currency
         profitLabel.text = formatter.string(from: itemController.calculateProfit() as NSNumber)
         inventoryValueLabel.text = formatter.string(from: itemController.calculateInventoryValue() as NSNumber)
@@ -70,12 +72,6 @@ class DashboardViewController: UIViewController {
         navigationController?.navigationBar.barTintColor = .clear
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
         navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
-
-        updateColors()
-    }
-
-    func updateColors() {
-        
     }
     
     // MARK: - Navigation

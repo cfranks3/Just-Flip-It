@@ -50,6 +50,20 @@ class ItemController {
         }
     }
     
+    func eraseAllTags() {
+        tags.removeAll()
+        
+        for item in inventory {
+            item.tag = nil
+        }
+        
+        for item in soldItems {
+            item.tag = nil
+        }
+        
+        save()
+    }
+    
     func removeListedItem(with item: Item) {
         if inventory.contains(item) {
             inventory.removeAll { $0 == item }
@@ -58,7 +72,7 @@ class ItemController {
         }
     }
     
-    func resetData() {
+    func eraseAllData() {
         soldItems.removeAll()
         inventory.removeAll()
         tags.removeAll()
@@ -146,6 +160,16 @@ class ItemController {
             oldItem.quantity -= item.quantity
         }
         delegate?.saleWasMade()
+        save()
+    }
+    
+    func eraseAllInventory() {
+        inventory.removeAll()
+        save()
+    }
+    
+    func eraseAllSoldItems() {
+        soldItems.removeAll()
         save()
     }
     

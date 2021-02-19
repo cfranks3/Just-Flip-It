@@ -37,6 +37,8 @@ class InventoryViewController: UIViewController, UITableViewDelegate, UITableVie
         filteringByTag ? filterButton.setImage(UIImage(systemName: "line.horizontal.3.decrease.circle.fill"), for: .normal) : filterButton.setImage(UIImage(systemName: "line.horizontal.3.decrease.circle"), for: .normal)
         filterButton.contentScaleFactor = 1
         changeSearchBarPlaceholder()
+        searchBar.text?.removeAll()
+        
     }
     
     // MARK: - Lifecycle

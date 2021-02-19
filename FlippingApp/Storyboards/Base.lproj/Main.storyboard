@@ -249,6 +249,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="addButton" destination="gSc-HG-P0j" id="dV6-gL-hDk"/>
                         <outlet property="inventoryValueLabel" destination="DPW-Kg-ey0" id="gZK-SU-NIZ"/>
                         <outlet property="numberOfSalesLabel" destination="ewS-ba-eCF" id="OHE-4P-IAu"/>
                         <outlet property="profitLabel" destination="bFJ-Vd-xdz" id="JZS-6z-ebE"/>
