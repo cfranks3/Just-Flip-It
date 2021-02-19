@@ -46,7 +46,8 @@ class AddItemViewController: UIViewController {
             let item = Item(title: title,
                             purchasePrice: Double(purchasePrice) ?? -1,
                             listingPrice: Double(listingPrice) ?? -1,
-                            quantity: Int(quantity) ?? -1)
+                            quantity: Int(quantity) ?? -1,
+                            tag: tagTextView.text)
             itemController?.addListedItem(with: item)
             delegate?.itemWasAdded()
             navigationController?.popViewController(animated: true)
@@ -104,7 +105,6 @@ class AddItemViewController: UIViewController {
         tagTextView.layer.opacity = 0.25
         tagTextView.layer.cornerRadius = 4
         tagTextView.backgroundColor = .clear
-        tagTextView.text = "Closet supplies sdsd sdsd we"
     }
     
 }

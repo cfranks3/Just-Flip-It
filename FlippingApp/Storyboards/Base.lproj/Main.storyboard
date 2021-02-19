@@ -490,6 +490,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="428" height="872"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Sale:Quant BG" translatesAutoresizingMaskIntoConstraints="NO" id="e2u-Bn-QXg">
+                                <rect key="frame" x="0.0" y="0.0" width="428" height="872"/>
+                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EVa-eF-1l5">
                                 <rect key="frame" x="358" y="20" width="50" height="33"/>
                                 <constraints>
@@ -507,8 +510,8 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="28" translatesAutoresizingMaskIntoConstraints="NO" id="2f5-Ip-uxp">
-                                <rect key="frame" x="20" y="178.33333333333337" width="150" height="152.66666666666663"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" alignment="top" spacing="28" translatesAutoresizingMaskIntoConstraints="NO" id="2f5-Ip-uxp">
+                                <rect key="frame" x="50" y="178.33333333333334" width="328" height="62.333333333333343"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="UZk-vp-6oU">
                                         <rect key="frame" x="0.0" y="0.0" width="150" height="62.333333333333336"/>
@@ -530,7 +533,7 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="6wY-FI-TxX">
-                                        <rect key="frame" x="0.0" y="90.333333333333343" width="150" height="62.333333333333343"/>
+                                        <rect key="frame" x="178" y="0.0" width="150" height="62.333333333333336"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Edit Listing Price" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e3D-dF-gYz">
                                                 <rect key="frame" x="0.0" y="0.0" width="150" height="20.333333333333332"/>
@@ -558,23 +561,59 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Sale:Quant BG" translatesAutoresizingMaskIntoConstraints="NO" id="e2u-Bn-QXg">
-                                <rect key="frame" x="0.0" y="0.0" width="428" height="872"/>
-                            </imageView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="n4P-5o-A5w" userLabel="Tag Stack View">
+                                <rect key="frame" x="20" y="272.66666666666669" width="150" height="62"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tag it?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="moc-db-kxp" userLabel="Tag">
+                                        <rect key="frame" x="0.0" y="0.0" width="150" height="20.333333333333332"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Agv-Tt-Z14" userLabel="Tag Stack View">
+                                        <rect key="frame" x="0.0" y="28.333333333333311" width="150" height="33.666666666666657"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5eJ-Os-T35" userLabel="Tag Button">
+                                                <rect key="frame" x="0.0" y="0.0" width="21.666666666666668" height="33.666666666666664"/>
+                                                <state key="normal">
+                                                    <imageReference key="image" image="plus" catalog="system" symbolScale="large"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="tagButtonTapped:" destination="c8i-jJ-Jcz" eventType="touchUpInside" id="6fP-S8-aMU"/>
+                                                    <action selector="tagButtonTapped:" destination="q7h-kt-9yf" eventType="touchUpInside" id="yjf-EH-Ixi"/>
+                                                </connections>
+                                            </button>
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="center" adjustsFontForContentSizeCategory="YES" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Nl-t6-y49">
+                                                <rect key="frame" x="31.666666666666664" y="0.0" width="118.33333333333334" height="33.666666666666664"/>
+                                                <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <fontDescription key="fontDescription" name=".SFUI-Semibold" family=".AppleSystemUIFont" pointSize="12"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                            </textView>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="62" id="BuI-12-Yy0"/>
+                                    <constraint firstAttribute="width" constant="150" id="ED6-Rl-7AT"/>
+                                </constraints>
+                            </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="uUX-06-uR2"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="e2u-Bn-QXg" secondAttribute="bottom" id="8B0-6q-whm"/>
-                            <constraint firstItem="2f5-Ip-uxp" firstAttribute="leading" secondItem="uUX-06-uR2" secondAttribute="leading" constant="20" id="A7h-Df-hpb"/>
                             <constraint firstItem="2f5-Ip-uxp" firstAttribute="top" secondItem="PJy-2K-dyt" secondAttribute="bottom" constant="60" id="BAr-7H-cpS"/>
                             <constraint firstItem="PJy-2K-dyt" firstAttribute="top" secondItem="FDF-y6-HAt" secondAttribute="bottom" constant="24" id="HKA-EM-O3K"/>
                             <constraint firstItem="e2u-Bn-QXg" firstAttribute="leading" secondItem="gtJ-26-Y4U" secondAttribute="leading" id="J0a-ug-cBI"/>
+                            <constraint firstItem="2f5-Ip-uxp" firstAttribute="centerX" secondItem="gtJ-26-Y4U" secondAttribute="centerX" id="JBN-MG-thg"/>
                             <constraint firstItem="EVa-eF-1l5" firstAttribute="top" secondItem="uUX-06-uR2" secondAttribute="top" constant="20" id="TTF-wC-M7C"/>
                             <constraint firstItem="FDF-y6-HAt" firstAttribute="top" secondItem="uUX-06-uR2" secondAttribute="top" constant="40" id="Ted-LB-UdQ"/>
                             <constraint firstItem="e2u-Bn-QXg" firstAttribute="top" secondItem="gtJ-26-Y4U" secondAttribute="top" id="glB-iJ-9Q8"/>
+                            <constraint firstItem="n4P-5o-A5w" firstAttribute="top" secondItem="2f5-Ip-uxp" secondAttribute="bottom" constant="32" id="jWR-1r-j1x"/>
                             <constraint firstItem="PJy-2K-dyt" firstAttribute="centerX" secondItem="gtJ-26-Y4U" secondAttribute="centerX" id="kvZ-og-xhJ"/>
                             <constraint firstItem="FDF-y6-HAt" firstAttribute="centerX" secondItem="gtJ-26-Y4U" secondAttribute="centerX" id="ppK-Na-jj0"/>
+                            <constraint firstItem="n4P-5o-A5w" firstAttribute="leading" secondItem="uUX-06-uR2" secondAttribute="leading" constant="20" id="qT9-1U-NiA"/>
                             <constraint firstAttribute="trailing" secondItem="e2u-Bn-QXg" secondAttribute="trailing" id="sQV-Pf-yr9"/>
                             <constraint firstItem="uUX-06-uR2" firstAttribute="trailing" secondItem="EVa-eF-1l5" secondAttribute="trailing" constant="20" id="zD7-pu-NtT"/>
                         </constraints>
@@ -584,6 +623,7 @@
                         <outlet property="listingPriceTextField" destination="VAz-nL-aBd" id="Y1g-sc-Wxd"/>
                         <outlet property="quantityLabel" destination="PJy-2K-dyt" id="D6W-Da-ahS"/>
                         <outlet property="quantityTextField" destination="Eid-Ju-pCO" id="bbw-VI-CG0"/>
+                        <outlet property="tagTextView" destination="6Nl-t6-y49" id="ISV-82-SoG"/>
                         <outlet property="titleTextField" destination="FDF-y6-HAt" id="CbO-JF-tMp"/>
                     </connections>
                 </viewController>

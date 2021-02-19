@@ -26,6 +26,8 @@ class EditItemViewController: UIViewController {
     @IBOutlet weak var quantityLabel: UILabel!
     @IBOutlet weak var quantityTextField: UITextField!
     @IBOutlet weak var listingPriceTextField: UITextField!
+    @IBOutlet weak var tagTextView: UITextView!
+    
     
     // MARK: - IBActions
     
@@ -39,12 +41,18 @@ class EditItemViewController: UIViewController {
             let editedItem = Item(title: titleTextField.text ?? item.title,
                                   purchasePrice: item.purchasePrice,
                                   listingPrice: Double(listingPrice) ?? 0,
-                                  quantity: Int(quantity) ?? 0)
+                                  quantity: Int(quantity) ?? 0,
+                                  tag: tagTextView.text)
             itemController?.editItem(with: editedItem, replacing: item, at: index)
             delegate?.itemWasEdited()
             presentingViewController?.dismiss(animated: true, completion: nil)
         }
     }
+    
+    @IBAction func tagButtonTapped(_ sender: UIButton) {
+        
+    }
+    
     
     // MARK: - Lifecycle
 
@@ -64,6 +72,12 @@ class EditItemViewController: UIViewController {
         quantityTextField.text = "\(quantity)"
         formatter.numberStyle = .currency
         listingPriceTextField.text = "\(listingPrice)"
+        
+        tagTextView.layer.borderWidth = 1
+        tagTextView.layer.borderColor = UIColor.systemGray.cgColor
+        tagTextView.layer.opacity = 0.25
+        tagTextView.layer.cornerRadius = 4
+        tagTextView.backgroundColor = .clear
     }
 
 }

@@ -14,21 +14,24 @@ class Item: NSObject, Codable {
     var listingPrice: Double?
     var soldPrice: Double?
     var quantity: Int
+    var tag: String?
     
     // New item
-    init(title: String, purchasePrice: Double, listingPrice: Double, quantity: Int) {
+    init(title: String, purchasePrice: Double, listingPrice: Double, quantity: Int, tag: String) {
         self.title = title
         self.purchasePrice = purchasePrice
         self.listingPrice = listingPrice
         self.quantity = quantity
+        self.tag = tag
     }
     
     // Sold item
-    init(title: String, purchasePrice: Double, soldPrice: Double, quantity: Int) {
+    init(title: String, purchasePrice: Double, soldPrice: Double, quantity: Int, tag: String?) {
         self.title = title
         self.purchasePrice = purchasePrice
         self.soldPrice = soldPrice
         self.quantity = quantity
+        self.tag = tag
     }
     
 }
