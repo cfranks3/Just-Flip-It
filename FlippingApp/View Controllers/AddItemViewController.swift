@@ -80,7 +80,7 @@ class AddItemViewController: UIViewController {
     }
     
     @IBAction func tagButtonTapped(_ sender: UIButton) {
-        print("@@@@@")
+        navigationController?.popViewController(animated: true)
     }
     
     

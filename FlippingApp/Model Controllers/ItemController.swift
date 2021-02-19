@@ -18,6 +18,7 @@ class ItemController {
     
     var inventory: [Item] = []
     var soldItems: [Item] = []
+    var tags: [String] = []
     
     var sales = 0
     var inventoryValue: Double = 0
@@ -144,6 +145,12 @@ class ItemController {
         return directory.appendingPathComponent("SoldItems.plist")
     }
     
+    var tagsURL: URL? {
+        let fm = FileManager.default
+        guard let directory = fm.urls(for: .documentDirectory, in: .userDomainMask).first else { return nil }
+        return directory.appendingPathComponent("Tags.plist")
+    }
+    
     // Saving data
     func save() {
         let encoder = PropertyListEncoder()
@@ -151,13 +158,14 @@ class ItemController {
         do {
             let inventoryData = try encoder.encode(inventory)
             let soldItemData = try encoder.encode(soldItems)
+            let tagsData = try encoder.encode(tags)
             
-            if let inventoryURL = inventoryURL {
+            if let inventoryURL = inventoryURL,
+               let soldItemsURL = soldItemsURL,
+               let tagsURL = tagsURL {
                 try inventoryData.write(to: inventoryURL)
-            }
-            
-            if let soldItemsURL = soldItemsURL {
                 try soldItemData.write(to: soldItemsURL)
+                try tagsData.write(to: tagsURL)
             }
             
         } catch {
@@ -175,13 +183,19 @@ class ItemController {
         
         guard let soldItemsURL = soldItemsURL, fm.fileExists(atPath: soldItemsURL.path) else { return }
         
+        guard let tagsURL = tagsURL, fm.fileExists(atPath: tagsURL.path) else { return }
+        
         do {
             let inventoryData = try Data(contentsOf: inventoryURL)
             let soldItemsData = try Data(contentsOf: soldItemsURL)
+            let tagsData = try Data(contentsOf: tagsURL)
+            
             let decodedInventory = try decoder.decode([Item].self, from: inventoryData)
             let decodedSoldItems = try decoder.decode([Item].self, from: soldItemsData)
+            let decodedTags = try decoder.decode([String].self, from: tagsData)
             inventory = decodedInventory
             soldItems = decodedSoldItems
+            tags = decodedTags
         } catch {
             NSLog("Error decoding items: \(error.localizedDescription)")
         }

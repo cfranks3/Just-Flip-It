@@ -89,6 +89,8 @@ class DashboardViewController: UIViewController {
             guard let settingsVC = segue.destination as? SettingsViewController else { return }
             settingsVC.itemController = itemController
             settingsVC.delegate = self
+        } else if segue.identifier == "ShowPopOver" {
+            
         }
     }
     

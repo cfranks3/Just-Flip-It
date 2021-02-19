@@ -15,6 +15,7 @@
 		E368B39C25D72CCD000FBB0E /* RGBExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E368B39B25D72CCD000FBB0E /* RGBExtension.swift */; };
 		E36A329225DD36C0006286DA /* IAPManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E36A329125DD36C0006286DA /* IAPManager.swift */; };
 		E36A329625DD387E006286DA /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E36A329525DD387E006286DA /* StoreKit.framework */; };
+		E37DF38725DF82B300B65BB0 /* TagTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37DF38625DF82B300B65BB0 /* TagTableViewController.swift */; };
 		E38D79E325DCC36D0004DE3A /* AppVersionExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E38D79E225DCC36D0004DE3A /* AppVersionExtension.swift */; };
 		E38D79E625DCC49A0004DE3A /* SettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E38D79E525DCC49A0004DE3A /* SettingsCell.swift */; };
 		E3B2BF3E25D675010026DBB9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3B2BF3D25D675010026DBB9 /* AppDelegate.swift */; };
@@ -39,6 +40,7 @@
 		E36A329125DD36C0006286DA /* IAPManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IAPManager.swift; sourceTree = "<group>"; };
 		E36A329525DD387E006286DA /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		E36A329A25DD3FEA006286DA /* Configuration.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = Configuration.storekit; sourceTree = "<group>"; };
+		E37DF38625DF82B300B65BB0 /* TagTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagTableViewController.swift; sourceTree = "<group>"; };
 		E38D79E225DCC36D0004DE3A /* AppVersionExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppVersionExtension.swift; sourceTree = "<group>"; };
 		E38D79E525DCC49A0004DE3A /* SettingsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCell.swift; sourceTree = "<group>"; };
 		E3B2BF3A25D675010026DBB9 /* FlippingApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FlippingApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -124,10 +126,11 @@
 			isa = PBXGroup;
 			children = (
 				E3B2BF5925D67BA90026DBB9 /* DashboardViewController.swift */,
-				E32BBB1025D7861400E770CD /* InventoryViewController.swift */,
-				E32BBB1725D7AFA700E770CD /* ItemSaleViewController.swift */,
 				E3B2BF6225D682C60026DBB9 /* AddItemViewController.swift */,
 				E32BBB2225D869DF00E770CD /* EditItemViewController.swift */,
+				E37DF38625DF82B300B65BB0 /* TagTableViewController.swift */,
+				E32BBB1025D7861400E770CD /* InventoryViewController.swift */,
+				E32BBB1725D7AFA700E770CD /* ItemSaleViewController.swift */,
 				E368B39825D715C5000FBB0E /* SettingsViewController.swift */,
 			);
 			path = "View Controllers";
@@ -247,6 +250,7 @@
 				E38D79E325DCC36D0004DE3A /* AppVersionExtension.swift in Sources */,
 				E3B2BF6025D67EB30026DBB9 /* ItemController.swift in Sources */,
 				E3B2BF4025D675010026DBB9 /* SceneDelegate.swift in Sources */,
+				E37DF38725DF82B300B65BB0 /* TagTableViewController.swift in Sources */,
 				E3B2BF6925D69A060026DBB9 /* ItemGroupCollectionViewCell.swift in Sources */,
 				E32BBB1125D7861400E770CD /* InventoryViewController.swift in Sources */,
 				E3B2BF6325D682C60026DBB9 /* AddItemViewController.swift in Sources */,
