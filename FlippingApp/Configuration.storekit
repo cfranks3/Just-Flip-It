@@ -14,6 +14,21 @@
       "productID" : "JFITierOneTip",
       "referenceName" : "Tier 1 Tip",
       "type" : "Consumable"
+    },
+    {
+      "displayPrice" : "4.99",
+      "familyShareable" : false,
+      "internalID" : "DE54043D",
+      "localizations" : [
+        {
+          "description" : "",
+          "displayName" : "",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "JFITierTwoTip",
+      "referenceName" : "Tier 2 Tip",
+      "type" : "Consumable"
     }
   ],
   "settings" : {

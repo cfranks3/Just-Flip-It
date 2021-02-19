@@ -20,23 +20,28 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     var itemController: ItemController?
     var delegate: AddItemViewControllerDelegate?
     
-    var settings: [String] = [
-        "🗞 What's New?",
-        "🐦 Twitter",
-        "💰 Tip Jar",
-        "🆘 Helpful Tips",
-        "🦻🏻 Feedback",
-        "⭐️ Rate the App",
-        "⚖️ Privacy Policy",
-        "🗑 Erase All Inventory",
-        "🗑 Erase All Sold Items",
-        "🗑 Erase All Custom Tags",
-        "⛔️ Erase All Data",
-    ]
     var IAPs = [IAP]()
     var totalTipped: Double {
         return UserDefaults.standard.double(forKey: "tipped")
     }
+    
+    let staticSettings: [[String]] = [
+        ["🗞 What's New?",
+         "🐦 Twitter",
+         "💰 Tip Jar"],
+        
+        ["🆘 Helpful Tips",
+         "🦻🏻 Feedback",
+         "⭐️ Rate the App",
+         "⚖️ Privacy Policy"],
+        
+        ["🗑 Erase All Inventory",
+         "🗑 Erase All Sold Items",
+         "🗑 Erase All Custom Tags",
+         "⛔️ Erase All Data"],
+    ]
+    
+    let numberOfRows = [3, 4, 4]
 
     // MARK: - IBOutlets
 
@@ -62,10 +67,8 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     func whatsNew() {
         let alert = UIAlertController(title: "\(UIApplication.appVersion!) Notes", message:
                 """
-                - Change: Overhauled the UI
-                - Feature: Added settings page
-                - Feature: Implemented tip jar
-                - Bug fix: Filtering inventory in the pre-sale screen now works as expected.
+                - Feature: Added tags to sort through inventory/sold items
+                - Feature: Added notes for keeping more detailed descriptions of items
                 """
                                       , preferredStyle: .alert)
         let action = UIAlertAction(title: "Awesome!", style: .cancel, handler: nil)
@@ -92,12 +95,38 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         let tier1TipAction = UIAlertAction(title: "Small tip ($0.99)", style: .default) { (_) in
             self.IAPs[0].handler()
         }
+        let tier2TipAction = UIAlertAction(title: "Generous tip ($4.99)", style: .default) { (_) in
+            self.IAPs[1].handler()
+        }
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
 
         alert.addAction(tier1TipAction)
+        alert.addAction(tier2TipAction)
         alert.addAction(cancelAction)
 
         present(alert, animated: true, completion: nil)
+    }
+    
+    func appendIAPs() {
+        IAPs.append(IAP(name: "Small Tip", handler: {
+            IAPManager.shared.purchase(product: .tier1Tip) { [weak self] tipped in
+                DispatchQueue.main.async {
+                    let currentTipped = self?.totalTipped ?? 0
+                    let newTipped = currentTipped + tipped
+                    UserDefaults.standard.setValue(newTipped, forKey: "tipped")
+                }
+            }
+        }))
+        
+        IAPs.append(IAP(name: "Generous Tip", handler: {
+            IAPManager.shared.purchase(product: .tier2Tip) { [weak self] tipped in
+                DispatchQueue.main.async {
+                    let currentTipped = self?.totalTipped ?? 0
+                    let newTipped = currentTipped + tipped
+                    UserDefaults.standard.setValue(newTipped, forKey: "tipped")
+                }
+            }
+        }))
     }
 
     func helpfulTips() {
@@ -183,18 +212,6 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         present(alert, animated: true, completion: nil)
     }
     
-    func appendIAPs() {
-        IAPs.append(IAP(name: "Small Tip", handler: {
-            IAPManager.shared.purchase(product: .tier1Tip) { [weak self] tipped in
-                DispatchQueue.main.async {
-                    let currentTipped = self?.totalTipped ?? 0
-                    let newTipped = currentTipped + tipped
-                    UserDefaults.standard.setValue(newTipped, forKey: "tipped")
-                }
-            }
-        }))
-    }
-    
     func configureNavBar() {
         if self.traitCollection.userInterfaceStyle == .dark {
             navigationController?.navigationBar.barTintColor = .black
@@ -207,13 +224,17 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     // MARK: - Table view delegate
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        settings.count
+        numberOfRows[section]
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        staticSettings.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "SettingCell", for: indexPath) as! SettingsCell
-        cell.settingTypeLabel.text = settings[indexPath.row]
-        if cell.settingTypeLabel.text == "🗑 Erase All Data" {
+        cell.settingTypeLabel.text = staticSettings[indexPath.section][indexPath.row]
+        if cell.settingTypeLabel.text == "⛔️ Erase All Data" {
             cell.settingTypeLabel.textColor = .systemRed
             cell.settingTypeLabel.font = .boldSystemFont(ofSize: 16)
         }
@@ -221,7 +242,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        switch settings[indexPath.row] {
+        switch staticSettings[indexPath.section][indexPath.row] {
         case "🗞 What's New?":
             whatsNew()
         case "🐦 Twitter":

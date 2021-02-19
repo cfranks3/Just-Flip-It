@@ -831,8 +831,10 @@
                         <button key="tableHeaderView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="CCd-J6-ucF">
                             <rect key="frame" x="0.0" y="0.0" width="428" height="22"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
                             <state key="normal">
                                 <imageReference key="image" image="plus" catalog="system" symbolScale="large"/>
+                                <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large"/>
                             </state>
                             <connections>
                                 <action selector="addTagTapped:" destination="qSw-tB-prq" eventType="touchUpInside" id="KC3-WH-e1s"/>
@@ -862,6 +864,9 @@
                             <outlet property="delegate" destination="qSw-tB-prq" id="ewR-uW-HJO"/>
                         </connections>
                     </tableView>
+                    <connections>
+                        <outlet property="addTagButton" destination="CCd-J6-ucF" id="cXF-gp-s8Q"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iQn-Fv-PhN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

@@ -19,11 +19,14 @@ final class IAPManager: NSObject, SKProductsRequestDelegate, SKPaymentTransactio
     // Add cases here as new IAPs are added
     enum Product: String, CaseIterable {
         case tier1Tip = "JFITierOneTip"
+        case tier2Tip = "JFITierTwoTip"
         
         var count: Double {
             switch self {
             case .tier1Tip:
                 return 0.99
+            case .tier2Tip:
+                return 4.99
             }
         }
     }

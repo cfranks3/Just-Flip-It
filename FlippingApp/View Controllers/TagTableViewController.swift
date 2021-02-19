@@ -13,6 +13,10 @@ protocol TagDataDelegate {
 
 class TagTableViewController: UITableViewController {
     
+    // MARK: - IBOutlets
+    
+    @IBOutlet weak var addTagButton: UIButton!
+    
     // MARK: - IBActions
     
     @IBAction func addTagTapped(_ sender: UIButton) {
