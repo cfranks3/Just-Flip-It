@@ -18,7 +18,7 @@ class ItemController {
     
     var inventory: [Item] = []
     var soldItems: [Item] = []
-    var tags: [String] = ["Test", "Test 2"]
+    var tags: [String] = []
     
     var sales = 0
     var inventoryValue: Double = 0
@@ -31,6 +31,23 @@ class ItemController {
     func addListedItem(with item: Item) {
         inventory.append(item)
         save()
+    }
+    
+    func addTag(with tag: String) -> Bool {
+        if tags.contains(tag) {
+            return false
+        } else {
+            tags.append(tag)
+            save()
+            return true
+        }
+    }
+    
+    func deleteTag(with tag: String) {
+        if tags.contains(tag) {
+            tags.removeAll(where: { $0 == tag })
+            save()
+        }
     }
     
     func removeListedItem(with item: Item) {
