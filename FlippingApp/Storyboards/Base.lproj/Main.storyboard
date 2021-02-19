@@ -746,8 +746,7 @@
                                                     <imageReference key="image" image="plus" catalog="system" symbolScale="large"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="tagButtonTapped:" destination="c8i-jJ-Jcz" eventType="touchUpInside" id="z9v-VS-LpI"/>
-                                                    <segue destination="qSw-tB-prq" kind="popoverPresentation" identifier="ShowPopOver" popoverAnchorView="Xs5-yf-Ayv" id="L0o-xc-iKq">
+                                                    <segue destination="qSw-tB-prq" kind="popoverPresentation" identifier="ShowPopOver" popoverAnchorView="bkm-nK-Hl5" id="L0o-xc-iKq">
                                                         <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
                                                     </segue>
                                                 </connections>
@@ -755,7 +754,7 @@
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="center" adjustsFontForContentSizeCategory="YES" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bkm-nK-Hl5">
                                                 <rect key="frame" x="31.666666666666679" y="0.0" width="118.33333333333331" height="33.666666666666664"/>
                                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                             </textView>
@@ -800,6 +799,7 @@
                         <outlet property="listingPriceTextField" destination="Osp-WY-Uda" id="Wtb-Wp-2jI"/>
                         <outlet property="purchasePriceTextField" destination="ZLN-26-cPg" id="s87-eW-2we"/>
                         <outlet property="quantityTextField" destination="uLy-aE-dEe" id="p1c-Zo-Erp"/>
+                        <outlet property="tagButton" destination="Xs5-yf-Ayv" id="bNB-cZ-AGh"/>
                         <outlet property="tagTextView" destination="bkm-nK-Hl5" id="RTm-Jl-Qt5"/>
                         <outlet property="titleTextField" destination="zPp-SC-LdD" id="vKp-L5-BZ3"/>
                     </connections>

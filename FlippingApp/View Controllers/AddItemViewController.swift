@@ -25,6 +25,7 @@ class AddItemViewController: UIViewController {
     @IBOutlet weak var listingPriceTextField: UITextField!
     @IBOutlet weak var quantityTextField: UITextField!
     @IBOutlet weak var tagTextView: UITextView!
+    @IBOutlet weak var tagButton: UIButton!
     
     // MARK: - IBActions
     
@@ -79,10 +80,6 @@ class AddItemViewController: UIViewController {
         }
     }
     
-    @IBAction func tagButtonTapped(_ sender: UIButton) {
-        navigationController?.popViewController(animated: true)
-    }
-    
     
     // MARK: - Lifecycle
     
@@ -105,6 +102,36 @@ class AddItemViewController: UIViewController {
         tagTextView.layer.opacity = 0.25
         tagTextView.layer.cornerRadius = 4
         tagTextView.backgroundColor = .clear
+    }
+    
+    // MARK: - Navigation
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "ShowPopOver" {
+            guard let popOverVC = segue.destination as? TagTableViewController else { return }
+            popOverVC.itemController = itemController
+            popOverVC.preferredContentSize = CGSize(width: 160, height: 100)
+            popOverVC.modalPresentationStyle = .popover
+            popOverVC.popoverPresentationController?.delegate = self
+            popOverVC.popoverPresentationController?.sourceRect = CGRect(x: 0, y: -20, width: 180, height: 120)
+            popOverVC.popoverPresentationController?.sourceView = tagButton
+            popOverVC.delegate = self
+        }
+    }
+    
+}
+
+extension AddItemViewController: TagDataDelegate {
+    func passData(_ tag: String) {
+        print(tag)
+        tagTextView.text = tag
+    }
+}
+
+extension AddItemViewController: UIPopoverPresentationControllerDelegate {
+    
+    func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
+        return .none
     }
     
 }

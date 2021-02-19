@@ -18,7 +18,7 @@ class ItemController {
     
     var inventory: [Item] = []
     var soldItems: [Item] = []
-    var tags: [String] = []
+    var tags: [String] = ["Test", "Test 2"]
     
     var sales = 0
     var inventoryValue: Double = 0
