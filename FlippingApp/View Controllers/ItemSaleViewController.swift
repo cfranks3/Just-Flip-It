@@ -47,7 +47,8 @@ class ItemSaleViewController: UIViewController {
                                     purchasePrice: item.purchasePrice,
                                     soldPrice: soldPrice,
                                     quantity: quantitySold,
-                                    tag: item.tag ?? "")
+                                    tag: item.tag ?? "",
+                                    notes: item.notes)
                 itemController?.processSale(sold: soldItem, listed: item)
                 presentingViewController?.dismiss(animated: true, completion: nil)
                 delegate?.saleWasMade()

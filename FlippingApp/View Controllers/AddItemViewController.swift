@@ -26,6 +26,7 @@ class AddItemViewController: UIViewController {
     @IBOutlet weak var quantityTextField: UITextField!
     @IBOutlet weak var tagTextView: UITextView!
     @IBOutlet weak var tagButton: UIButton!
+    @IBOutlet weak var notesTextView: UITextView!
     
     // MARK: - IBActions
     
@@ -48,7 +49,8 @@ class AddItemViewController: UIViewController {
                             purchasePrice: Double(purchasePrice) ?? -1,
                             listingPrice: Double(listingPrice) ?? -1,
                             quantity: Int(quantity) ?? -1,
-                            tag: tagTextView.text)
+                            tag: tagTextView.text,
+                            notes: notesTextView.text)
             itemController?.addListedItem(with: item)
             delegate?.itemWasAdded()
             navigationController?.popViewController(animated: true)
@@ -102,6 +104,11 @@ class AddItemViewController: UIViewController {
         tagTextView.layer.opacity = 0.25
         tagTextView.layer.cornerRadius = 4
         tagTextView.backgroundColor = .clear
+        
+        notesTextView.layer.borderWidth = 1
+        notesTextView.layer.borderColor = UIColor.systemGray.cgColor
+        notesTextView.layer.opacity = 0.25
+        notesTextView.layer.cornerRadius = 4
     }
     
     // MARK: - Navigation

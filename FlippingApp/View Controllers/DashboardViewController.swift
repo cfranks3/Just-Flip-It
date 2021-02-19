@@ -39,7 +39,6 @@ class DashboardViewController: UIViewController {
         present(inventoryVC, animated: true, completion: nil)
     }
     
-    
     // MARK: - Lifecycle
     
     override func viewDidLoad() {

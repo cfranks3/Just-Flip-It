@@ -67,6 +67,7 @@ class ItemController {
     func removeListedItem(with item: Item) {
         if inventory.contains(item) {
             inventory.removeAll { $0 == item }
+            save()
         } else {
             NSLog("Error: Nonexistent item could not be removed.")
         }

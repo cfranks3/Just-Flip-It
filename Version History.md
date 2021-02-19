@@ -1,6 +1,10 @@
 
 # Version History
 
+## 1.5 (2/19/21)
+* Feature: Added tags to sort through inventory/sold items
+* Feature: Added notes for keeping more detailed descriptions of items
+
 ## 1.4 (2/17/21)
 * Bug fix: Removed missing tip jar options
 * Bug fix: Corrected dashboard wallpaper for 5.5" devices

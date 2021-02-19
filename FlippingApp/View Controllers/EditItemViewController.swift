@@ -28,6 +28,7 @@ class EditItemViewController: UIViewController {
     @IBOutlet weak var listingPriceTextField: UITextField!
     @IBOutlet weak var tagTextView: UITextView!
     @IBOutlet weak var tagButton: UIButton!
+    @IBOutlet weak var notesTextView: UITextView!
     
     
     // MARK: - IBActions
@@ -43,7 +44,8 @@ class EditItemViewController: UIViewController {
                                   purchasePrice: item.purchasePrice,
                                   listingPrice: Double(listingPrice) ?? 0,
                                   quantity: Int(quantity) ?? 0,
-                                  tag: tagTextView.text)
+                                  tag: tagTextView.text,
+                                  notes: notesTextView.text)
             itemController?.editItem(with: editedItem, replacing: item, at: index)
             delegate?.itemWasEdited()
             presentingViewController?.dismiss(animated: true, completion: nil)
@@ -75,6 +77,11 @@ class EditItemViewController: UIViewController {
         tagTextView.layer.opacity = 0.25
         tagTextView.layer.cornerRadius = 4
         tagTextView.backgroundColor = .clear
+        
+        if let notes = item?.notes { notesTextView.text = notes }
+        notesTextView.layer.borderWidth = 1
+        notesTextView.layer.borderColor = UIColor(rgb: 0xd3d3d3).cgColor
+        notesTextView.layer.cornerRadius = 4
     }
     
     // MARK: - Navigation
