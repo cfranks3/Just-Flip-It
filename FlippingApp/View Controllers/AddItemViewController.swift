@@ -24,6 +24,7 @@ class AddItemViewController: UIViewController {
     @IBOutlet weak var purchasePriceTextField: UITextField!
     @IBOutlet weak var listingPriceTextField: UITextField!
     @IBOutlet weak var quantityTextField: UITextField!
+    @IBOutlet weak var tagTextView: UITextView!
     
     // MARK: - IBActions
     
@@ -77,17 +78,33 @@ class AddItemViewController: UIViewController {
         }
     }
     
+    @IBAction func tagButtonTapped(_ sender: UIButton) {
+        print("@@@@@")
+    }
+    
+    
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         titleTextField.becomeFirstResponder()
+        configureViews()
+    }
+    
+    func configureViews() {
         if self.traitCollection.userInterfaceStyle == .dark {
             navigationController?.navigationBar.barTintColor = .black
         } else {
             navigationController?.navigationBar.barTintColor = .white
         }
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor(rgb: 0x457b9d)]
+        
+        tagTextView.layer.borderWidth = 1
+        tagTextView.layer.borderColor = UIColor.systemGray.cgColor
+        tagTextView.layer.opacity = 0.25
+        tagTextView.layer.cornerRadius = 4
+        tagTextView.backgroundColor = .clear
+        tagTextView.text = "Closet supplies sdsd sdsd we"
     }
     
 }
