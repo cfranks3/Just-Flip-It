@@ -31,10 +31,6 @@ class TagTableViewController: UITableViewController {
                         alert.addAction(action)
                         self.present(alert, animated: true, completion: nil)
                     } else {
-                        let alert = UIAlertController(title: "🎉 Tag has been added 🎉", message: "", preferredStyle: .alert)
-                        let action = UIAlertAction(title: "Ok", style: .default, handler: nil)
-                        alert.addAction(action)
-                        self.present(alert, animated: true, completion: nil)
                         self.tableView.reloadData()
                     }
                 }

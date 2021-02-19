@@ -61,6 +61,7 @@ class ItemController {
     func resetData() {
         soldItems.removeAll()
         inventory.removeAll()
+        tags.removeAll()
         save()
     }
     

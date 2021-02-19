@@ -19,17 +19,25 @@ class InventoryViewController: UIViewController, UITableViewDelegate, UITableVie
     var filteredItems: [Item]!
     var searchType: String!
     var viewingSold: Bool?
+    var filteringByTag: Bool = false
     var delegate: InventoryDelegate?
     
     // MARK: - IBOutlets
     
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var filterButton: UIButton!
     
     @IBAction func doneButtonTapped(_ sender: UIButton) {
         presentingViewController?.dismiss(animated: true, completion: nil)
     }
     
+    @IBAction func filterButtonTapped(_ sender: UIButton) {
+        filteringByTag.toggle()
+        filteringByTag ? filterButton.setImage(UIImage(systemName: "line.horizontal.3.decrease.circle.fill"), for: .normal) : filterButton.setImage(UIImage(systemName: "line.horizontal.3.decrease.circle"), for: .normal)
+        filterButton.contentScaleFactor = 1
+        changeSearchBarPlaceholder()
+    }
     
     // MARK: - Lifecycle
     
@@ -46,8 +54,12 @@ class InventoryViewController: UIViewController, UITableViewDelegate, UITableVie
             if viewingSold {
                 searchBar.placeholder = "Search for a sold item"
             } else {
-                searchBar.placeholder = "Search your inventory"
+                searchBar.placeholder = "Search for an item's name"
             }
+        }
+        
+        if filteringByTag {
+            searchBar.placeholder = "Search for a tag"
         }
     }
     
@@ -82,21 +94,28 @@ class InventoryViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        if searchType == "inventory" {
+        if filteringByTag {
             guard let data = itemController?.inventory else { return }
             filteredItems = searchText.isEmpty ? data : data.filter({(item: Item) -> Bool in
-                return item.title.range(of: searchText, options: .caseInsensitive) != nil
+                return item.tag?.range(of: searchText, options: .caseInsensitive) != nil
             })
-        } else if searchType == "soldItems" {
-            guard let data = itemController?.soldItems else { return }
-            filteredItems = searchText.isEmpty ? data : data.filter({(item: Item) -> Bool in
-                return item.title.range(of: searchText, options: .caseInsensitive) != nil
-            })
-        } else if searchType == "selling" {
-            guard let data = itemController?.inventory else { return }
-            filteredItems = searchText.isEmpty ? data : data.filter({(item: Item) -> Bool in
-                return item.title.range(of: searchText, options: .caseInsensitive) != nil
-            })
+        } else {
+            if searchType == "inventory" {
+                guard let data = itemController?.inventory else { return }
+                filteredItems = searchText.isEmpty ? data : data.filter({(item: Item) -> Bool in
+                    return item.title.range(of: searchText, options: .caseInsensitive) != nil
+                })
+            } else if searchType == "soldItems" {
+                guard let data = itemController?.soldItems else { return }
+                filteredItems = searchText.isEmpty ? data : data.filter({(item: Item) -> Bool in
+                    return item.title.range(of: searchText, options: .caseInsensitive) != nil
+                })
+            } else if searchType == "selling" {
+                guard let data = itemController?.inventory else { return }
+                filteredItems = searchText.isEmpty ? data : data.filter({(item: Item) -> Bool in
+                    return item.title.range(of: searchText, options: .caseInsensitive) != nil
+                })
+            }
         }
         
         tableView.reloadData()

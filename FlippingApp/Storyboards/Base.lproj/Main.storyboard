@@ -10,11 +10,6 @@
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
-    <customFonts key="customFonts">
-        <array key="TimesNewRoman.ttf">
-            <string>.SFUI-Semibold</string>
-        </array>
-    </customFonts>
     <scenes>
         <!--Settings View Controller-->
         <scene sceneID="DVW-M9-lks">
@@ -273,7 +268,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="q1K-Ph-lWg">
-                                <rect key="frame" x="0.0" y="0.0" width="346" height="56"/>
+                                <rect key="frame" x="0.0" y="0.0" width="305.66666666666669" height="56"/>
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="W5o-l3-Usw">
@@ -345,16 +340,28 @@
                                     <action selector="doneButtonTapped:" destination="uFe-HX-OXW" eventType="touchUpInside" id="SwD-yd-ez9"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kii-lz-sEb" userLabel="Filter Button">
+                                <rect key="frame" x="325.66666666666669" y="15.000000000000002" width="24.333333333333314" height="23.666666666666671"/>
+                                <state key="normal">
+                                    <imageReference key="image" image="line.horizontal.3.decrease.circle" catalog="system" symbolScale="large"/>
+                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large"/>
+                                </state>
+                                <connections>
+                                    <action selector="filterButtonTapped:" destination="uFe-HX-OXW" eventType="touchUpInside" id="JzN-4C-gMC"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Wkk-DU-bDP"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="q1K-Ph-lWg" firstAttribute="top" secondItem="Wkk-DU-bDP" secondAttribute="top" id="Dno-Wn-Bz5"/>
+                            <constraint firstItem="Kii-lz-sEb" firstAttribute="top" secondItem="Wkk-DU-bDP" secondAttribute="top" constant="15" id="GGQ-5T-9BX"/>
                             <constraint firstItem="W5o-l3-Usw" firstAttribute="top" secondItem="q1K-Ph-lWg" secondAttribute="bottom" id="MKe-fi-LLi"/>
+                            <constraint firstItem="Os0-ge-j0U" firstAttribute="leading" secondItem="Kii-lz-sEb" secondAttribute="trailing" constant="20" id="P1Z-5K-LZW"/>
+                            <constraint firstItem="Kii-lz-sEb" firstAttribute="leading" secondItem="q1K-Ph-lWg" secondAttribute="trailing" constant="20" id="aHt-DP-oCf"/>
                             <constraint firstItem="Wkk-DU-bDP" firstAttribute="trailing" secondItem="Os0-ge-j0U" secondAttribute="trailing" constant="20" id="bLO-SX-XKH"/>
                             <constraint firstItem="Wkk-DU-bDP" firstAttribute="bottom" secondItem="W5o-l3-Usw" secondAttribute="bottom" id="j9I-Lw-Wpx"/>
                             <constraint firstItem="Os0-ge-j0U" firstAttribute="top" secondItem="Wkk-DU-bDP" secondAttribute="top" constant="12" id="leI-dU-Gqa"/>
-                            <constraint firstItem="Os0-ge-j0U" firstAttribute="leading" secondItem="q1K-Ph-lWg" secondAttribute="trailing" constant="24" id="lfO-uy-2li"/>
                             <constraint firstItem="Wkk-DU-bDP" firstAttribute="trailing" secondItem="W5o-l3-Usw" secondAttribute="trailing" id="o7L-In-Rgm"/>
                             <constraint firstItem="q1K-Ph-lWg" firstAttribute="leading" secondItem="Wkk-DU-bDP" secondAttribute="leading" id="sdG-Bj-P3o"/>
                             <constraint firstItem="W5o-l3-Usw" firstAttribute="leading" secondItem="Wkk-DU-bDP" secondAttribute="leading" id="vKq-F1-bdW"/>
@@ -363,6 +370,7 @@
                     <navigationItem key="navigationItem" id="WC8-Gk-23m"/>
                     <modalPageSheetSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <connections>
+                        <outlet property="filterButton" destination="Kii-lz-sEb" id="6At-pf-dZf"/>
                         <outlet property="searchBar" destination="q1K-Ph-lWg" id="eBU-vA-MJ2"/>
                         <outlet property="tableView" destination="W5o-l3-Usw" id="gCI-QZ-4Ig"/>
                     </connections>
@@ -580,14 +588,16 @@
                                                 </state>
                                                 <connections>
                                                     <action selector="tagButtonTapped:" destination="c8i-jJ-Jcz" eventType="touchUpInside" id="6fP-S8-aMU"/>
-                                                    <action selector="tagButtonTapped:" destination="q7h-kt-9yf" eventType="touchUpInside" id="yjf-EH-Ixi"/>
+                                                    <segue destination="qSw-tB-prq" kind="popoverPresentation" identifier="ShowPopOver" popoverAnchorView="6Nl-t6-y49" id="ePE-Ci-Ugi">
+                                                        <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                                    </segue>
                                                 </connections>
                                             </button>
-                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="center" adjustsFontForContentSizeCategory="YES" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Nl-t6-y49">
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" adjustsFontForContentSizeCategory="YES" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Nl-t6-y49">
                                                 <rect key="frame" x="31.666666666666664" y="0.0" width="118.33333333333334" height="33.666666666666664"/>
                                                 <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <fontDescription key="fontDescription" name=".SFUI-Semibold" family=".AppleSystemUIFont" pointSize="12"/>
+                                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                             </textView>
                                         </subviews>
@@ -623,13 +633,14 @@
                         <outlet property="listingPriceTextField" destination="VAz-nL-aBd" id="Y1g-sc-Wxd"/>
                         <outlet property="quantityLabel" destination="PJy-2K-dyt" id="D6W-Da-ahS"/>
                         <outlet property="quantityTextField" destination="Eid-Ju-pCO" id="bbw-VI-CG0"/>
+                        <outlet property="tagButton" destination="5eJ-Os-T35" id="aKN-So-lED"/>
                         <outlet property="tagTextView" destination="6Nl-t6-y49" id="ISV-82-SoG"/>
                         <outlet property="titleTextField" destination="FDF-y6-HAt" id="CbO-JF-tMp"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6Mj-bq-Hup" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1918" y="530"/>
+            <point key="canvasLocation" x="1918" y="539"/>
         </scene>
         <!--New Item-->
         <scene sceneID="v0v-eu-efc">
@@ -751,7 +762,7 @@
                                                     </segue>
                                                 </connections>
                                             </button>
-                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="center" adjustsFontForContentSizeCategory="YES" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bkm-nK-Hl5">
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" adjustsFontForContentSizeCategory="YES" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bkm-nK-Hl5">
                                                 <rect key="frame" x="31.666666666666679" y="0.0" width="118.33333333333331" height="33.666666666666664"/>
                                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -853,7 +864,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iQn-Fv-PhN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1918" y="-146"/>
+            <point key="canvasLocation" x="2672" y="-164"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="drj-sO-B0T">
@@ -877,11 +888,15 @@
             <point key="canvasLocation" x="-557.97101449275362" y="-145.3125"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="ePE-Ci-Ugi"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="Dashboard BG" width="1284" height="2778"/>
         <image name="JFILogo" width="1024" height="1024"/>
         <image name="New Item bg" width="1284" height="2778"/>
         <image name="Sale:Quant BG" width="1284" height="2778"/>
+        <image name="line.horizontal.3.decrease.circle" catalog="system" width="128" height="121"/>
         <image name="plus" catalog="system" width="128" height="113"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

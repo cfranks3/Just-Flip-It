@@ -27,7 +27,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         "🦻🏻 Feedback",
         "⭐️ Rate the App",
         "⚖️ Privacy Policy",
-        "🗑 Erase Data",
+        "🗑 Erase All Data",
     ]
     var IAPs = [IAP]()
     var totalTipped: Double {
@@ -130,7 +130,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     }
 
     func eraseData() {
-        let alert = UIAlertController(title: "Warning!", message: "Proceeding will permanently delete all stored user data. This includes all sales, profit, and inventory. This cannot be reversed.", preferredStyle: .alert)
+        let alert = UIAlertController(title: "Warning!", message: "Proceeding will permanently delete all stored user data. This includes all sales, profit, inventory, and tags. This cannot be reversed.", preferredStyle: .alert)
         let confirm = UIAlertAction(title: "I Understand", style: .destructive) { (_) in
             UserDefaults.standard.setValue(false, forKey: "gnomes")
             self.itemController?.resetData()
@@ -172,7 +172,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "SettingCell", for: indexPath) as! SettingsCell
         cell.settingTypeLabel.text = settings[indexPath.row]
-        if cell.settingTypeLabel.text == "🗑 Erase Data" {
+        if cell.settingTypeLabel.text == "🗑 Erase All Data" {
             cell.settingTypeLabel.textColor = .systemRed
             cell.settingTypeLabel.font = .boldSystemFont(ofSize: 16)
         }
@@ -195,7 +195,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
             rateTheApp()
         case "⚖️ Privacy Policy":
             privacyPolicy()
-        case "🗑 Erase Data":
+        case "🗑 Erase All Data":
             eraseData()
         default:
             NSLog("Error occured when attempting to select a settings option.")

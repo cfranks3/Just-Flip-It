@@ -27,6 +27,7 @@ class EditItemViewController: UIViewController {
     @IBOutlet weak var quantityTextField: UITextField!
     @IBOutlet weak var listingPriceTextField: UITextField!
     @IBOutlet weak var tagTextView: UITextView!
+    @IBOutlet weak var tagButton: UIButton!
     
     
     // MARK: - IBActions
@@ -49,13 +50,8 @@ class EditItemViewController: UIViewController {
         }
     }
     
-    @IBAction func tagButtonTapped(_ sender: UIButton) {
-        
-    }
-    
-    
     // MARK: - Lifecycle
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         updateViews()
@@ -73,11 +69,42 @@ class EditItemViewController: UIViewController {
         formatter.numberStyle = .currency
         listingPriceTextField.text = "\(listingPrice)"
         
+        tagTextView.text = item?.tag
         tagTextView.layer.borderWidth = 1
         tagTextView.layer.borderColor = UIColor.systemGray.cgColor
         tagTextView.layer.opacity = 0.25
         tagTextView.layer.cornerRadius = 4
         tagTextView.backgroundColor = .clear
     }
+    
+    // MARK: - Navigation
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "ShowPopOver" {
+            guard let popOverVC = segue.destination as? TagTableViewController else { return }
+            popOverVC.itemController = itemController
+            popOverVC.preferredContentSize = CGSize(width: 150, height: 150)
+            popOverVC.modalPresentationStyle = .popover
+            popOverVC.popoverPresentationController?.delegate = self
+            popOverVC.popoverPresentationController?.sourceRect = CGRect(origin: tagTextView.center, size: .zero)
+            popOverVC.popoverPresentationController?.sourceView = tagTextView
+            popOverVC.delegate = self
+        }
+    }
+    
+}
 
+extension EditItemViewController: TagDataDelegate {
+    func passData(_ tag: String) {
+        print(tag)
+        tagTextView.text = tag
+    }
+}
+
+extension EditItemViewController: UIPopoverPresentationControllerDelegate {
+    
+    func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
+        return .none
+    }
+    
 }
