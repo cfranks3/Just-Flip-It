@@ -24,6 +24,7 @@ class EditItemViewController: UIViewController {
     
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var quantityTextField: UITextField!
+    @IBOutlet weak var quantityLabel: UILabel!
     @IBOutlet weak var purchasePriceLabel: UILabel!
     @IBOutlet weak var purchasePriceTextField: UITextField!
     @IBOutlet weak var listingPriceLabel: UILabel!
@@ -107,6 +108,7 @@ class EditItemViewController: UIViewController {
         tagTextView.backgroundColor = UIColor(named: "Foreground")
         
         listingPriceLabel.textColor = UIColor(named: "Text")
+        quantityLabel.textColor = UIColor(named: "Text")
         notesLabel.textColor = UIColor(named: "Text")
         tagLabel.textColor = UIColor(named: "Text")
         purchasePriceLabel.textColor = UIColor(named: "Text")

@@ -92,18 +92,17 @@ class SoldItemInfoViewController: UIViewController {
     
     func configureColors() {
         view.backgroundColor = UIColor(named: "Background")
-        soldItemLabel.textColor = UIColor(named: "Text")
-        purchasedLabel.textColor = UIColor(named: "Text")
-        purchasedPriceLabel.textColor = UIColor(named: "Text")
-        soldLabel.textColor = UIColor(named: "Text")
-        soldPriceLabel.textColor = UIColor(named: "Text")
-        profitLabel.textColor = .white
-        profitMadeLabel.textColor = .white
-        //profitStackView.backgroundColor = UIColor(named: "Foreground")
-        dateLabel.textColor = UIColor(named: "Text")
-        dateSoldLabel.textColor = UIColor(named: "Text")
-        daysListedLabel.textColor = UIColor(named: "Text")
-        daysListedForLabel.textColor = UIColor(named: "Text")
+        soldItemLabel.textColor = UIColor(named: "Foreground")
+        purchasedLabel.textColor = .white
+        purchasedPriceLabel.textColor = .white
+        soldLabel.textColor = .white
+        soldPriceLabel.textColor = .white
+        profitLabel.textColor = UIColor(named: "Foreground")
+        profitMadeLabel.textColor = UIColor(named: "Foreground")
+        dateLabel.textColor = .white
+        dateSoldLabel.textColor = .white
+        daysListedLabel.textColor = .white
+        daysListedForLabel.textColor = .white
         upperBannerView.backgroundColor = UIColor(named: "Foreground")
         lowerBannerView.backgroundColor = UIColor(named: "Foreground")
     }

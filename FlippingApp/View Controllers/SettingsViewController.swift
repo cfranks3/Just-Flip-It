@@ -65,7 +65,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
 
     func updateViews() {
         appVersionLabel.text = "App Version \(UIApplication.appVersion!)"
-        appLogoImageView.layer.cornerRadius = 16
+        appLogoImageView.layer.cornerRadius = 12
     }
     
     func configureColors() {
@@ -82,10 +82,12 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         let alert = UIAlertController(title: "\(UIApplication.appVersion!) Notes", message:
                 """
                 - Change: Overhauled the app's appearance (again).
-                - Feature: Items you list after this update will be timestamped. They will be timestamped again after they sell. You can now tap on a cell in your sold items table to see a detailed breakdown of your sale.
+                - Feature: Date and time is now logged for items you list and sell.
+                - Feature: Tapping on a sold item now displays information about the sale.
                 - Feature: Added an inventory counter to the dashboard.
                 - Feature: You can now edit the original purchase price of items.
-                - Bug fix: You can no longer crash the app by adding a high-value item. Cap is $1,000,000 per item and a quantity of 100,000.
+                - Bug fix: You can no longer crash the app by adding a high-value item. The current cap is $1,000,000 per item and a quantity of 100,000.
+                - Bug fix: Filtering through sold items no longer returns inventory items.
                 """
                                       , preferredStyle: .alert)
         let action = UIAlertAction(title: "Awesome!", style: .cancel, handler: nil)

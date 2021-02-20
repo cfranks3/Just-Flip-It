@@ -109,10 +109,22 @@ class InventoryViewController: UIViewController, UITableViewDelegate, UITableVie
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if filteringByTag {
-            guard let data = itemController?.inventory else { return }
-            filteredItems = searchText.isEmpty ? data : data.filter({(item: Item) -> Bool in
-                return item.tag?.range(of: searchText, options: .caseInsensitive) != nil
-            })
+            if searchType == "inventory" {
+                guard let data = itemController?.inventory else { return }
+                filteredItems = searchText.isEmpty ? data : data.filter({(item: Item) -> Bool in
+                    return item.tag?.range(of: searchText, options: .caseInsensitive) != nil
+                })
+            } else if searchType == "soldItems" {
+                guard let data = itemController?.soldItems else { return }
+                filteredItems = searchText.isEmpty ? data : data.filter({(item: Item) -> Bool in
+                    return item.tag?.range(of: searchText, options: .caseInsensitive) != nil
+                })
+            } else if searchType == "selling" {
+                guard let data = itemController?.inventory else { return }
+                filteredItems = searchText.isEmpty ? data : data.filter({(item: Item) -> Bool in
+                    return item.tag?.range(of: searchText, options: .caseInsensitive) != nil
+                })
+            }
         } else {
             if searchType == "inventory" {
                 guard let data = itemController?.inventory else { return }
