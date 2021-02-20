@@ -78,9 +78,6 @@ class DashboardViewController: UIViewController {
 
         formatter.numberStyle = .currency
         profitLabel.text = formatter.string(from: itemController.calculateProfit() as NSNumber)
-        if itemController.calculateProfit() > 0 {
-            profitLabel.textColor = .systemGreen
-        }
         inventoryValueLabel.text = formatter.string(from: itemController.calculateInventoryValue() as NSNumber)
         if itemController.calculateInventoryValue() > 2147483648 {
             inventoryValueLabel.text = "Too High!"
@@ -186,6 +183,12 @@ class DashboardViewController: UIViewController {
         recordSaleButton.tintColor = UIColor(named: "Text")
         settingsButton.setTitleColor(UIColor(named: "Text"), for: .normal)
         
+        if itemController.calculateProfit() > 0 {
+            profitLabel.textColor = .systemGreen
+        } else {
+            profitLabel.textColor = .white
+        }
+        
     }
 
     // MARK: - Navigation
@@ -199,6 +202,7 @@ class DashboardViewController: UIViewController {
             guard let settingsVC = segue.destination as? SettingsViewController else { return }
             settingsVC.itemController = itemController
             settingsVC.delegate = self
+            settingsVC.eraseDelegate = self
         }
     }
 
@@ -206,7 +210,7 @@ class DashboardViewController: UIViewController {
 
 // MARK: - Protocol methods
 
-extension DashboardViewController: AddItemViewControllerDelegate, ItemControllerDelegate, InventoryDelegate, EditItemDelegate {
+extension DashboardViewController: AddItemViewControllerDelegate, ItemControllerDelegate, InventoryDelegate, EditItemDelegate, SettingsDelegate {
     
     func itemWasEdited() {
         updateViews()
@@ -221,6 +225,10 @@ extension DashboardViewController: AddItemViewControllerDelegate, ItemController
     }
 
     func itemWasAdded() {
+        updateViews()
+    }
+    
+    func dataWasErased() {
         updateViews()
     }
 

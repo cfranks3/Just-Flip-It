@@ -31,13 +31,14 @@ class Item: NSObject, Codable {
     }
     
     // Sold item
-    init(title: String, purchasePrice: Double, soldPrice: Double, quantity: Int, tag: String?, notes: String?, soldDate: Date?) {
+    init(title: String, purchasePrice: Double, soldPrice: Double, quantity: Int, tag: String?, notes: String?, listedDate: Date?, soldDate: Date?) {
         self.title = title
         self.purchasePrice = purchasePrice
         self.soldPrice = soldPrice
         self.quantity = quantity
         self.tag = tag
         self.notes = notes ?? ""
+        self.listedDate = listedDate
         self.soldDate = soldDate
     }
     

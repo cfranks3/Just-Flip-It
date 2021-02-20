@@ -175,7 +175,7 @@ class InventoryViewController: UIViewController, UITableViewDelegate, UITableVie
                 guard let cell = tableView.cellForRow(at: indexPath) else { return }
                 popOverVC.item = itemController?.soldItems[indexPath.row]
                 popOverVC.itemController = itemController
-                popOverVC.preferredContentSize = CGSize(width: 220, height: 320)
+                popOverVC.preferredContentSize = CGSize(width: 250, height: 340)
                 popOverVC.modalPresentationStyle = .popover
                 popOverVC.popoverPresentationController?.delegate = self
                 popOverVC.popoverPresentationController?.sourceRect = CGRect(origin: cell.center, size: .zero)

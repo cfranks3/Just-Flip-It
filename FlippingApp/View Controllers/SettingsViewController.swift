@@ -8,6 +8,10 @@
 import UIKit
 import StoreKit
 
+protocol SettingsDelegate {
+    func dataWasErased()
+}
+
 struct IAP {
     var name: String
     var handler: (() -> Void)
@@ -19,6 +23,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
 
     var itemController: ItemController?
     var delegate: AddItemViewControllerDelegate?
+    var eraseDelegate: SettingsDelegate?
     
     var IAPs = [IAP]()
     var totalTipped: Double {
@@ -183,6 +188,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         let cancel = UIAlertAction(title: "Nevermind", style: .cancel, handler: nil)
         alert.addAction(confirm)
         alert.addAction(cancel)
+        eraseDelegate?.dataWasErased()
         present(alert, animated: true, completion: nil)
     }
     
@@ -196,6 +202,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         let cancel = UIAlertAction(title: "Nevermind", style: .cancel, handler: nil)
         alert.addAction(confirm)
         alert.addAction(cancel)
+        eraseDelegate?.dataWasErased()
         present(alert, animated: true, completion: nil)
     }
     
@@ -208,6 +215,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         let cancel = UIAlertAction(title: "Nevermind", style: .cancel, handler: nil)
         alert.addAction(confirm)
         alert.addAction(cancel)
+        eraseDelegate?.dataWasErased()
         present(alert, animated: true, completion: nil)
     }
 
@@ -221,6 +229,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         let cancel = UIAlertAction(title: "Nevermind", style: .cancel, handler: nil)
         alert.addAction(confirm)
         alert.addAction(cancel)
+        eraseDelegate?.dataWasErased()
         present(alert, animated: true, completion: nil)
     }
 
