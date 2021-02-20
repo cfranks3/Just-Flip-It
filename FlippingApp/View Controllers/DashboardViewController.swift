@@ -92,7 +92,7 @@ class DashboardViewController: UIViewController {
         formatter.numberStyle = .decimal
         numberOfSalesLabel.text = formatter.string(from: itemController.calculateSales() as NSNumber)
         
-        inventoryQuantityLabel.text = formatter.string(from: itemController.inventory.count as NSNumber)
+        inventoryQuantityLabel.text = formatter.string(from: itemController.calculateInventoryQuantity() as NSNumber)
         
         // Easter egg
         if UserDefaults.standard.bool(forKey: "gnomes") {

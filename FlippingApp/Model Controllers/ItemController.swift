@@ -118,6 +118,24 @@ class ItemController {
         return inventoryValue
     }
     
+    func calculateInventoryQuantity() -> Int {
+        var quantity = 0
+        
+        for item in inventory {
+            if item.quantity > 1 {
+                var count = item.quantity
+                while count > 0 {
+                    quantity += 1
+                    count -= 1
+                }
+            } else {
+                quantity += 1
+            }
+        }
+        
+        return quantity
+    }
+    
     func calculateProfit() -> Double {
         profit = 0
         

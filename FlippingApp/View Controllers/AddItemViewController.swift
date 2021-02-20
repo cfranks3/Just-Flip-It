@@ -175,7 +175,7 @@ class AddItemViewController: UIViewController {
         if segue.identifier == "ShowPopOver" {
             guard let popOverVC = segue.destination as? TagTableViewController else { return }
             popOverVC.itemController = itemController
-            popOverVC.preferredContentSize = CGSize(width: 180, height: 200)
+            popOverVC.preferredContentSize = CGSize(width: 180, height: 240)
             popOverVC.modalPresentationStyle = .popover
             popOverVC.popoverPresentationController?.delegate = self
             popOverVC.popoverPresentationController?.sourceRect = CGRect(origin: tagTextView.center, size: .zero)
