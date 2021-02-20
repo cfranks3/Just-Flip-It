@@ -13,6 +13,11 @@ protocol TagDataDelegate {
 
 class TagTableViewController: UITableViewController {
     
+    // MARK: - Properties
+    
+    var itemController: ItemController?
+    var delegate: TagDataDelegate?
+    
     // MARK: IBOutlets
     
     @IBOutlet weak var addButton: UIButton!
@@ -48,11 +53,6 @@ class TagTableViewController: UITableViewController {
         
         self.present(alertController, animated: true, completion: nil)
     }
-    
-    // MARK: - Properties
-    
-    var itemController: ItemController?
-    var delegate: TagDataDelegate?
     
     // MARK: - Lifecycle
     

@@ -56,6 +56,7 @@ class InventoryViewController: UIViewController, UITableViewDelegate, UITableVie
         tableView.separatorColor = UIColor(named: "Background")
         filterButton.tintColor = UIColor(named: "Text")
         doneButton.tintColor = UIColor(named: "Text")
+        doneButton.setTitleColor(UIColor(named: "Text"), for: .normal)
         searchBar.barTintColor = UIColor(named: "Background")
         searchBar.tintColor = UIColor(named: "Foreground")
     }
@@ -153,6 +154,8 @@ class InventoryViewController: UIViewController, UITableViewDelegate, UITableVie
         }
     }
     
+    // MARK: - Row selection
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
             if searchType == "selling" {
                 guard let saleVC = storyboard?.instantiateViewController(identifier: "SaleVC") as? ItemSaleViewController else { return }
@@ -167,6 +170,17 @@ class InventoryViewController: UIViewController, UITableViewDelegate, UITableVie
                 editVC.delegate = self
                 editVC.index = indexPath.row
                 present(editVC, animated: true, completion: nil)
+            } else if searchType == "soldItems" {
+                guard let popOverVC = storyboard?.instantiateViewController(identifier: "SoldItemInfoVC") as? SoldItemInfoViewController else { return }
+                guard let cell = tableView.cellForRow(at: indexPath) else { return }
+                popOverVC.item = itemController?.soldItems[indexPath.row]
+                popOverVC.itemController = itemController
+                popOverVC.preferredContentSize = CGSize(width: 220, height: 320)
+                popOverVC.modalPresentationStyle = .popover
+                popOverVC.popoverPresentationController?.delegate = self
+                popOverVC.popoverPresentationController?.sourceRect = CGRect(origin: cell.center, size: .zero)
+                popOverVC.popoverPresentationController?.sourceView = tableView
+                present(popOverVC, animated: true, completion: nil)
             }
     }
     
@@ -184,4 +198,12 @@ extension InventoryViewController: EditItemDelegate {
     func itemWasEdited() {
         presentingViewController?.dismiss(animated: true, completion: nil)
     }
+}
+
+extension InventoryViewController: UIPopoverPresentationControllerDelegate {
+    
+    func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
+        return .none
+    }
+    
 }

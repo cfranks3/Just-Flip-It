@@ -57,7 +57,7 @@ class EditItemViewController: UIViewController {
                                   listingPrice: listingPrice,
                                   quantity: quantity,
                                   tag: tagTextView.text,
-                                  notes: notesTextView.text)
+                                  notes: notesTextView.text, listedDate: item.listedDate)
             itemController?.editItem(with: editedItem, replacing: item, at: index)
             delegate?.itemWasEdited()
             presentingViewController?.dismiss(animated: true, completion: nil)

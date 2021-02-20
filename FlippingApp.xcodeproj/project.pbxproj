@@ -28,6 +28,7 @@
 		E3B2BF6025D67EB30026DBB9 /* ItemController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3B2BF5F25D67EB30026DBB9 /* ItemController.swift */; };
 		E3B2BF6325D682C60026DBB9 /* AddItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3B2BF6225D682C60026DBB9 /* AddItemViewController.swift */; };
 		E3B2BF6925D69A060026DBB9 /* ItemGroupCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3B2BF6825D69A060026DBB9 /* ItemGroupCollectionViewCell.swift */; };
+		E3CB66B625E136F600C71C2B /* SoldItemInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3CB66B525E136F600C71C2B /* SoldItemInfoViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -55,6 +56,7 @@
 		E3B2BF5F25D67EB30026DBB9 /* ItemController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemController.swift; sourceTree = "<group>"; };
 		E3B2BF6225D682C60026DBB9 /* AddItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemViewController.swift; sourceTree = "<group>"; };
 		E3B2BF6825D69A060026DBB9 /* ItemGroupCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemGroupCollectionViewCell.swift; sourceTree = "<group>"; };
+		E3CB66B525E136F600C71C2B /* SoldItemInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoldItemInfoViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,9 +130,10 @@
 				E3B2BF5925D67BA90026DBB9 /* DashboardViewController.swift */,
 				E3B2BF6225D682C60026DBB9 /* AddItemViewController.swift */,
 				E32BBB2225D869DF00E770CD /* EditItemViewController.swift */,
+				E32BBB1725D7AFA700E770CD /* ItemSaleViewController.swift */,
 				E37DF38625DF82B300B65BB0 /* TagTableViewController.swift */,
 				E32BBB1025D7861400E770CD /* InventoryViewController.swift */,
-				E32BBB1725D7AFA700E770CD /* ItemSaleViewController.swift */,
+				E3CB66B525E136F600C71C2B /* SoldItemInfoViewController.swift */,
 				E368B39825D715C5000FBB0E /* SettingsViewController.swift */,
 			);
 			path = "View Controllers";
@@ -247,6 +250,7 @@
 				E32BBB1825D7AFA700E770CD /* ItemSaleViewController.swift in Sources */,
 				E368B39C25D72CCD000FBB0E /* RGBExtension.swift in Sources */,
 				E3B2BF5A25D67BA90026DBB9 /* DashboardViewController.swift in Sources */,
+				E3CB66B625E136F600C71C2B /* SoldItemInfoViewController.swift in Sources */,
 				E38D79E325DCC36D0004DE3A /* AppVersionExtension.swift in Sources */,
 				E3B2BF6025D67EB30026DBB9 /* ItemController.swift in Sources */,
 				E3B2BF4025D675010026DBB9 /* SceneDelegate.swift in Sources */,

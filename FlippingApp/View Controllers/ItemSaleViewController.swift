@@ -23,6 +23,7 @@ class ItemSaleViewController: UIViewController {
     @IBOutlet weak var soldPriceTextField: UITextField!
     @IBOutlet weak var currentQuantityLabel: UILabel!
     @IBOutlet weak var soldPriceLabel: UILabel!
+    @IBOutlet weak var doneButton: UIButton!
     
     // MARK: - IBAction
     
@@ -50,7 +51,7 @@ class ItemSaleViewController: UIViewController {
                                     soldPrice: soldPrice,
                                     quantity: quantitySold,
                                     tag: item.tag ?? "",
-                                    notes: item.notes)
+                                    notes: item.notes, soldDate: Date())
                 itemController?.processSale(sold: soldItem, listed: item)
                 presentingViewController?.dismiss(animated: true, completion: nil)
                 delegate?.saleWasMade()
@@ -79,6 +80,8 @@ class ItemSaleViewController: UIViewController {
         
         formatter.numberStyle = .currency
         soldPriceTextField.placeholder = formatter.string(from: listingPrice as NSNumber)
+        
+        doneButton.layer.cornerRadius = 12
     }
     
     func configureColors() {
@@ -90,7 +93,9 @@ class ItemSaleViewController: UIViewController {
         
         amountSoldTextField.backgroundColor = UIColor(named: "Foreground")
         soldPriceTextField.backgroundColor = UIColor(named: "Foreground")
-
+        
+        doneButton.backgroundColor = UIColor(named: "Foreground")
+        doneButton.tintColor = .white
     }
     
 }

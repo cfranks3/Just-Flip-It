@@ -77,7 +77,10 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         let alert = UIAlertController(title: "\(UIApplication.appVersion!) Notes", message:
                 """
                 - Change: Overhauled the app's appearance (again).
+                - Feature: Items you list after this update will be timestamped. They will be timestamped again after they sell. You can now tap on a cell in your sold items table to see a detailed breakdown of your sale.
                 - Feature: Added an inventory counter to the dashboard.
+                - Feature: You can now edit the original purchase price of items.
+                - Bug fix: You can no longer crash the app by adding a high-value item. Cap is $1,000,000 per item and a quantity of 100,000.
                 """
                                       , preferredStyle: .alert)
         let action = UIAlertAction(title: "Awesome!", style: .cancel, handler: nil)

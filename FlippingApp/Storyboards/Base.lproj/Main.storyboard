@@ -88,6 +88,126 @@
             </objects>
             <point key="canvasLocation" x="1070" y="-764"/>
         </scene>
+        <!--Sold Item Info View Controller-->
+        <scene sceneID="kBG-yB-j59">
+            <objects>
+                <viewController storyboardIdentifier="SoldItemInfoVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="vo8-eQ-YVh" customClass="SoldItemInfoViewController" customModule="FlippingApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="cII-MQ-uKi">
+                        <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sold Item" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NBZ-OJ-9Ph">
+                                <rect key="frame" x="157.33333333333334" y="64" width="113.33333333333334" height="33.666666666666657"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="sdL-x0-wVM" userLabel="Profit Stack View">
+                                <rect key="frame" x="168" y="186.33333333333334" width="92.333333333333314" height="48.666666666666657"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Profit Made" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Oa-OF-HMe">
+                                        <rect key="frame" x="0.0" y="0.0" width="92.333333333333329" height="20.333333333333332"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EsF-8h-0yf">
+                                        <rect key="frame" x="0.0" y="28.333333333333314" width="92.333333333333329" height="20.333333333333329"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="lgg-Ze-9k4" userLabel="Price Stack View">
+                                <rect key="frame" x="143.66666666666669" y="117.66666666666667" width="140.66666666666669" height="48.666666666666671"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="tNR-Qh-MQN" userLabel="Purchase Stack View">
+                                        <rect key="frame" x="0.0" y="0.0" width="85" height="48.666666666666664"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Purchased" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="auL-QO-sve">
+                                                <rect key="frame" x="0.0" y="0.0" width="85" height="20.333333333333332"/>
+                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c6U-SE-OXs">
+                                                <rect key="frame" x="0.0" y="28.333333333333329" width="85" height="20.333333333333329"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="zen-2Z-hBQ" userLabel="Sold Stack View">
+                                        <rect key="frame" x="105" y="0.0" width="35.666666666666657" height="48.666666666666664"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sold" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6qw-AR-fKM">
+                                                <rect key="frame" x="0.0" y="0.0" width="35.666666666666664" height="20.333333333333332"/>
+                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VVh-qM-mta">
+                                                <rect key="frame" x="0.0" y="28.333333333333329" width="35.666666666666664" height="20.333333333333329"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                            </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="yXy-FP-3SG" userLabel="Date Stack View">
+                                <rect key="frame" x="154" y="254.99999999999997" width="120" height="48.666666666666657"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date Sold" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n2P-XV-OS2">
+                                        <rect key="frame" x="0.0" y="0.0" width="120" height="20.333333333333332"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Jan 29 1993" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5jz-AP-jPw">
+                                        <rect key="frame" x="0.0" y="28.333333333333314" width="120" height="20.333333333333329"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="120" id="3SL-Uc-Boe"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="ZMs-Ey-gAy"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="yXy-FP-3SG" firstAttribute="top" secondItem="sdL-x0-wVM" secondAttribute="bottom" constant="20" id="8ca-sb-1Vs"/>
+                            <constraint firstItem="sdL-x0-wVM" firstAttribute="top" secondItem="lgg-Ze-9k4" secondAttribute="bottom" constant="20" id="Efd-YJ-k1l"/>
+                            <constraint firstItem="yXy-FP-3SG" firstAttribute="centerX" secondItem="cII-MQ-uKi" secondAttribute="centerX" id="GFt-iU-Nka"/>
+                            <constraint firstItem="sdL-x0-wVM" firstAttribute="centerX" secondItem="cII-MQ-uKi" secondAttribute="centerX" id="dJ7-GH-5mh"/>
+                            <constraint firstItem="lgg-Ze-9k4" firstAttribute="centerX" secondItem="cII-MQ-uKi" secondAttribute="centerX" id="hlR-12-DsL"/>
+                            <constraint firstItem="lgg-Ze-9k4" firstAttribute="top" secondItem="NBZ-OJ-9Ph" secondAttribute="bottom" constant="20" id="iPT-Mk-e1w"/>
+                            <constraint firstItem="NBZ-OJ-9Ph" firstAttribute="centerX" secondItem="cII-MQ-uKi" secondAttribute="centerX" id="n3a-GH-Xeu"/>
+                            <constraint firstItem="NBZ-OJ-9Ph" firstAttribute="top" secondItem="ZMs-Ey-gAy" secondAttribute="top" constant="20" id="yIx-Pw-su8"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="dateLabel" destination="n2P-XV-OS2" id="2dv-we-HDo"/>
+                        <outlet property="dateSoldLabel" destination="5jz-AP-jPw" id="dH6-gZ-a0I"/>
+                        <outlet property="profitLabel" destination="9Oa-OF-HMe" id="ygy-OS-ZCR"/>
+                        <outlet property="profitMadeLabel" destination="EsF-8h-0yf" id="o2C-Lf-zIw"/>
+                        <outlet property="purchasedLabel" destination="auL-QO-sve" id="ACN-CD-3bv"/>
+                        <outlet property="purchasedPriceLabel" destination="c6U-SE-OXs" id="1LR-PQ-KLL"/>
+                        <outlet property="soldItemLabel" destination="NBZ-OJ-9Ph" id="JKp-OF-C5z"/>
+                        <outlet property="soldLabel" destination="6qw-AR-fKM" id="2dc-eC-jJr"/>
+                        <outlet property="soldPriceLabel" destination="VVh-qM-mta" id="VnJ-LF-ctY"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="r54-nH-1Uo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-571" y="652"/>
+        </scene>
         <!--Inventory View Controller-->
         <scene sceneID="tyb-64-SEs">
             <objects>
@@ -279,9 +399,10 @@
                                 </subviews>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zHv-fU-p9I">
-                                <rect key="frame" x="358" y="20" width="50" height="33"/>
+                                <rect key="frame" x="348" y="20" width="60" height="50"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="50" id="eQO-nx-tog"/>
+                                    <constraint firstAttribute="width" constant="60" id="eQO-nx-tog"/>
+                                    <constraint firstAttribute="height" constant="50" id="hh0-0T-Cav"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                 <state key="normal" title="Done"/>
@@ -310,6 +431,7 @@
                     <connections>
                         <outlet property="amountSoldTextField" destination="ilh-3f-zsc" id="YLk-ba-tLb"/>
                         <outlet property="currentQuantityLabel" destination="xyj-iV-RdH" id="EPZ-2s-FIs"/>
+                        <outlet property="doneButton" destination="zHv-fU-p9I" id="zcU-3D-fYh"/>
                         <outlet property="quantityLabel" destination="jZv-V2-ElM" id="sJC-MB-Fds"/>
                         <outlet property="soldPriceLabel" destination="R2W-d6-Ddn" id="IqA-XU-k8D"/>
                         <outlet property="soldPriceTextField" destination="j9n-iS-M3z" id="qcx-QE-E8f"/>

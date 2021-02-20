@@ -60,7 +60,8 @@ class AddItemViewController: UIViewController {
                             listingPrice: listingPrice,
                             quantity: quantity,
                             tag: tagTextView.text,
-                            notes: notesTextView.text)
+                            notes: notesTextView.text,
+                            listedDate: Date())
             itemController?.addListedItem(with: item)
             delegate?.itemWasAdded()
             self.dismiss(animated: true, completion: nil)
