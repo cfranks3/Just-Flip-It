@@ -23,12 +23,15 @@ class EditItemViewController: UIViewController {
     // MARK: - IBOutlets
     
     @IBOutlet weak var titleTextField: UITextField!
-    @IBOutlet weak var quantityLabel: UILabel!
     @IBOutlet weak var quantityTextField: UITextField!
+    @IBOutlet weak var listingPriceLabel: UILabel!
     @IBOutlet weak var listingPriceTextField: UITextField!
+    @IBOutlet weak var tagLabel: UILabel!
     @IBOutlet weak var tagTextView: UITextView!
     @IBOutlet weak var tagButton: UIButton!
+    @IBOutlet weak var notesLabel: UILabel!
     @IBOutlet weak var notesTextView: UITextView!
+    @IBOutlet weak var saveButton: UIButton!
     
     
     // MARK: - IBActions
@@ -57,6 +60,7 @@ class EditItemViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         updateViews()
+        configureColors()
     }
     
     func updateViews() {
@@ -66,22 +70,33 @@ class EditItemViewController: UIViewController {
         
         formatter.numberStyle = .decimal
         titleTextField.text = item?.title
-        quantityLabel.text = "Current quantity: \(formatter.string(from: quantity as NSNumber) ?? "-1")"
         quantityTextField.text = "\(quantity)"
         formatter.numberStyle = .currency
         listingPriceTextField.text = "\(listingPrice)"
         
         tagTextView.text = item?.tag
-        tagTextView.layer.borderWidth = 1
-        tagTextView.layer.borderColor = UIColor.systemGray.cgColor
-        tagTextView.layer.opacity = 0.25
         tagTextView.layer.cornerRadius = 4
-        tagTextView.backgroundColor = .clear
+        tagButton.layer.cornerRadius = 10
+        saveButton.layer.cornerRadius = 12
         
         if let notes = item?.notes { notesTextView.text = notes }
-        notesTextView.layer.borderWidth = 1
-        notesTextView.layer.borderColor = UIColor(rgb: 0xd3d3d3).cgColor
         notesTextView.layer.cornerRadius = 4
+    }
+    
+    func configureColors() {
+        view.backgroundColor = UIColor(named: "Background")
+        titleTextField.backgroundColor = UIColor(named: "Foreground")
+        listingPriceTextField.backgroundColor = UIColor(named: "Foreground")
+        quantityTextField.backgroundColor = UIColor(named: "Foreground")
+        notesTextView.backgroundColor = UIColor(named: "Foreground")
+        tagTextView.backgroundColor = UIColor(named: "Foreground")
+        
+        listingPriceLabel.textColor = UIColor(named: "Text")
+        notesLabel.textColor = UIColor(named: "Text")
+        tagLabel.textColor = UIColor(named: "Text")
+        
+        tagButton.backgroundColor = UIColor(named: "Foreground")
+        saveButton.backgroundColor = UIColor(named: "Foreground")
     }
     
     // MARK: - Navigation

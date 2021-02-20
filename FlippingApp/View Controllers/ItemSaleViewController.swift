@@ -21,6 +21,8 @@ class ItemSaleViewController: UIViewController {
     @IBOutlet weak var quantityLabel: UILabel!
     @IBOutlet weak var amountSoldTextField: UITextField!
     @IBOutlet weak var soldPriceTextField: UITextField!
+    @IBOutlet weak var currentQuantityLabel: UILabel!
+    @IBOutlet weak var soldPriceLabel: UILabel!
     
     // MARK: - IBAction
     
@@ -62,6 +64,7 @@ class ItemSaleViewController: UIViewController {
         super.viewDidLoad()
         amountSoldTextField.becomeFirstResponder()
         updateViews()
+        configureColors()
     }
     
     func updateViews() {
@@ -76,6 +79,18 @@ class ItemSaleViewController: UIViewController {
         
         formatter.numberStyle = .currency
         soldPriceTextField.placeholder = formatter.string(from: listingPrice as NSNumber)
+    }
+    
+    func configureColors() {
+        view.backgroundColor = UIColor(named: "Background")
+        titleLabel.textColor = UIColor(named: "Text")
+        currentQuantityLabel.textColor = UIColor(named: "Text")
+        quantityLabel.textColor = UIColor(named: "Text")
+        soldPriceLabel.textColor = UIColor(named: "Text")
+        
+        amountSoldTextField.backgroundColor = UIColor(named: "Foreground")
+        soldPriceTextField.backgroundColor = UIColor(named: "Foreground")
+
     }
     
 }

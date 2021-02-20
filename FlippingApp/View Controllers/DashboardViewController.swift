@@ -78,7 +78,16 @@ class DashboardViewController: UIViewController {
 
         formatter.numberStyle = .currency
         profitLabel.text = formatter.string(from: itemController.calculateProfit() as NSNumber)
+        if itemController.calculateProfit() > 0 {
+            profitLabel.textColor = .systemGreen
+        }
         inventoryValueLabel.text = formatter.string(from: itemController.calculateInventoryValue() as NSNumber)
+        if itemController.calculateInventoryValue() > 2147483648 {
+            inventoryValueLabel.text = "Too High!"
+            inventoryValueLabel.textColor = .systemYellow
+        } else if itemController.calculateInventoryValue() >= 10000 {
+            inventoryValueLabel.textColor = .systemGreen
+        }
 
         formatter.numberStyle = .decimal
         numberOfSalesLabel.text = formatter.string(from: itemController.calculateSales() as NSNumber)
@@ -156,44 +165,27 @@ class DashboardViewController: UIViewController {
     }
     
     func configureColors() {
-        switch traitCollection.userInterfaceStyle {
-                case .light, .unspecified:
-                    view.backgroundColor = UIColor.LightMode.Blue.lightModeBackground
-                    titleLabel.textColor = UIColor.LightMode.Blue.lightModeForeground
-                    bannerView.backgroundColor = UIColor.LightMode.Blue.lightModeBackground
-                    contentView.backgroundColor = UIColor.LightMode.Blue.lightModeBackground
-                    profitView.backgroundColor = UIColor.LightMode.Blue.lightModeForeground
-                    inventoryView.backgroundColor = UIColor.LightMode.Blue.lightModeForeground
-                    soldItemsView.backgroundColor = UIColor.LightMode.Blue.lightModeForeground
-                    
-                    inventoryButton.backgroundColor = UIColor.LightMode.Blue.lightModeBackground
-                    soldItemsButton.backgroundColor = UIColor.LightMode.Blue.lightModeBackground
-                    addItemButton.backgroundColor = UIColor.LightMode.Blue.lightModeBackground
-                    recordSaleButton.backgroundColor = UIColor.LightMode.Blue.lightModeBackground
-                    
-                    titleLabel.textColor = UIColor.LightMode.Blue.lightModeForeground
-                    settingsButton.backgroundColor = UIColor.LightMode.Blue.lightModeForeground
-                case .dark:
-                    view.backgroundColor = UIColor.DarkMode.Blue.darkmodeBackground
-                    titleLabel.textColor = .white
-                    bannerView.backgroundColor = UIColor.DarkMode.Blue.darkmodeBackground
-                    contentView.backgroundColor = UIColor.DarkMode.Blue.darkmodeBackground
-                    profitView.backgroundColor = UIColor.DarkMode.Blue.darkmodeForeground
-                    inventoryView.backgroundColor = UIColor.DarkMode.Blue.darkmodeForeground
-                    soldItemsView.backgroundColor = UIColor.DarkMode.Blue.darkmodeForeground
-                    
-                    inventoryButton.backgroundColor = UIColor.DarkMode.Blue.darkmodeBackground
-                    inventoryButton.setTitleColor(.white, for: .normal)
-                    soldItemsButton.backgroundColor = UIColor.DarkMode.Blue.darkmodeBackground
-                    addItemButton.backgroundColor = UIColor.DarkMode.Blue.darkmodeBackground
-                    addItemButton.tintColor = .white
-                    soldItemsButton.setTitleColor(.white, for: .normal)
-                    recordSaleButton.backgroundColor = UIColor.DarkMode.Blue.darkmodeBackground
-                    recordSaleButton.tintColor = .white
-                    settingsButton.backgroundColor = UIColor.DarkMode.Blue.darkmodeForeground
-        @unknown default:
-            NSLog("Error setting a color scheme.")
-        }
+        view.backgroundColor = UIColor(named: "Background")
+        bannerView.backgroundColor = UIColor(named: "Background")
+        contentView.backgroundColor = UIColor(named: "Background")
+        profitView.backgroundColor = UIColor(named: "Foreground")
+        inventoryView.backgroundColor = UIColor(named: "Foreground")
+        soldItemsView.backgroundColor = UIColor(named: "Foreground")
+        
+        inventoryButton.backgroundColor = UIColor(named: "Background")
+        soldItemsButton.backgroundColor = UIColor(named: "Background")
+        addItemButton.backgroundColor = UIColor(named: "Background")
+        recordSaleButton.backgroundColor = UIColor(named: "Background")
+        settingsButton.backgroundColor = UIColor(named: "Foreground")
+        
+        titleLabel.textColor = UIColor(named: "Text")
+        
+        inventoryButton.setTitleColor(UIColor(named: "Text"), for: .normal)
+        soldItemsButton.setTitleColor(UIColor(named: "Text"), for: .normal)
+        addItemButton.tintColor = UIColor(named: "Text")
+        recordSaleButton.tintColor = UIColor(named: "Text")
+        settingsButton.setTitleColor(UIColor(named: "Text"), for: .normal)
+        
     }
 
     // MARK: - Navigation

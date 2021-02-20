@@ -9,19 +9,6 @@ import UIKit
 
 extension UIColor {
     
-    struct LightMode {
-        struct Blue {
-            static let lightModeForeground = UIColor(rgb: 0x457b9d)
-            static let lightModeBackground = UIColor(rgb: 0xf1faee)
-        }
-    }
-    struct DarkMode{
-        struct Blue {
-            static let darkmodeForeground = UIColor(rgb: 0x1d3557)
-            static let darkmodeBackground = UIColor(rgb: 0x3d5a80)
-        }
-    }
-    
     convenience init(red: Int, green: Int, blue: Int) {
         assert(red >= 0 && red <= 255, "Invalid red component")
         assert(green >= 0 && green <= 255, "Invalid green component")

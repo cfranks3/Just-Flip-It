@@ -52,15 +52,12 @@ class ItemController {
     
     func eraseAllTags() {
         tags.removeAll()
-        
         for item in inventory {
             item.tag = nil
         }
-        
         for item in soldItems {
             item.tag = nil
         }
-        
         save()
     }
     

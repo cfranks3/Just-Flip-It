@@ -13,6 +13,10 @@ protocol TagDataDelegate {
 
 class TagTableViewController: UITableViewController {
     
+    // MARK: IBOutlets
+    
+    @IBOutlet weak var addButton: UIButton!
+    
     // MARK: - IBActions
     
     @IBAction func addTagTapped(_ sender: UIButton) {
@@ -55,6 +59,19 @@ class TagTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.tableFooterView = UIView()
+        configureViews()
+        configureColors()
+    }
+    
+    func configureColors() {
+        view.backgroundColor = UIColor(named: "Background")
+        tableView.backgroundColor = UIColor(named: "Background")
+        tableView.separatorColor = UIColor(named: "Background")
+        tableView.tableHeaderView?.backgroundColor = UIColor(named: "Background")
+    }
+    
+    func configureViews() {
+        addButton.layer.cornerRadius = 12
     }
     
     // MARK: - Table view data source
@@ -66,7 +83,7 @@ class TagTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TagCell", for: indexPath)
         cell.textLabel?.text = itemController?.tags[indexPath.row]
-        
+        cell.backgroundColor = UIColor(named: "Foreground")
         return cell
     }
     

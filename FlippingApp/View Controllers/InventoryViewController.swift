@@ -27,6 +27,7 @@ class InventoryViewController: UIViewController, UITableViewDelegate, UITableVie
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var filterButton: UIButton!
+    @IBOutlet weak var doneButton: UIButton!
     
     @IBAction func doneButtonTapped(_ sender: UIButton) {
         self.dismiss(animated: true, completion: nil)
@@ -46,6 +47,17 @@ class InventoryViewController: UIViewController, UITableViewDelegate, UITableVie
         super.viewDidLoad()
         searchBar.delegate = self
         changeSearchBarPlaceholder()
+        configureColors()
+    }
+    
+    func configureColors() {
+        view.backgroundColor = UIColor(named: "Background")
+        tableView.backgroundColor = UIColor(named: "Background")
+        tableView.separatorColor = UIColor(named: "Background")
+        filterButton.tintColor = UIColor(named: "Text")
+        doneButton.tintColor = UIColor(named: "Text")
+        searchBar.barTintColor = UIColor(named: "Background")
+        searchBar.tintColor = UIColor(named: "Foreground")
     }
     
     // MARK: - Methods
@@ -90,7 +102,7 @@ class InventoryViewController: UIViewController, UITableViewDelegate, UITableVie
             }
             
         }
-        
+        cell.backgroundColor = UIColor(named: "Foreground")
         return cell
     }
     

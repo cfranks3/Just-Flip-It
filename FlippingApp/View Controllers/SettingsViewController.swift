@@ -47,19 +47,28 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
 
     @IBOutlet weak var appLogoImageView: UIImageView!
     @IBOutlet weak var appVersionLabel: UILabel!
-
+    @IBOutlet weak var tableView: UITableView!
+    
     // MARK: - Lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
         updateViews()
         appendIAPs()
-        configureNavBar()
+        configureColors()
     }
 
     func updateViews() {
         appVersionLabel.text = "App Version \(UIApplication.appVersion!)"
         appLogoImageView.layer.cornerRadius = 16
+    }
+    
+    func configureColors() {
+        view.backgroundColor = UIColor(named: "Background")
+        appVersionLabel.textColor = UIColor(named: "Text")
+        tableView.backgroundColor = UIColor(named: "Background")
+        tableView.separatorColor = UIColor(named: "Background")
+        
     }
 
     // MARK: - Methods
@@ -67,8 +76,8 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     func whatsNew() {
         let alert = UIAlertController(title: "\(UIApplication.appVersion!) Notes", message:
                 """
-                - Feature: Added tags to sort through inventory/sold items
-                - Feature: Added notes for keeping more detailed descriptions of items
+                - Change: Overhauled the app's appearance (again).
+                - Feature: Added an inventory counter to the dashboard.
                 """
                                       , preferredStyle: .alert)
         let action = UIAlertAction(title: "Awesome!", style: .cancel, handler: nil)
@@ -211,15 +220,6 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         alert.addAction(cancel)
         present(alert, animated: true, completion: nil)
     }
-    
-    func configureNavBar() {
-        if self.traitCollection.userInterfaceStyle == .dark {
-            navigationController?.navigationBar.barTintColor = .black
-        } else {
-            navigationController?.navigationBar.barTintColor = .white
-        }
-        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor(rgb: 0x457b9d)]
-    }
 
     // MARK: - Table view delegate
 
@@ -238,6 +238,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
             cell.settingTypeLabel.textColor = .systemRed
             cell.settingTypeLabel.font = .boldSystemFont(ofSize: 16)
         }
+        cell.backgroundColor = UIColor(named: "Foreground")
         return cell
     }
 
