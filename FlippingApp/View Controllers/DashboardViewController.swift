@@ -15,11 +15,15 @@ class DashboardViewController: UIViewController {
     let formatter = NumberFormatter()
     
     // MARK: - IBOutlets
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var bannerView: UIView!
+    @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var profitView: UIView!
     @IBOutlet weak var inventoryView: UIView!
     @IBOutlet weak var soldItemsView: UIView!
     @IBOutlet weak var addItemButton: UIButton!
     @IBOutlet weak var inventoryButton: UIButton!
+    @IBOutlet weak var settingsButton: UIButton!
     @IBOutlet weak var soldItemsButton: UIButton!
     @IBOutlet weak var recordSaleButton: UIButton!
     @IBOutlet weak var profitLabel: UILabel!
@@ -29,15 +33,24 @@ class DashboardViewController: UIViewController {
     
     // MARK: - IBActions
     
-    @IBAction func addItemButtonTapped(_ sender: UIButton) {
-    }
-    
     @IBAction func inventoryButtonTapped(_ sender: UIButton) {
-        guard let inventoryVC = storyboard?.instantiateViewController(identifier: "") else { return }
-        print("Ping")
+        guard let inventoryVC = storyboard?.instantiateViewController(identifier: "InventoryVC") as? InventoryViewController else { return }
+        inventoryVC.itemController = itemController
+        inventoryVC.searchType = "inventory"
+        inventoryVC.filteredItems = itemController.inventory
+        inventoryVC.viewingSold = false
+        inventoryVC.delegate = self
+        present(inventoryVC, animated: true, completion: nil)
     }
     
     @IBAction func soldItemsButtonTapped(_ sender: UIButton) {
+        guard let inventoryVC = storyboard?.instantiateViewController(identifier: "InventoryVC") as? InventoryViewController else { return }
+        inventoryVC.itemController = itemController
+        inventoryVC.searchType = "soldItems"
+        inventoryVC.filteredItems = itemController.soldItems
+        inventoryVC.viewingSold = true
+        inventoryVC.delegate = self
+        present(inventoryVC, animated: true, completion: nil)
     }
     
     @IBAction func recordButtonTapped(_ sender: UIButton) {
@@ -54,10 +67,33 @@ class DashboardViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //itemController.load()
-        //itemController.delegate = self
+        itemController.load()
+        itemController.delegate = self
+        updateViews()
+    }
+    
+    // MARK: - View configuration
+    
+    func updateViews() {
+
+        formatter.numberStyle = .currency
+        profitLabel.text = formatter.string(from: itemController.calculateProfit() as NSNumber)
+        inventoryValueLabel.text = formatter.string(from: itemController.calculateInventoryValue() as NSNumber)
+
+        formatter.numberStyle = .decimal
+        numberOfSalesLabel.text = formatter.string(from: itemController.calculateSales() as NSNumber)
+        
+        inventoryQuantityLabel.text = formatter.string(from: itemController.inventory.count as NSNumber)
+        
+        // Easter egg
+        if UserDefaults.standard.bool(forKey: "gnomes") {
+            title = "Gnomeboard"
+        } else {
+            title = "Dashboard"
+        }
+        
         configureViews()
-        //updateViews()
+        configureColors()
     }
     
     func configureViews() {
@@ -66,6 +102,7 @@ class DashboardViewController: UIViewController {
         soldItemsView.layer.cornerRadius = 12
         inventoryButton.layer.cornerRadius = 12
         soldItemsButton.layer.cornerRadius = 12
+        settingsButton.layer.cornerRadius = 25
         addItemButton.layer.cornerRadius = 25
         recordSaleButton.layer.cornerRadius = 25
         
@@ -110,31 +147,53 @@ class DashboardViewController: UIViewController {
         soldItemsButton.layer.shadowRadius = 1
         soldItemsButton.layer.shadowOffset = CGSize(width: -1, height: 1)
         soldItemsButton.layer.masksToBounds = false
+        
+        settingsButton.layer.shadowOpacity = 0.7
+        settingsButton.layer.shadowColor = UIColor(rgb: 0x1d3557).cgColor
+        settingsButton.layer.shadowRadius = 1
+        settingsButton.layer.shadowOffset = CGSize(width: -1, height: 1)
+        settingsButton.layer.masksToBounds = false
     }
     
-    func updateViews() {
-
-        formatter.numberStyle = .currency
-        profitLabel.text = formatter.string(from: itemController.calculateProfit() as NSNumber)
-        inventoryValueLabel.text = formatter.string(from: itemController.calculateInventoryValue() as NSNumber)
-
-        formatter.numberStyle = .decimal
-        numberOfSalesLabel.text = formatter.string(from: itemController.calculateSales() as NSNumber)
-
-        if UserDefaults.standard.bool(forKey: "gnomes") {
-            title = "Gnomeboard"
-        } else {
-            title = "Dashboard"
+    func configureColors() {
+        switch traitCollection.userInterfaceStyle {
+                case .light, .unspecified:
+                    view.backgroundColor = UIColor.LightMode.Blue.lightModeBackground
+                    titleLabel.textColor = UIColor.LightMode.Blue.lightModeForeground
+                    bannerView.backgroundColor = UIColor.LightMode.Blue.lightModeBackground
+                    contentView.backgroundColor = UIColor.LightMode.Blue.lightModeBackground
+                    profitView.backgroundColor = UIColor.LightMode.Blue.lightModeForeground
+                    inventoryView.backgroundColor = UIColor.LightMode.Blue.lightModeForeground
+                    soldItemsView.backgroundColor = UIColor.LightMode.Blue.lightModeForeground
+                    
+                    inventoryButton.backgroundColor = UIColor.LightMode.Blue.lightModeBackground
+                    soldItemsButton.backgroundColor = UIColor.LightMode.Blue.lightModeBackground
+                    addItemButton.backgroundColor = UIColor.LightMode.Blue.lightModeBackground
+                    recordSaleButton.backgroundColor = UIColor.LightMode.Blue.lightModeBackground
+                    
+                    titleLabel.textColor = UIColor.LightMode.Blue.lightModeForeground
+                    settingsButton.backgroundColor = UIColor.LightMode.Blue.lightModeForeground
+                case .dark:
+                    view.backgroundColor = UIColor.DarkMode.Blue.darkmodeBackground
+                    titleLabel.textColor = .white
+                    bannerView.backgroundColor = UIColor.DarkMode.Blue.darkmodeBackground
+                    contentView.backgroundColor = UIColor.DarkMode.Blue.darkmodeBackground
+                    profitView.backgroundColor = UIColor.DarkMode.Blue.darkmodeForeground
+                    inventoryView.backgroundColor = UIColor.DarkMode.Blue.darkmodeForeground
+                    soldItemsView.backgroundColor = UIColor.DarkMode.Blue.darkmodeForeground
+                    
+                    inventoryButton.backgroundColor = UIColor.DarkMode.Blue.darkmodeBackground
+                    inventoryButton.setTitleColor(.white, for: .normal)
+                    soldItemsButton.backgroundColor = UIColor.DarkMode.Blue.darkmodeBackground
+                    addItemButton.backgroundColor = UIColor.DarkMode.Blue.darkmodeBackground
+                    addItemButton.tintColor = .white
+                    soldItemsButton.setTitleColor(.white, for: .normal)
+                    recordSaleButton.backgroundColor = UIColor.DarkMode.Blue.darkmodeBackground
+                    recordSaleButton.tintColor = .white
+                    settingsButton.backgroundColor = UIColor.DarkMode.Blue.darkmodeForeground
+        @unknown default:
+            NSLog("Error setting a color scheme.")
         }
-
-        recordSaleButton.backgroundColor = UIColor(rgb: 0x457b9d)
-        recordSaleButton.layer.cornerRadius = 12
-        recordSaleButton.setTitleColor(.white, for: .normal)
-        recordSaleButton.titleLabel?.font = UIFont(name: "HelveticaNeue-Bold", size: 20)
-
-        navigationController?.navigationBar.barTintColor = .clear
-        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
-        navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
     }
 
     // MARK: - Navigation
@@ -156,6 +215,7 @@ class DashboardViewController: UIViewController {
 // MARK: - Protocol methods
 
 extension DashboardViewController: AddItemViewControllerDelegate, ItemControllerDelegate, InventoryDelegate, EditItemDelegate {
+    
     func itemWasEdited() {
         updateViews()
     }
@@ -173,56 +233,3 @@ extension DashboardViewController: AddItemViewControllerDelegate, ItemController
     }
 
 }
-
-// MARK: - Collection view delegate & data source
-
-//extension DashboardViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
-//
-//    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-//        return collectionViewCategories.count
-//    }
-//
-//    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-//        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ItemCell", for: indexPath) as! ItemGroupCollectionViewCell
-//
-//        cell.groupLabel.text = self.collectionViewCategories[indexPath.row]
-//        cell.groupLabel.textColor = .white
-//        cell.layer.backgroundColor = UIColor(rgb: 0x457b9d).cgColor
-//        cell.layer.cornerRadius = 12
-//
-//        return cell
-//    }
-//
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-//
-//        let totalCellWidth = 128 * collectionViewCategories.count
-//        let totalSpacingWidth = 60 * (collectionViewCategories.count - 1)
-//
-//        let leftInset = (CGFloat(view.frame.size.width) - CGFloat(totalCellWidth + totalSpacingWidth)) / 2
-//        let rightInset = leftInset
-//
-//        return UIEdgeInsets(top: 0, left: leftInset, bottom: 0, right: rightInset)
-//    }
-//
-//    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//        let selection = collectionViewCategories[indexPath.row]
-//        guard let inventoryVC = storyboard?.instantiateViewController(identifier: "InventoryVC") as? InventoryViewController else { return}
-//        inventoryVC.itemController = itemController
-//        if selection == "Inventory" {
-//            inventoryVC.searchType = "inventory"
-//            inventoryVC.filteredItems = itemController.inventory
-//            inventoryVC.viewingSold = false
-//            inventoryVC.delegate = self
-//            present(inventoryVC, animated: true, completion: nil)
-//        } else if selection == "Sales" {
-//            inventoryVC.searchType = "soldItems"
-//            inventoryVC.filteredItems = itemController.soldItems
-//            inventoryVC.viewingSold = true
-//            inventoryVC.delegate = self
-//            present(inventoryVC, animated: true, completion: nil)
-//        } else {
-//            NSLog("Error: invalid collection view option tapped.")
-//        }
-//    }
-// }
-

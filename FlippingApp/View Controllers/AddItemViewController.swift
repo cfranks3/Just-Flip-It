@@ -54,7 +54,7 @@ class AddItemViewController: UIViewController {
                             notes: notesTextView.text)
             itemController?.addListedItem(with: item)
             delegate?.itemWasAdded()
-            navigationController?.popViewController(animated: true)
+            self.dismiss(animated: true, completion: nil)
         } else {
             let alert = UIAlertController(title: "Hold on there...", message: "Are you sure you gave each text field a valid input? Check and try again.", preferredStyle: .alert)
             let action = UIAlertAction(title: "Ok", style: .cancel, handler: nil)
@@ -83,7 +83,6 @@ class AddItemViewController: UIViewController {
         }
     }
     
-    
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
@@ -94,6 +93,8 @@ class AddItemViewController: UIViewController {
     
     func configureViews() {
         
+        tagTextView.textColor = .gray
+        tagTextView.textAlignment = .center
         tagTextView.layer.borderWidth = 0
         tagTextView.layer.borderColor = UIColor.systemGray.cgColor
         tagTextView.layer.cornerRadius = 4

@@ -29,7 +29,7 @@ class InventoryViewController: UIViewController, UITableViewDelegate, UITableVie
     @IBOutlet weak var filterButton: UIButton!
     
     @IBAction func doneButtonTapped(_ sender: UIButton) {
-        presentingViewController?.dismiss(animated: true, completion: nil)
+        self.dismiss(animated: true, completion: nil)
     }
     
     @IBAction func filterButtonTapped(_ sender: UIButton) {
@@ -38,7 +38,6 @@ class InventoryViewController: UIViewController, UITableViewDelegate, UITableVie
         filterButton.contentScaleFactor = 1
         changeSearchBarPlaceholder()
         searchBar.text?.removeAll()
-        
     }
     
     // MARK: - Lifecycle
