@@ -1,6 +1,15 @@
 
 # Version History
 
+## 1.6 (2/20/21)
+* Change: Overhauled the app's appearance (again).
+* Feature: Date and time is now logged for items you list and sell.
+* Feature: Tapping on a sold item now displays information about the sale.
+* Feature: Added an inventory counter to the dashboard.
+* Feature: You can now edit the original purchase price of items.
+* Bug fix: You can no longer crash the app by adding a high-value item. The current cap is $1,000,000 per item and a quantity of 100,000.
+* Bug fix: Filtering through sold items no longer returns inventory items.
+
 ## 1.5 (2/19/21)
 * Feature: Added tags to sort through inventory/sold items
 * Feature: Added notes for keeping more detailed descriptions of items
