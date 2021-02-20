@@ -115,9 +115,9 @@
 				E3B2BF3D25D675010026DBB9 /* AppDelegate.swift */,
 				E3B2BF3F25D675010026DBB9 /* SceneDelegate.swift */,
 				E368B39B25D72CCD000FBB0E /* RGBExtension.swift */,
-				E3B2BF4B25D675020026DBB9 /* Info.plist */,
 				E38D79E225DCC36D0004DE3A /* AppVersionExtension.swift */,
 				E36A329125DD36C0006286DA /* IAPManager.swift */,
+				E3B2BF4B25D675020026DBB9 /* Info.plist */,
 			);
 			path = Resources;
 			sourceTree = "<group>";

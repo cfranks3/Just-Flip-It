@@ -27,10 +27,11 @@ class AddItemViewController: UIViewController {
     @IBOutlet weak var tagTextView: UITextView!
     @IBOutlet weak var tagButton: UIButton!
     @IBOutlet weak var notesTextView: UITextView!
+    @IBOutlet weak var saveButton: UIButton!
     
     // MARK: - IBActions
     
-    @IBAction func saveButtonTapped(_ sender: UIBarButtonItem) {
+    @IBAction func saveButtonTapped(_ sender: UIButton) {
         if titleTextField.text == "Gnomes!" {
             UserDefaults.standard.setValue(true, forKey: "gnomes")
         } else if titleTextField.text == "Gnomes Be Gone!" {
@@ -92,23 +93,23 @@ class AddItemViewController: UIViewController {
     }
     
     func configureViews() {
-        if self.traitCollection.userInterfaceStyle == .dark {
-            navigationController?.navigationBar.barTintColor = .black
-        } else {
-            navigationController?.navigationBar.barTintColor = .white
-        }
-        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor(rgb: 0x457b9d)]
         
-        tagTextView.layer.borderWidth = 1
+        tagTextView.layer.borderWidth = 0
         tagTextView.layer.borderColor = UIColor.systemGray.cgColor
-        tagTextView.layer.opacity = 0.25
         tagTextView.layer.cornerRadius = 4
-        tagTextView.backgroundColor = .clear
+        tagTextView.backgroundColor = .white
         
-        notesTextView.layer.borderWidth = 1
+        notesTextView.layer.borderWidth = 0
         notesTextView.layer.borderColor = UIColor.systemGray.cgColor
-        notesTextView.layer.opacity = 0.25
         notesTextView.layer.cornerRadius = 4
+        notesTextView.backgroundColor = .white
+        
+        saveButton.layer.shadowOpacity = 0.7
+        saveButton.layer.cornerRadius = 12
+        saveButton.layer.shadowColor = UIColor(rgb: 0x1d3557).cgColor
+        saveButton.layer.shadowRadius = 1
+        saveButton.layer.shadowOffset = CGSize(width: -1, height: 1)
+        saveButton.layer.masksToBounds = false
     }
     
     // MARK: - Navigation
