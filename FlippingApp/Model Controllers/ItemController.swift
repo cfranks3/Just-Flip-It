@@ -166,6 +166,19 @@ class ItemController {
         return sales
     }
     
+    func calculateRecentlyListedPrice() -> Double? {
+        guard let recentItem = inventory.last else { return nil }
+        var recentlyListedPrice: Double = 0.0
+        if recentItem.quantity > 1 {
+            for _ in 1...recentItem.quantity {
+                recentlyListedPrice += recentItem.listingPrice!
+            }
+        } else {
+            recentlyListedPrice = recentItem.listingPrice!
+        }
+        return recentlyListedPrice
+    }
+    
     func processSale(sold item: Item, listed oldItem: Item) {
         soldItems.append(item)
         if oldItem.quantity == 1 {

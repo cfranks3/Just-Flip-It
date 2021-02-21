@@ -14,21 +14,23 @@ class DashboardViewController: UIViewController {
     let itemController = ItemController()
     let numberFormatter = NumberFormatter()
     let dateFormatter = DateFormatter()
-    var recentlyListedPrice: Double = 0.0
     
     // MARK: - IBOutlets
+    
     @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var bannerView: UIView!
+    @IBOutlet weak var topBannerView: UIView!
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var profitView: UIView!
     @IBOutlet weak var inventoryView: UIView!
     @IBOutlet weak var soldItemsView: UIView!
-    @IBOutlet weak var salesView: UIView!
+    @IBOutlet weak var recentSalesView: UIView!
+    
     @IBOutlet weak var addItemButton: UIButton!
     @IBOutlet weak var inventoryButton: UIButton!
-    @IBOutlet weak var settingsButton: UIButton!
-    @IBOutlet weak var soldItemsButton: UIButton!
     @IBOutlet weak var recordSaleButton: UIButton!
+    @IBOutlet weak var soldItemsButton: UIButton!
+    @IBOutlet weak var settingsButton: UIButton!
+    
     @IBOutlet weak var profitLabel: UILabel!
     @IBOutlet weak var inventoryValueLabel: UILabel!
     @IBOutlet weak var inventoryQuantityLabel: UILabel!
@@ -45,29 +47,29 @@ class DashboardViewController: UIViewController {
     @IBAction func inventoryButtonTapped(_ sender: UIButton) {
         guard let inventoryVC = storyboard?.instantiateViewController(identifier: "InventoryVC") as? InventoryViewController else { return }
         inventoryVC.itemController = itemController
-        inventoryVC.searchType = "inventory"
+        inventoryVC.delegate = self
         inventoryVC.filteredItems = itemController.inventory
         inventoryVC.viewingSold = false
-        inventoryVC.delegate = self
+        inventoryVC.searchType = "inventory"
         present(inventoryVC, animated: true, completion: nil)
     }
     
     @IBAction func soldItemsButtonTapped(_ sender: UIButton) {
         guard let inventoryVC = storyboard?.instantiateViewController(identifier: "InventoryVC") as? InventoryViewController else { return }
         inventoryVC.itemController = itemController
-        inventoryVC.searchType = "soldItems"
+        inventoryVC.delegate = self
         inventoryVC.filteredItems = itemController.soldItems
         inventoryVC.viewingSold = true
-        inventoryVC.delegate = self
+        inventoryVC.searchType = "soldItems"
         present(inventoryVC, animated: true, completion: nil)
     }
     
-    @IBAction func recordButtonTapped(_ sender: UIButton) {
+    @IBAction func recordSaleButtonTapped(_ sender: UIButton) {
         guard let inventoryVC = storyboard?.instantiateViewController(identifier: "InventoryVC") as? InventoryViewController else { return }
         inventoryVC.itemController = itemController
+        inventoryVC.delegate = self
         inventoryVC.filteredItems = itemController.inventory
         inventoryVC.viewingSold = false
-        inventoryVC.delegate = self
         inventoryVC.searchType = "selling"
         present(inventoryVC, animated: true, completion: nil)
     }
@@ -84,67 +86,63 @@ class DashboardViewController: UIViewController {
     // MARK: - View configuration
     
     func updateViews() {
-        recentlyListedPrice = 0.0
         numberFormatter.numberStyle = .currency
+        let inventoryValue = itemController.calculateInventoryValue()
         profitLabel.text = numberFormatter.string(from: itemController.calculateProfit() as NSNumber)
-        inventoryValueLabel.text = numberFormatter.string(from: itemController.calculateInventoryValue() as NSNumber)
-        if itemController.calculateInventoryValue() > 2147483647 {
+        if  inventoryValue > 2147483647 {
             inventoryValueLabel.text = "Too High!"
             inventoryValueLabel.textColor = .systemYellow
-        } else if itemController.calculateInventoryValue() >= 1 {
+        } else if inventoryValue >= 1 {
+            inventoryValueLabel.text = numberFormatter.string(from: inventoryValue as NSNumber)
             inventoryValueLabel.textColor = .systemGreen
         } else {
+            inventoryValueLabel.text = numberFormatter.string(from: inventoryValue as NSNumber)
             inventoryValueLabel.textColor = .white
         }
-
+        
         numberFormatter.numberStyle = .decimal
-        numberOfSalesLabel.text = numberFormatter.string(from: itemController.calculateSales() as NSNumber)
+        let numberOfSales = itemController.calculateSales()
+        numberOfSalesLabel.text = numberFormatter.string(from: numberOfSales as NSNumber)
         
         if itemController.inventory.isEmpty {
-            for constraint in salesView.constraints {
+            for constraint in recentSalesView.constraints {
                 if constraint.identifier == "salesViewHeight" {
                     constraint.constant = 100
                 }
             }
+            oldestItemLabel.isHidden = true
+            oldestItemNameLabel.isHidden = true
+            oldestItemDaysLabel.isHidden = true
+            recentItemPriceLabel.isHidden = true
+            recentItemNameLabel.text = "Add an item to begin"
         } else {
-            for constraint in salesView.constraints {
+            for constraint in recentSalesView.constraints {
                 if constraint.identifier == "salesViewHeight" {
                     constraint.constant = 200
                 }
             }
-        }
-        
-        if itemController.inventory.isEmpty {
-            oldestItemDaysLabel.text = ""
-            oldestItemNameLabel.text = ""
-            oldestItemLabel.isHidden = true
-            recentItemNameLabel.text = "Add an item to begin"
-            recentItemPriceLabel.isHidden = true
-        } else {
-            if let recentlyListed = itemController.inventory.last {
-                if recentlyListed.quantity > 1 {
-                    for _ in 1...recentlyListed.quantity {
-                        recentlyListedPrice += itemController.inventory.last?.listingPrice ?? 0
-                    }
-                } else {
-                    recentlyListedPrice = recentlyListed.listingPrice ?? -1
-                }
-                
-                recentItemPriceLabel.isHidden = false
+            
+            oldestItemLabel.isHidden = false
+            oldestItemNameLabel.isHidden = false
+            oldestItemDaysLabel.isHidden = false
+            recentItemPriceLabel.isHidden = false
+            
+            numberFormatter.numberStyle = .currency
+            let recentlyListedPrice = itemController.calculateRecentlyListedPrice()
+            if let recentlyListedPrice = recentlyListedPrice {
+                recentItemPriceLabel.text = numberFormatter.string(from: recentlyListedPrice as NSNumber)
                 recentItemNameLabel.text = itemController.inventory.last?.title
-                numberFormatter.numberStyle = .currency
-                recentItemPriceLabel.text = "\(numberFormatter.string(from: recentlyListedPrice as NSNumber) ?? "Unknown")"
             }
-           
-            if let oldestDate = itemController.inventory.first?.listedDate {
-                if let diffInDays = Calendar.current.dateComponents([.day], from: oldestDate, to: Date()).day {
-                    oldestItemLabel.isHidden = false
-                    oldestItemNameLabel.text = itemController.inventory.first?.title
-                    numberFormatter.numberStyle = .none
-                    oldestItemDaysLabel.text = "\(numberFormatter.string(from: diffInDays as NSNumber) ?? "") days"
+            
+            numberFormatter.numberStyle = .decimal
+            if let oldestItem = itemController.inventory.first {
+                oldestItemNameLabel.text = oldestItem.title
+                if let oldestItemDate = itemController.inventory.first?.listedDate {
+                    let differenceInDays = Calendar.current.dateComponents([.day], from: oldestItemDate, to: Date()).day
+                    oldestItemDaysLabel.text = "\(numberFormatter.string(from: differenceInDays! as NSNumber) ?? "") days"
+                } else {
+                    oldestItemDaysLabel.text = "Unknown"
                 }
-            } else {
-                oldestItemDaysLabel.text = ""
             }
         }
         
@@ -165,7 +163,7 @@ class DashboardViewController: UIViewController {
         profitView.layer.cornerRadius = 12
         inventoryView.layer.cornerRadius = 12
         soldItemsView.layer.cornerRadius = 12
-        salesView.layer.cornerRadius = 12
+        recentSalesView.layer.cornerRadius = 12
         
         inventoryButton.layer.cornerRadius = 12
         soldItemsButton.layer.cornerRadius = 12
@@ -191,11 +189,11 @@ class DashboardViewController: UIViewController {
         soldItemsView.layer.shadowOffset = CGSize(width: 0, height: 8)
         soldItemsView.layer.masksToBounds = false
         
-        salesView.layer.shadowOpacity = 0.7
-        salesView.layer.shadowColor = UIColor(rgb: 0x1d3557).cgColor
-        salesView.layer.shadowRadius = 4
-        salesView.layer.shadowOffset = CGSize(width: 0, height: 8)
-        salesView.layer.masksToBounds = false
+        recentSalesView.layer.shadowOpacity = 0.7
+        recentSalesView.layer.shadowColor = UIColor(rgb: 0x1d3557).cgColor
+        recentSalesView.layer.shadowRadius = 4
+        recentSalesView.layer.shadowOffset = CGSize(width: 0, height: 8)
+        recentSalesView.layer.masksToBounds = false
         
         addItemButton.layer.shadowOpacity = 0.7
         addItemButton.layer.shadowColor = UIColor(rgb: 0x1d3557).cgColor
@@ -230,12 +228,12 @@ class DashboardViewController: UIViewController {
     
     func configureColors() {
         view.backgroundColor = UIColor(named: "Background")
-        bannerView.backgroundColor = UIColor(named: "Background")
+        topBannerView.backgroundColor = UIColor(named: "Background")
         contentView.backgroundColor = UIColor(named: "Background")
         profitView.backgroundColor = UIColor(named: "Foreground")
         inventoryView.backgroundColor = UIColor(named: "Foreground")
         soldItemsView.backgroundColor = UIColor(named: "Foreground")
-        salesView.backgroundColor = UIColor(named: "Foreground")
+        recentSalesView.backgroundColor = UIColor(named: "Foreground")
         
         inventoryButton.backgroundColor = UIColor(named: "Background")
         soldItemsButton.backgroundColor = UIColor(named: "Background")
@@ -299,7 +297,6 @@ extension DashboardViewController: AddItemViewControllerDelegate, ItemController
     
     func dataWasErased() {
         updateViews()
-        recentlyListedPrice = 0.0
     }
 
 }

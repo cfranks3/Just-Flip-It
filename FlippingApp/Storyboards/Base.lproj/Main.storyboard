@@ -52,7 +52,7 @@
                                 </connections>
                             </tableView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="App Version 0.0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gJ4-g2-IxZ">
-                                <rect key="frame" x="141.33333333333331" y="232" width="145.33333333333331" height="24"/>
+                                <rect key="frame" x="141.66666666666666" y="232" width="144.99999999999997" height="24"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -887,7 +887,7 @@
                                                             <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large" weight="medium"/>
                                                         </state>
                                                         <connections>
-                                                            <action selector="recordButtonTapped:" destination="Kmy-1H-0jn" eventType="touchUpInside" id="owK-mo-Tes"/>
+                                                            <action selector="recordSaleButtonTapped:" destination="Kmy-1H-0jn" eventType="touchUpInside" id="owK-mo-Tes"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nGy-mU-pNh">
@@ -1049,7 +1049,6 @@
                     <size key="freeformSize" width="428" height="780"/>
                     <connections>
                         <outlet property="addItemButton" destination="ZHe-ue-YBw" id="kYl-nA-o4N"/>
-                        <outlet property="bannerView" destination="TbW-Cs-DOQ" id="MDG-VE-g7a"/>
                         <outlet property="contentView" destination="Vj7-ki-xw0" id="Ujc-aP-gxe"/>
                         <outlet property="inventoryButton" destination="PPQ-3U-LiE" id="qCP-86-EDc"/>
                         <outlet property="inventoryQuantityLabel" destination="kWq-Ma-xlF" id="2xx-Hz-XaM"/>
@@ -1063,13 +1062,14 @@
                         <outlet property="profitView" destination="BWp-sf-PCM" id="JPd-2l-Vpe"/>
                         <outlet property="recentItemNameLabel" destination="c37-gQ-eL1" id="mfr-Hs-HvV"/>
                         <outlet property="recentItemPriceLabel" destination="12y-Ee-Tr1" id="aVE-cE-MDp"/>
+                        <outlet property="recentSalesView" destination="HNd-hs-hbO" id="kCj-Fx-mYi"/>
                         <outlet property="recentlyAddedLabel" destination="bKt-fw-7NY" id="N6W-XL-wOS"/>
                         <outlet property="recordSaleButton" destination="UDJ-xm-8Bd" id="dRd-SU-Vpk"/>
-                        <outlet property="salesView" destination="HNd-hs-hbO" id="kCj-Fx-mYi"/>
                         <outlet property="settingsButton" destination="All-sp-Fyb" id="T7I-v1-mHZ"/>
                         <outlet property="soldItemsButton" destination="nGy-mU-pNh" id="N9D-b0-KcD"/>
                         <outlet property="soldItemsView" destination="2GT-GV-bsk" id="tgs-wZ-HSK"/>
                         <outlet property="titleLabel" destination="MHU-lU-TUU" id="02I-wf-AhU"/>
+                        <outlet property="topBannerView" destination="TbW-Cs-DOQ" id="MDG-VE-g7a"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="E6q-6b-H3R" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
