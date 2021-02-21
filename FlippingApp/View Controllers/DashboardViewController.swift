@@ -84,6 +84,7 @@ class DashboardViewController: UIViewController {
     // MARK: - View configuration
     
     func updateViews() {
+        recentlyListedPrice = 0.0
         numberFormatter.numberStyle = .currency
         profitLabel.text = numberFormatter.string(from: itemController.calculateProfit() as NSNumber)
         inventoryValueLabel.text = numberFormatter.string(from: itemController.calculateInventoryValue() as NSNumber)
@@ -299,6 +300,7 @@ extension DashboardViewController: AddItemViewControllerDelegate, ItemController
     
     func dataWasErased() {
         updateViews()
+        recentlyListedPrice = 0.0
     }
 
 }

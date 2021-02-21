@@ -84,6 +84,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
                 - Feature: Your recently added item and oldest item now appear in a card within the dashboard view.
                 - Bug Fix: Changed the profit and item labels in the sold item popover view to stand out better in dark mode.
                 - Bug Fix: Got rid of placeholder text in edit item screen.
+                - Bug Fix: Profit calculation in the sold items popover view now properly takes into consideration the item's quantity.
                 """
                                       , preferredStyle: .alert)
         let action = UIAlertAction(title: "Awesome!", style: .cancel, handler: nil)

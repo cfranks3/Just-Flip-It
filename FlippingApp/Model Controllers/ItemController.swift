@@ -175,6 +175,9 @@ class ItemController {
         } else {
             oldItem.quantity -= item.quantity
         }
+        if oldItem.quantity == 0 {
+            inventory.removeAll(where: { $0 == oldItem })
+        }
         delegate?.saleWasMade()
         save()
     }

@@ -61,8 +61,10 @@ class SoldItemInfoViewController: UIViewController {
         }
         
         numberFormatter.numberStyle = .currency
-        purchasedPriceLabel.text = numberFormatter.string(from: item.purchasePrice as NSNumber)
-        soldPriceLabel.text = numberFormatter.string(from: item.soldPrice as NSNumber? ?? -1)
+        
+        purchasedPriceLabel.text = numberFormatter.string(from: (item.purchasePrice*Double(item.quantity)) as NSNumber)
+        
+        soldPriceLabel.text = numberFormatter.string(from: (item.soldPrice!*Double(item.quantity)) as NSNumber)
         profitMadeLabel.text = numberFormatter.string(from: profit as NSNumber)
         
         dateFormatter.dateFormat = "EEEE,\nMMM d, yyyy"
@@ -86,21 +88,6 @@ class SoldItemInfoViewController: UIViewController {
         } else {
             daysListedForLabel.text = "Unknown"
         }
-        
-//        var count = item.quantity
-//        while count > 0 {
-//            if let soldPrice = item.soldPrice {
-//                profit += (soldPrice) - item.purchasePrice
-//                count -= 1
-//            }
-//        }
-//    } else if item.quantity == 1 {
-//        if let soldPrice = item.soldPrice {
-//            profit += (soldPrice) - item.purchasePrice
-//        }
-//    } else {
-//        continue
-//    }
         
     }
     
