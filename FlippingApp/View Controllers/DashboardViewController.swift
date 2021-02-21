@@ -14,6 +14,7 @@ class DashboardViewController: UIViewController {
     let itemController = ItemController()
     let numberFormatter = NumberFormatter()
     let dateFormatter = DateFormatter()
+    var recentlyListedPrice: Double = 0.0
     
     // MARK: - IBOutlets
     @IBOutlet weak var titleLabel: UILabel!
@@ -119,11 +120,19 @@ class DashboardViewController: UIViewController {
             recentItemNameLabel.text = "Add an item to begin"
             recentItemPriceLabel.isHidden = true
         } else {
-            if let listingPrice = itemController.inventory.last?.listingPrice {
+            if let recentlyListed = itemController.inventory.last {
+                if recentlyListed.quantity > 1 {
+                    for _ in 1...recentlyListed.quantity {
+                        recentlyListedPrice += itemController.inventory.last?.listingPrice ?? 0
+                    }
+                } else {
+                    recentlyListedPrice = recentlyListed.listingPrice ?? -1
+                }
+                
                 recentItemPriceLabel.isHidden = false
                 recentItemNameLabel.text = itemController.inventory.last?.title
                 numberFormatter.numberStyle = .currency
-                recentItemPriceLabel.text = "\(numberFormatter.string(from: listingPrice as NSNumber) ?? "Unknown")"
+                recentItemPriceLabel.text = "\(numberFormatter.string(from: recentlyListedPrice as NSNumber) ?? "Unknown")"
             }
            
             if let oldestDate = itemController.inventory.first?.listedDate {

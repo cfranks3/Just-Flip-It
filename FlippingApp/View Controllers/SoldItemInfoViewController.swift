@@ -87,6 +87,21 @@ class SoldItemInfoViewController: UIViewController {
             daysListedForLabel.text = "Unknown"
         }
         
+//        var count = item.quantity
+//        while count > 0 {
+//            if let soldPrice = item.soldPrice {
+//                profit += (soldPrice) - item.purchasePrice
+//                count -= 1
+//            }
+//        }
+//    } else if item.quantity == 1 {
+//        if let soldPrice = item.soldPrice {
+//            profit += (soldPrice) - item.purchasePrice
+//        }
+//    } else {
+//        continue
+//    }
+        
     }
     
     func configureColors() {
