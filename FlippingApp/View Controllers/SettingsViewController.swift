@@ -22,7 +22,6 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     // MARK: - Properties
 
     var itemController: ItemController?
-    var delegate: AddItemViewControllerDelegate?
     var eraseDelegate: SettingsDelegate?
     
     var IAPs = [IAP]()
@@ -30,23 +29,52 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         return UserDefaults.standard.double(forKey: "tipped")
     }
     
+    enum settings: String {
+        case whatsNew = "🗞 What's New?"
+        case twitter = "🐦 Twitter"
+        case tipJar = "💰 Tip Jar"
+        case feedback = "🦻🏻 Feedback"
+        case rateTheApp = "⭐️ Rate the App"
+        case helpfulTips = "🆘 Helpful Tips"
+        case privacyPolicy = "⚖️ Privacy Policy"
+        case eraseInventory = "🗑 Erase All Inventory"
+        case erasesoldItems = "🗑 Erase All Sold Items"
+        case eraseCustomTags = "🗑 Erase All Custom Tags"
+        case eraseData = "⛔️ Erase All Data"
+    }
+    
+    let sectionOne: [settings] = [
+        settings.whatsNew,
+        settings.twitter]
+    let sectionTwo: [settings] = [
+        settings.tipJar,
+        settings.feedback,
+        settings.rateTheApp,
+        settings.helpfulTips]
+    let sectionThree: [settings] = [
+        settings.eraseInventory,
+        settings.erasesoldItems,
+        settings.eraseCustomTags,
+        settings.eraseData]
+    
     let staticSettings: [[String]] = [
-        ["🗞 What's New?",
-         "🐦 Twitter",
-         "💰 Tip Jar"],
+        [settings.whatsNew.rawValue,
+         settings.twitter.rawValue],
         
-        ["🆘 Helpful Tips",
-         "🦻🏻 Feedback",
-         "⭐️ Rate the App",
-         "⚖️ Privacy Policy"],
+        [settings.tipJar.rawValue,
+         settings.feedback.rawValue,
+         settings.rateTheApp.rawValue,
+         settings.helpfulTips.rawValue],
         
-        ["🗑 Erase All Inventory",
-         "🗑 Erase All Sold Items",
-         "🗑 Erase All Custom Tags",
-         "⛔️ Erase All Data"],
+        [settings.eraseInventory.rawValue,
+         settings.erasesoldItems.rawValue,
+         settings.eraseCustomTags.rawValue,
+         settings.eraseData.rawValue],
     ]
     
-    let numberOfRows = [3, 4, 4]
+    lazy var numberOfRows = [sectionOne.count,
+                             sectionTwo.count,
+                             sectionThree.count]
 
     // MARK: - IBOutlets
 
@@ -58,8 +86,8 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        updateViews()
         appendIAPs()
+        updateViews()
         configureColors()
     }
 
@@ -73,18 +101,14 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         appVersionLabel.textColor = UIColor(named: "Text")
         tableView.backgroundColor = UIColor(named: "Background")
         tableView.separatorColor = UIColor(named: "Background")
-        
     }
 
     // MARK: - Methods
 
     func whatsNew() {
         let alert = UIAlertController(title: "\(UIApplication.appVersion!) Notes", message:
-                """
-                - Feature: Your recently added item and oldest item now appear in a card within the dashboard view.
-                - Bug Fix: Changed the profit and item labels in the sold item popover view to stand out better in dark mode.
-                - Bug Fix: Got rid of placeholder text in edit item screen.
-                - Bug Fix: Profit calculation in the sold items popover view now properly takes into consideration the item's quantity.
+                                        """
+                - Bug Fix: Improved performance of the app.
                 """
                                       , preferredStyle: .alert)
         let action = UIAlertAction(title: "Awesome!", style: .cancel, handler: nil)
@@ -148,7 +172,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     func helpfulTips() {
         let helpMessage =
         """
-        Begin by adding an item to your inventory. After saving, the item will be added and your inventory value will update. Tap on the report a sale button when one of your items sells. If you'd like to remove or edit your item prior to a sale, open your inventory and locate your item.
+        Begin by taping the '+' icon on the inventory card in your dashboard. Once you've added an item, you can then tap the '+' icon in the sold items card to record a sale. Tap on an item in your inventory to see or change information of the item.
         """
         let alert = UIAlertController(title: "How to use this app",
                                       message: helpMessage,
@@ -182,26 +206,23 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         let alert = UIAlertController(title: "Warning!", message: "Proceeding will permanently delete all stored inventory. This cannot be reversed.", preferredStyle: .alert)
         let confirm = UIAlertAction(title: "I Understand", style: .destructive) { (_) in
             self.itemController?.eraseAllInventory()
-            self.delegate?.itemWasAdded()
+            self.eraseDelegate?.dataWasErased()
         }
         let cancel = UIAlertAction(title: "Nevermind", style: .cancel, handler: nil)
         alert.addAction(confirm)
         alert.addAction(cancel)
-        eraseDelegate?.dataWasErased()
         present(alert, animated: true, completion: nil)
     }
     
     func eraseSoldItems() {
         let alert = UIAlertController(title: "Warning!", message: "Proceeding will permanently delete all stored user data. This includes all sales, profit, inventory, and tags. This cannot be reversed.", preferredStyle: .alert)
         let confirm = UIAlertAction(title: "I Understand", style: .destructive) { (_) in
-            UserDefaults.standard.setValue(false, forKey: "gnomes")
             self.itemController?.eraseAllSoldItems()
-            self.delegate?.itemWasAdded()
+            self.eraseDelegate?.dataWasErased()
         }
         let cancel = UIAlertAction(title: "Nevermind", style: .cancel, handler: nil)
         alert.addAction(confirm)
         alert.addAction(cancel)
-        eraseDelegate?.dataWasErased()
         present(alert, animated: true, completion: nil)
     }
     
@@ -209,26 +230,26 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         let alert = UIAlertController(title: "Warning!", message: "Proceeding will permanently delete all stored user data. This includes all sales, profit, inventory, and tags. This cannot be reversed.", preferredStyle: .alert)
         let confirm = UIAlertAction(title: "I Understand", style: .destructive) { (_) in
             self.itemController?.eraseAllTags()
-            self.delegate?.itemWasAdded()
+            self.eraseDelegate?.dataWasErased()
         }
         let cancel = UIAlertAction(title: "Nevermind", style: .cancel, handler: nil)
         alert.addAction(confirm)
         alert.addAction(cancel)
-        eraseDelegate?.dataWasErased()
         present(alert, animated: true, completion: nil)
     }
 
     func eraseAllData() {
-        let alert = UIAlertController(title: "Warning!", message: "Proceeding will permanently delete all stored user data. This includes all sales, profit, inventory, and tags. This cannot be reversed.", preferredStyle: .alert)
+        let alert = UIAlertController(title: "Warning!",
+                                      message: "Proceeding will permanently delete all stored user data. This includes all sales, profit, inventory, and tags. This cannot be reversed."
+                                      , preferredStyle: .alert)
         let confirm = UIAlertAction(title: "I Understand", style: .destructive) { (_) in
             UserDefaults.standard.setValue(false, forKey: "gnomes")
             self.itemController?.eraseAllData()
-            self.delegate?.itemWasAdded()
+            self.eraseDelegate?.dataWasErased()
         }
         let cancel = UIAlertAction(title: "Nevermind", style: .cancel, handler: nil)
         alert.addAction(confirm)
         alert.addAction(cancel)
-        eraseDelegate?.dataWasErased()
         present(alert, animated: true, completion: nil)
     }
 
@@ -245,7 +266,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "SettingCell", for: indexPath) as! SettingsCell
         cell.settingTypeLabel.text = staticSettings[indexPath.section][indexPath.row]
-        if cell.settingTypeLabel.text == "⛔️ Erase All Data" {
+        if cell.settingTypeLabel.text == settings.eraseData.rawValue {
             cell.settingTypeLabel.textColor = .systemRed
             cell.settingTypeLabel.font = .boldSystemFont(ofSize: 16)
         }
@@ -255,27 +276,27 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch staticSettings[indexPath.section][indexPath.row] {
-        case "🗞 What's New?":
+        case settings.whatsNew.rawValue:
             whatsNew()
-        case "🐦 Twitter":
+        case settings.twitter.rawValue:
             twitter()
-        case "💰 Tip Jar":
+        case settings.tipJar.rawValue:
             tipJar()
-        case "🆘 Helpful Tips":
-            helpfulTips()
-        case "🦻🏻 Feedback":
+        case settings.feedback.rawValue:
             feedback()
-        case "⭐️ Rate the App":
+        case settings.rateTheApp.rawValue:
             rateTheApp()
-        case "⚖️ Privacy Policy":
+        case settings.helpfulTips.rawValue:
+            helpfulTips()
+        case settings.privacyPolicy.rawValue:
             privacyPolicy()
-        case "🗑 Erase All Inventory":
+        case settings.eraseInventory.rawValue:
             eraseInventory()
-        case "🗑 Erase All Sold Items":
+        case settings.erasesoldItems.rawValue:
             eraseSoldItems()
-        case "🗑 Erase All Custom Tags":
+        case settings.eraseCustomTags.rawValue:
             eraseTags()
-        case "⛔️ Erase All Data":
+        case settings.eraseData.rawValue:
             eraseAllData()
         default:
             NSLog("Error occured when attempting to select a settings option.")
