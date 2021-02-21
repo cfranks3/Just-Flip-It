@@ -2,7 +2,7 @@
 # Version History
 
 ## 1.7 (2/21/21)
-* Feature: Your recently sold item and oldest item now appear in a card within the dashboard view.
+* Feature: Your recently added item and oldest item now appear in a card within the dashboard view.
 * Bug Fix: Changed the profit and item labels in the sold item popover to stand out better in dark mode.
 * Bug Fix: Got rid of placeholder text in edit item screen.
 

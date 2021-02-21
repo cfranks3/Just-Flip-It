@@ -81,7 +81,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     func whatsNew() {
         let alert = UIAlertController(title: "\(UIApplication.appVersion!) Notes", message:
                 """
-                - Feature: Your recently sold item and oldest item now appear in a card within the dashboard view.
+                - Feature: Your recently added item and oldest item now appear in a card within the dashboard view.
                 - Bug Fix: Changed the profit and item labels in the sold item popover view to stand out better in dark mode.
                 - Bug Fix: Got rid of placeholder text in edit item screen.
                 """
