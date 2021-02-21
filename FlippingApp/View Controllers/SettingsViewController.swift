@@ -81,13 +81,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     func whatsNew() {
         let alert = UIAlertController(title: "\(UIApplication.appVersion!) Notes", message:
                 """
-                - Change: Overhauled the app's appearance (again).
-                - Feature: Date and time is now logged for items you list and sell.
-                - Feature: Tapping on a sold item now displays information about the sale.
-                - Feature: Added an inventory counter to the dashboard.
-                - Feature: You can now edit the original purchase price of items.
-                - Bug fix: You can no longer crash the app by adding a high-value item. The current cap is $1,000,000 per item and a quantity of 100,000.
-                - Bug fix: Filtering through sold items no longer returns inventory items.
+                - Bug Fix: Changed the profit and item labels to stand out better in dark mode.
                 """
                                       , preferredStyle: .alert)
         let action = UIAlertAction(title: "Awesome!", style: .cancel, handler: nil)

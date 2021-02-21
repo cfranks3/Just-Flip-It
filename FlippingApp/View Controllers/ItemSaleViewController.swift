@@ -78,10 +78,10 @@ class ItemSaleViewController: UIViewController {
         
         titleLabel.text = item.title
         quantityLabel.text = "Quantity: \(formatter.string(from: item.quantity as NSNumber) ?? "-1")"
-        amountSoldTextField.placeholder = formatter.string(from: item.quantity as NSNumber)
+        amountSoldTextField.text = "\(item.quantity)"
         
         formatter.numberStyle = .currency
-        soldPriceTextField.placeholder = formatter.string(from: listingPrice as NSNumber)
+        soldPriceTextField.text = "\(listingPrice)"
         
         doneButton.layer.cornerRadius = 12
     }

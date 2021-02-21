@@ -87,18 +87,17 @@ class SoldItemInfoViewController: UIViewController {
             daysListedForLabel.text = "Unknown"
         }
         
-        
     }
     
     func configureColors() {
         view.backgroundColor = UIColor(named: "Background")
-        soldItemLabel.textColor = UIColor(named: "Foreground")
+        soldItemLabel.textColor = UIColor(named: "Text")
         purchasedLabel.textColor = .white
         purchasedPriceLabel.textColor = .white
         soldLabel.textColor = .white
         soldPriceLabel.textColor = .white
-        profitLabel.textColor = UIColor(named: "Foreground")
-        profitMadeLabel.textColor = UIColor(named: "Foreground")
+        profitLabel.textColor = UIColor(named: "Text")
+        profitMadeLabel.textColor = UIColor(named: "Text")
         dateLabel.textColor = .white
         dateSoldLabel.textColor = .white
         daysListedLabel.textColor = .white
