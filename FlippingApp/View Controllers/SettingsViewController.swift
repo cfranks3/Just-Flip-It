@@ -33,8 +33,8 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         case whatsNew = "🗞 What's New?"
         case twitter = "🐦 Twitter"
         case tipJar = "💰 Tip Jar"
-        case feedback = "🦻🏻 Feedback"
         case rateTheApp = "⭐️ Rate the App"
+        case feedback = "🦻🏻 Feedback"
         case helpfulTips = "🆘 Helpful Tips"
         case privacyPolicy = "⚖️ Privacy Policy"
         case eraseInventory = "🗑 Erase All Inventory"
@@ -48,8 +48,8 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         settings.twitter]
     let sectionTwo: [settings] = [
         settings.tipJar,
-        settings.feedback,
         settings.rateTheApp,
+        settings.feedback,
         settings.helpfulTips]
     let sectionThree: [settings] = [
         settings.eraseInventory,
@@ -62,8 +62,8 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
          settings.twitter.rawValue],
         
         [settings.tipJar.rawValue,
-         settings.feedback.rawValue,
          settings.rateTheApp.rawValue,
+         settings.feedback.rawValue,
          settings.helpfulTips.rawValue],
         
         [settings.eraseInventory.rawValue,
@@ -268,6 +268,9 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         cell.settingTypeLabel.text = staticSettings[indexPath.section][indexPath.row]
         if cell.settingTypeLabel.text == settings.eraseData.rawValue {
             cell.settingTypeLabel.textColor = .systemRed
+            cell.settingTypeLabel.font = .boldSystemFont(ofSize: 16)
+        } else {
+            cell.settingTypeLabel.textColor = .white
             cell.settingTypeLabel.font = .boldSystemFont(ofSize: 16)
         }
         cell.backgroundColor = UIColor(named: "Foreground")
