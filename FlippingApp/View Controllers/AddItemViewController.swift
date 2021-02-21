@@ -21,24 +21,25 @@ class AddItemViewController: UIViewController {
     // MARK: - IBOutlets
     
     @IBOutlet weak var contentView: UIView!
-    @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var purchasePriceTextField: UITextField!
+    @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var purchasePriceLabel: UILabel!
-    @IBOutlet weak var listingPriceTextField: UITextField!
+    @IBOutlet weak var purchasePriceTextField: UITextField!
     @IBOutlet weak var listingPriceLabel: UILabel!
-    @IBOutlet weak var quantityTextField: UITextField!
+    @IBOutlet weak var listingPriceTextField: UITextField!
     @IBOutlet weak var quantityLabel: UILabel!
-    @IBOutlet weak var tagTextView: UITextView!
+    @IBOutlet weak var quantityTextField: UITextField!
     @IBOutlet weak var tagLabel: UILabel!
+    @IBOutlet weak var tagTextView: UITextView!
     @IBOutlet weak var tagButton: UIButton!
-    @IBOutlet weak var notesTextView: UITextView!
     @IBOutlet weak var notesLabel: UILabel!
+    @IBOutlet weak var notesTextView: UITextView!
     @IBOutlet weak var saveButton: UIButton!
     
     // MARK: - IBActions
     
     @IBAction func saveButtonTapped(_ sender: UIButton) {
+        // Easter egg
         if titleTextField.text == "Gnomes!" {
             UserDefaults.standard.setValue(true, forKey: "gnomes")
         } else if titleTextField.text == "Gnomes Be Gone!" {
@@ -53,8 +54,7 @@ class AddItemViewController: UIViewController {
         if listingPrice > 1000000 || listingPrice < 0 { rejectOutOfBoundsListingPrice(); return }
         if quantity > 100000 || quantity < 0 { rejectOutOfBoundsQuantity(); return }
         
-        if let title = titleTextField.text,
-           !title.isEmpty {
+        if let title = titleTextField.text, !title.isEmpty {
             let item = Item(title: title,
                             purchasePrice: purchasePrice,
                             listingPrice: listingPrice,
@@ -116,8 +116,8 @@ class AddItemViewController: UIViewController {
         tagLabel.textColor = UIColor(named: "Text")
         notesLabel.textColor = UIColor(named: "Text")
         
-        saveButton.backgroundColor = UIColor(named: "Foreground")
         tagButton.backgroundColor = UIColor(named: "Foreground")
+        saveButton.backgroundColor = UIColor(named: "Foreground")
     }
     
     // MARK: - Methods
@@ -176,22 +176,23 @@ class AddItemViewController: UIViewController {
         if segue.identifier == "ShowPopOver" {
             guard let popOverVC = segue.destination as? TagTableViewController else { return }
             popOverVC.itemController = itemController
-            popOverVC.preferredContentSize = CGSize(width: 180, height: 240)
+            popOverVC.delegate = self
             popOverVC.modalPresentationStyle = .popover
+            popOverVC.preferredContentSize = CGSize(width: self.view.bounds.width/2, height: self.view.bounds.height/2.5)
             popOverVC.popoverPresentationController?.delegate = self
             popOverVC.popoverPresentationController?.sourceRect = CGRect(origin: tagTextView.center, size: .zero)
             popOverVC.popoverPresentationController?.sourceView = tagTextView
-            popOverVC.delegate = self
         }
     }
     
 }
 
 extension AddItemViewController: TagDataDelegate {
+    
     func passData(_ tag: String) {
-        print(tag)
         tagTextView.text = tag
     }
+    
 }
 
 extension AddItemViewController: UIPopoverPresentationControllerDelegate {
