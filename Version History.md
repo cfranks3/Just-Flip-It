@@ -1,6 +1,11 @@
 
 # Version History
 
+## 1.7 (2/21/21)
+* Feature: Your recently sold item and oldest item now appear in a card within the dashboard view.
+* Bug Fix: Changed the profit and item labels in the sold item popover to stand out better in dark mode.
+* Bug Fix: Got rid of placeholder text in edit item screen.
+
 ## 1.6 (2/20/21)
 * Change: Overhauled the app's appearance (again).
 * Feature: Date and time is now logged for items you list and sell.
