@@ -12,7 +12,8 @@ class DashboardViewController: UIViewController {
     // MARK: - Properties
     
     let itemController = ItemController()
-    let formatter = NumberFormatter()
+    let numberFormatter = NumberFormatter()
+    let dateFormatter = DateFormatter()
     
     // MARK: - IBOutlets
     @IBOutlet weak var titleLabel: UILabel!
@@ -21,6 +22,7 @@ class DashboardViewController: UIViewController {
     @IBOutlet weak var profitView: UIView!
     @IBOutlet weak var inventoryView: UIView!
     @IBOutlet weak var soldItemsView: UIView!
+    @IBOutlet weak var salesView: UIView!
     @IBOutlet weak var addItemButton: UIButton!
     @IBOutlet weak var inventoryButton: UIButton!
     @IBOutlet weak var settingsButton: UIButton!
@@ -30,6 +32,12 @@ class DashboardViewController: UIViewController {
     @IBOutlet weak var inventoryValueLabel: UILabel!
     @IBOutlet weak var inventoryQuantityLabel: UILabel!
     @IBOutlet weak var numberOfSalesLabel: UILabel!
+    @IBOutlet weak var recentlyAddedLabel: UILabel!
+    @IBOutlet weak var recentItemNameLabel: UILabel!
+    @IBOutlet weak var recentItemPriceLabel: UILabel!
+    @IBOutlet weak var oldestItemLabel: UILabel!
+    @IBOutlet weak var oldestItemNameLabel: UILabel!
+    @IBOutlet weak var oldestItemDaysLabel: UILabel!
     
     // MARK: - IBActions
     
@@ -75,27 +83,68 @@ class DashboardViewController: UIViewController {
     // MARK: - View configuration
     
     func updateViews() {
-
-        formatter.numberStyle = .currency
-        profitLabel.text = formatter.string(from: itemController.calculateProfit() as NSNumber)
-        inventoryValueLabel.text = formatter.string(from: itemController.calculateInventoryValue() as NSNumber)
-        if itemController.calculateInventoryValue() > 2147483648 {
+        numberFormatter.numberStyle = .currency
+        profitLabel.text = numberFormatter.string(from: itemController.calculateProfit() as NSNumber)
+        inventoryValueLabel.text = numberFormatter.string(from: itemController.calculateInventoryValue() as NSNumber)
+        if itemController.calculateInventoryValue() > 2147483647 {
             inventoryValueLabel.text = "Too High!"
             inventoryValueLabel.textColor = .systemYellow
-        } else if itemController.calculateInventoryValue() >= 10000 {
+        } else if itemController.calculateInventoryValue() >= 1 {
             inventoryValueLabel.textColor = .systemGreen
+        } else {
+            inventoryValueLabel.textColor = .white
         }
 
-        formatter.numberStyle = .decimal
-        numberOfSalesLabel.text = formatter.string(from: itemController.calculateSales() as NSNumber)
+        numberFormatter.numberStyle = .decimal
+        numberOfSalesLabel.text = numberFormatter.string(from: itemController.calculateSales() as NSNumber)
         
-        inventoryQuantityLabel.text = formatter.string(from: itemController.calculateInventoryQuantity() as NSNumber)
+        if itemController.inventory.isEmpty {
+            for constraint in salesView.constraints {
+                if constraint.identifier == "salesViewHeight" {
+                    constraint.constant = 100
+                }
+            }
+        } else {
+            for constraint in salesView.constraints {
+                if constraint.identifier == "salesViewHeight" {
+                    constraint.constant = 200
+                }
+            }
+        }
+        
+        if itemController.inventory.isEmpty {
+            oldestItemDaysLabel.text = ""
+            oldestItemNameLabel.text = ""
+            oldestItemLabel.isHidden = true
+            recentItemNameLabel.text = "Add an item to begin"
+            recentItemPriceLabel.isHidden = true
+        } else {
+            if let listingPrice = itemController.inventory.last?.listingPrice {
+                recentItemPriceLabel.isHidden = false
+                recentItemNameLabel.text = itemController.inventory.last?.title
+                numberFormatter.numberStyle = .currency
+                recentItemPriceLabel.text = "\(numberFormatter.string(from: listingPrice as NSNumber) ?? "Unknown")"
+            }
+           
+            if let oldestDate = itemController.inventory.first?.listedDate {
+                if let diffInDays = Calendar.current.dateComponents([.day], from: oldestDate, to: Date()).day {
+                    oldestItemLabel.isHidden = false
+                    oldestItemNameLabel.text = itemController.inventory.first?.title
+                    numberFormatter.numberStyle = .none
+                    oldestItemDaysLabel.text = "\(numberFormatter.string(from: diffInDays as NSNumber) ?? "") days"
+                }
+            } else {
+                oldestItemDaysLabel.text = ""
+            }
+        }
+        
+        inventoryQuantityLabel.text = numberFormatter.string(from: itemController.calculateInventoryQuantity() as NSNumber)
         
         // Easter egg
         if UserDefaults.standard.bool(forKey: "gnomes") {
-            title = "Gnomeboard"
+            titleLabel.text = "Gnomeboard"
         } else {
-            title = "Dashboard"
+            titleLabel.text = "Dashboard"
         }
         
         configureViews()
@@ -106,6 +155,8 @@ class DashboardViewController: UIViewController {
         profitView.layer.cornerRadius = 12
         inventoryView.layer.cornerRadius = 12
         soldItemsView.layer.cornerRadius = 12
+        salesView.layer.cornerRadius = 12
+        
         inventoryButton.layer.cornerRadius = 12
         soldItemsButton.layer.cornerRadius = 12
         settingsButton.layer.cornerRadius = 25
@@ -129,6 +180,12 @@ class DashboardViewController: UIViewController {
         soldItemsView.layer.shadowRadius = 4
         soldItemsView.layer.shadowOffset = CGSize(width: 0, height: 8)
         soldItemsView.layer.masksToBounds = false
+        
+        salesView.layer.shadowOpacity = 0.7
+        salesView.layer.shadowColor = UIColor(rgb: 0x1d3557).cgColor
+        salesView.layer.shadowRadius = 4
+        salesView.layer.shadowOffset = CGSize(width: 0, height: 8)
+        salesView.layer.masksToBounds = false
         
         addItemButton.layer.shadowOpacity = 0.7
         addItemButton.layer.shadowColor = UIColor(rgb: 0x1d3557).cgColor
@@ -168,6 +225,7 @@ class DashboardViewController: UIViewController {
         profitView.backgroundColor = UIColor(named: "Foreground")
         inventoryView.backgroundColor = UIColor(named: "Foreground")
         soldItemsView.backgroundColor = UIColor(named: "Foreground")
+        salesView.backgroundColor = UIColor(named: "Foreground")
         
         inventoryButton.backgroundColor = UIColor(named: "Background")
         soldItemsButton.backgroundColor = UIColor(named: "Background")
@@ -185,6 +243,8 @@ class DashboardViewController: UIViewController {
         
         if itemController.calculateProfit() > 0 {
             profitLabel.textColor = .systemGreen
+        } else if itemController.calculateProfit() < 0 {
+            profitLabel.textColor = .systemRed
         } else {
             profitLabel.textColor = .white
         }

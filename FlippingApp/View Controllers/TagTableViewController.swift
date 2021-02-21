@@ -28,6 +28,7 @@ class TagTableViewController: UITableViewController {
         let alertController = UIAlertController(title: "Add New Tag", message: "", preferredStyle: .alert)
         alertController.addTextField { (textField : UITextField!) -> Void in
             textField.placeholder = "Enter your tag name here"
+            textField.autocapitalizationType = .words
         }
         
         let saveAction = UIAlertAction(title: "Save", style: .default, handler: { alert -> Void in
