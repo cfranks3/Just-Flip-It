@@ -18,11 +18,11 @@ class ItemSaleViewController: UIViewController {
     // MARK: - IBOutlets
     
     @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var currentQuantityLabel: UILabel!
     @IBOutlet weak var quantityLabel: UILabel!
     @IBOutlet weak var amountSoldTextField: UITextField!
-    @IBOutlet weak var soldPriceTextField: UITextField!
-    @IBOutlet weak var currentQuantityLabel: UILabel!
     @IBOutlet weak var soldPriceLabel: UILabel!
+    @IBOutlet weak var soldPriceTextField: UITextField!
     @IBOutlet weak var doneButton: UIButton!
     
     // MARK: - IBAction
@@ -68,7 +68,6 @@ class ItemSaleViewController: UIViewController {
         super.viewDidLoad()
         amountSoldTextField.becomeFirstResponder()
         updateViews()
-        configureColors()
     }
     
     func updateViews() {
@@ -79,11 +78,10 @@ class ItemSaleViewController: UIViewController {
         titleLabel.text = item.title
         quantityLabel.text = "Quantity: \(formatter.string(from: item.quantity as NSNumber) ?? "-1")"
         amountSoldTextField.text = "\(item.quantity)"
-        
-        formatter.numberStyle = .currency
         soldPriceTextField.text = "\(item.listingPrice)"
         
         doneButton.layer.cornerRadius = 12
+        configureColors()
     }
     
     func configureColors() {
