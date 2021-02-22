@@ -111,6 +111,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
                 - Change: Labels are clearer as to what data they expect.
                 - Change: Changed sale icon to a '$' from '+'.
                 - Bug Fix: Improved performance of the app.
+                - Bug Fix: Fixed typos in the alerts before erasing tags and sold items.
                 """
                                       , preferredStyle: .alert)
         let action = UIAlertAction(title: "Awesome!", style: .cancel, handler: nil)
