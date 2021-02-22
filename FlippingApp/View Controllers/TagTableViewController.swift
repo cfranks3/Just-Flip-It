@@ -25,18 +25,22 @@ class TagTableViewController: UITableViewController {
     // MARK: - IBActions
     
     @IBAction func addTagTapped(_ sender: UIButton) {
-        let alertController = UIAlertController(title: "Add New Tag", message: "", preferredStyle: .alert)
+        let alertController = UIAlertController(title: "Add New Tag", message: nil, preferredStyle: .alert)
         alertController.addTextField { (textField : UITextField!) -> Void in
             textField.placeholder = "Enter your tag name here"
             textField.autocapitalizationType = .words
         }
         
-        let saveAction = UIAlertAction(title: "Save", style: .default, handler: { alert -> Void in
+        let saveAction = UIAlertAction(title: "Save",
+                                       style: .default,
+                                       handler: { alert -> Void in
             if let newTag = alertController.textFields![0].text {
                 if newTag.isEmpty { return }
                 if let tagWasAdded = self.itemController?.addTag(with: newTag) {
                     if !tagWasAdded {
-                        let alert = UIAlertController(title: "Tag already exists", message: "The tag you've created already exists.", preferredStyle: .alert)
+                        let alert = UIAlertController(title: "Tag already exists",
+                                                      message: "The tag you've created already exists.",
+                                                      preferredStyle: .alert)
                         let action = UIAlertAction(title: "Ok", style: .default, handler: nil)
                         alert.addAction(action)
                         self.present(alert, animated: true, completion: nil)
@@ -47,7 +51,9 @@ class TagTableViewController: UITableViewController {
             }
         })
         
-        let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertAction.Style.default, handler: nil)
+        let cancelAction = UIAlertAction(title: "Cancel",
+                                         style: UIAlertAction.Style.default,
+                                         handler: nil)
         
         alertController.addAction(saveAction)
         alertController.addAction(cancelAction)
@@ -64,15 +70,15 @@ class TagTableViewController: UITableViewController {
         configureColors()
     }
     
+    func configureViews() {
+        addButton.layer.cornerRadius = 12
+    }
+    
     func configureColors() {
         view.backgroundColor = UIColor(named: "Background")
         tableView.backgroundColor = UIColor(named: "Background")
         tableView.separatorColor = UIColor(named: "Background")
         tableView.tableHeaderView?.backgroundColor = UIColor(named: "Background")
-    }
-    
-    func configureViews() {
-        addButton.layer.cornerRadius = 12
     }
     
     // MARK: - Table view data source
