@@ -98,10 +98,9 @@ class InventoryViewController: UIViewController, UITableViewDelegate, UITableVie
             cell.valueLabel.text = "\(formattedNumber ?? "-1")"
         } else {
             let listingPrice = filteredItems[indexPath.row].listingPrice
-            let formattedNumber = formatter.string(from: listingPrice as NSNumber)
+            let formattedNumber = formatter.string(from: listingPrice*Double(filteredItems[indexPath.row].quantity) as NSNumber)
             cell.valueLabel.text = "\(formattedNumber ?? "-1")"
         }
-        
         return cell
     }
     
@@ -158,9 +157,8 @@ class InventoryViewController: UIViewController, UITableViewDelegate, UITableVie
                     delegate?.itemWasDeleted()
                 }
             }
-        if filteredItems.count == 0 {
-            dismiss(animated: true, completion: nil)
-        }
+        
+        if filteredItems.count == 0 { dismiss(animated: true, completion: nil) }
     }
     
     // MARK: - Row selection

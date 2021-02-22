@@ -27,7 +27,7 @@ class SoldItemInfoViewController: UIViewController {
     @IBOutlet weak var profitMadeLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var dateSoldLabel: UILabel!
-    @IBOutlet weak var daysListedLabel: UILabel!
+    @IBOutlet weak var daysLabel: UILabel!
     @IBOutlet weak var daysListedForLabel: UILabel!
     @IBOutlet weak var profitStackView: UIStackView!
     @IBOutlet weak var upperBannerView: UIView!
@@ -38,15 +38,14 @@ class SoldItemInfoViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         updateViews()
-        configureColors()
     }
     
     func updateViews() {
-        var profit = 0.0
-        profitStackView.layer.cornerRadius = 12
-        
         guard let item = item else { return }
         guard let soldPrice = item.soldPrice else { return }
+        
+        var profit = 0.0
+        profitStackView.layer.cornerRadius = 12
         
         if item.quantity > 1 {
             soldItemLabel.text = "\(item.quantity)x \(item.title)"
@@ -61,26 +60,17 @@ class SoldItemInfoViewController: UIViewController {
         }
         
         numberFormatter.numberStyle = .currency
-        
         purchasedPriceLabel.text = numberFormatter.string(from: (item.purchasePrice*Double(item.quantity)) as NSNumber)
         
         soldPriceLabel.text = numberFormatter.string(from: (item.soldPrice!*Double(item.quantity)) as NSNumber)
         profitMadeLabel.text = numberFormatter.string(from: profit as NSNumber)
         
+        guard let date = item.soldDate else { dateSoldLabel.text = "Unknown"; return }
+        guard let listedDate = item.listedDate else { dateSoldLabel.text = "Unknown"; return }
+        
         dateFormatter.dateFormat = "EEEE,\nMMM d, yyyy"
-        
-        guard let date = item.soldDate else {
-            dateSoldLabel.text = "Unknown"
-            return
-        }
-        
         let dateString = dateFormatter.string(from: date)
         dateSoldLabel.text = dateString
-        
-        guard let listedDate = item.listedDate else {
-            dateSoldLabel.text = "Unknown"
-            return
-        }
         
         if let diffInDays = Calendar.current.dateComponents([.day], from: listedDate, to: date).day {
             numberFormatter.numberStyle = .none
@@ -88,7 +78,7 @@ class SoldItemInfoViewController: UIViewController {
         } else {
             daysListedForLabel.text = "Unknown"
         }
-        
+        configureColors()
     }
     
     func configureColors() {
@@ -102,7 +92,7 @@ class SoldItemInfoViewController: UIViewController {
         profitMadeLabel.textColor = UIColor(named: "Text")
         dateLabel.textColor = .white
         dateSoldLabel.textColor = .white
-        daysListedLabel.textColor = .white
+        daysLabel.textColor = .white
         daysListedForLabel.textColor = .white
         upperBannerView.backgroundColor = UIColor(named: "Foreground")
         lowerBannerView.backgroundColor = UIColor(named: "Foreground")

@@ -243,8 +243,8 @@
                     <connections>
                         <outlet property="dateLabel" destination="n2P-XV-OS2" id="2dv-we-HDo"/>
                         <outlet property="dateSoldLabel" destination="5jz-AP-jPw" id="dH6-gZ-a0I"/>
+                        <outlet property="daysLabel" destination="thq-El-aNQ" id="jqj-82-SYd"/>
                         <outlet property="daysListedForLabel" destination="Drk-1p-I89" id="uBS-K7-OXA"/>
-                        <outlet property="daysListedLabel" destination="thq-El-aNQ" id="jqj-82-SYd"/>
                         <outlet property="lowerBannerView" destination="Khq-tk-GJh" id="H5P-Z1-ivS"/>
                         <outlet property="profitLabel" destination="9Oa-OF-HMe" id="ygy-OS-ZCR"/>
                         <outlet property="profitMadeLabel" destination="EsF-8h-0yf" id="o2C-Lf-zIw"/>
