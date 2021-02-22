@@ -101,15 +101,11 @@ class ItemController {
             if item.quantity > 1 {
                 var count = item.quantity
                 while count > 0 {
-                    if let listingPrice = item.listingPrice {
-                        inventoryValue += listingPrice
-                        count -= 1
-                    }
+                    inventoryValue += item.listingPrice
+                    count -= 1
                 }
             } else if item.quantity == 1 {
-                if let listingPrice = item.listingPrice {
-                    inventoryValue += listingPrice
-                }
+                inventoryValue += item.listingPrice
             } else {
                 continue
             }
@@ -171,10 +167,10 @@ class ItemController {
         var recentlyListedPrice: Double = 0.0
         if recentItem.quantity > 1 {
             for _ in 1...recentItem.quantity {
-                recentlyListedPrice += recentItem.listingPrice!
+                recentlyListedPrice += recentItem.listingPrice
             }
         } else {
-            recentlyListedPrice = recentItem.listingPrice!
+            recentlyListedPrice = recentItem.listingPrice
         }
         return recentlyListedPrice
     }

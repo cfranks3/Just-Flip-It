@@ -48,6 +48,7 @@ class ItemSaleViewController: UIViewController {
                 guard let quantitySold = Int(quantitySold) else { return }
                 let soldItem = Item(title: item.title,
                                     purchasePrice: item.purchasePrice,
+                                    listingPrice: item.listingPrice,
                                     soldPrice: soldPrice,
                                     quantity: quantitySold,
                                     tag: item.tag ?? "",
@@ -72,7 +73,6 @@ class ItemSaleViewController: UIViewController {
     
     func updateViews() {
         guard let item = item else { return }
-        guard let listingPrice = item.listingPrice else { return }
         let formatter = NumberFormatter()
         formatter.numberStyle = .decimal
         
@@ -81,7 +81,7 @@ class ItemSaleViewController: UIViewController {
         amountSoldTextField.text = "\(item.quantity)"
         
         formatter.numberStyle = .currency
-        soldPriceTextField.text = "\(listingPrice)"
+        soldPriceTextField.text = "\(item.listingPrice)"
         
         doneButton.layer.cornerRadius = 12
     }

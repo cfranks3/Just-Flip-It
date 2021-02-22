@@ -15,16 +15,16 @@ class EditItemViewController: UIViewController {
     
     // MARK: - Properties
     
-    var item: Item?
     var itemController: ItemController?
     var delegate: EditItemDelegate?
+    var item: Item?
     var index: Int?
     
     // MARK: - IBOutlets
     
     @IBOutlet weak var titleTextField: UITextField!
-    @IBOutlet weak var quantityTextField: UITextField!
     @IBOutlet weak var quantityLabel: UILabel!
+    @IBOutlet weak var quantityTextField: UITextField!
     @IBOutlet weak var purchasePriceLabel: UILabel!
     @IBOutlet weak var purchasePriceTextField: UITextField!
     @IBOutlet weak var listingPriceLabel: UILabel!
@@ -51,14 +51,14 @@ class EditItemViewController: UIViewController {
         if listingPrice > 1000000 || listingPrice < 0 { rejectOutOfBoundsListingPrice(); return }
         if quantity > 100000 || quantity < 0 { rejectOutOfBoundsQuantity(); return }
         
-        if let title = titleTextField.text,
-           !title.isEmpty {
+        if let title = titleTextField.text, !title.isEmpty {
             let editedItem = Item(title: title,
                                   purchasePrice: purchasePrice,
                                   listingPrice: listingPrice,
                                   quantity: quantity,
                                   tag: tagTextView.text,
-                                  notes: notesTextView.text, listedDate: item.listedDate)
+                                  notes: notesTextView.text,
+                                  listedDate: item.listedDate)
             itemController?.editItem(with: editedItem, replacing: item, at: index)
             delegate?.itemWasEdited()
             presentingViewController?.dismiss(animated: true, completion: nil)
@@ -74,22 +74,19 @@ class EditItemViewController: UIViewController {
     }
     
     func updateViews() {
-        guard let listingPrice = item?.listingPrice else { return }
-        guard let purchasePrice = item?.purchasePrice else { return }
-        guard let quantity = item?.quantity else { return }
+        guard let item = item else { return }
         
-        titleTextField.text = item?.title
-        quantityTextField.text = "\(quantity)"
-        purchasePriceTextField.text = "\(purchasePrice)"
-        listingPriceTextField.text = "\(listingPrice)"
+        titleTextField.text = item.title
+        purchasePriceTextField.text = "\(item.purchasePrice)"
+        listingPriceTextField.text = "\(item.listingPrice)"
+        quantityTextField.text = "\(item.quantity)"
+        tagTextView.text = item.tag
+        notesTextView.text = item.notes
         
-        tagTextView.text = item?.tag
         tagTextView.layer.cornerRadius = 4
+        notesTextView.layer.cornerRadius = 4
         tagButton.layer.cornerRadius = 10
         saveButton.layer.cornerRadius = 12
-        
-        if let notes = item?.notes { notesTextView.text = notes }
-        notesTextView.layer.cornerRadius = 4
         
         saveButton.layer.shadowOpacity = 0.7
         saveButton.layer.shadowColor = UIColor(rgb: 0x1d3557).cgColor
@@ -173,21 +170,23 @@ class EditItemViewController: UIViewController {
         if segue.identifier == "ShowPopOver" {
             guard let popOverVC = segue.destination as? TagTableViewController else { return }
             popOverVC.itemController = itemController
-            popOverVC.preferredContentSize = CGSize(width: 180, height: 240)
+            popOverVC.delegate = self
             popOverVC.modalPresentationStyle = .popover
+            popOverVC.preferredContentSize = CGSize(width: 180, height: 240)
             popOverVC.popoverPresentationController?.delegate = self
             popOverVC.popoverPresentationController?.sourceRect = CGRect(origin: tagTextView.center, size: .zero)
             popOverVC.popoverPresentationController?.sourceView = tagTextView
-            popOverVC.delegate = self
         }
     }
     
 }
 
 extension EditItemViewController: TagDataDelegate {
+    
     func passData(_ tag: String) {
         tagTextView.text = tag
     }
+    
 }
 
 extension EditItemViewController: UIPopoverPresentationControllerDelegate {

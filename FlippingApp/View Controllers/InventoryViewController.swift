@@ -85,25 +85,23 @@ class InventoryViewController: UIViewController, UITableViewDelegate, UITableVie
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let formatter = NumberFormatter()
-        formatter.numberStyle = .decimal
-        
         let cell = tableView.dequeueReusableCell(withIdentifier: "ItemCell", for: indexPath) as! ItemTableViewCell
+        
+        formatter.numberStyle = .decimal
         cell.itemNameLabel.text = filteredItems[indexPath.row].title
-        let formattedQuantity = formatter.string(from: (filteredItems[indexPath.row].quantity) as NSNumber)
-        cell.itemQuantityLabel.text = "Quantity: \(formattedQuantity ?? "-1")"
+        cell.itemQuantityLabel.text = "Quantity: \(formatter.string(from: (filteredItems[indexPath.row].quantity) as NSNumber) ?? "")"
+        cell.backgroundColor = UIColor(named: "Foreground")
         
         formatter.numberStyle = .currency
-        if let listingPrice = filteredItems[indexPath.row].listingPrice {
-            let formattedNumber = formatter.string(from: listingPrice as NSNumber)
+        if let soldPrice = filteredItems[indexPath.row].soldPrice {
+            let formattedNumber = formatter.string(from: soldPrice as NSNumber)
             cell.valueLabel.text = "\(formattedNumber ?? "-1")"
         } else {
-            if let soldPrice = filteredItems[indexPath.row].soldPrice {
-                let formattedNumber = formatter.string(from: soldPrice as NSNumber)
-                cell.valueLabel.text = "\(formattedNumber ?? "-1")"
-            }
-            
+            let listingPrice = filteredItems[indexPath.row].listingPrice
+            let formattedNumber = formatter.string(from: listingPrice as NSNumber)
+            cell.valueLabel.text = "\(formattedNumber ?? "-1")"
         }
-        cell.backgroundColor = UIColor(named: "Foreground")
+        
         return cell
     }
     
@@ -143,7 +141,6 @@ class InventoryViewController: UIViewController, UITableViewDelegate, UITableVie
                 })
             }
         }
-        
         tableView.reloadData()
     }
     
@@ -171,14 +168,14 @@ class InventoryViewController: UIViewController, UITableViewDelegate, UITableVie
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
             if searchType == "selling" {
                 guard let saleVC = storyboard?.instantiateViewController(identifier: "SaleVC") as? ItemSaleViewController else { return }
+                saleVC.itemController = itemController
                 saleVC.item = filteredItems[indexPath.row]
                 saleVC.delegate = self
-                saleVC.itemController = itemController
                 present(saleVC, animated: true, completion: nil)
             } else if searchType == "inventory" {
                 guard let editVC = storyboard?.instantiateViewController(identifier: "EditVC") as? EditItemViewController else { return }
-                editVC.item = filteredItems[indexPath.row]
                 editVC.itemController = itemController
+                editVC.item = filteredItems[indexPath.row]
                 editVC.delegate = self
                 editVC.index = indexPath.row
                 present(editVC, animated: true, completion: nil)
@@ -187,8 +184,8 @@ class InventoryViewController: UIViewController, UITableViewDelegate, UITableVie
                 guard let cell = tableView.cellForRow(at: indexPath) else { return }
                 popOverVC.item = itemController?.soldItems[indexPath.row]
                 popOverVC.itemController = itemController
-                popOverVC.preferredContentSize = CGSize(width: 250, height: 340)
                 popOverVC.modalPresentationStyle = .popover
+                popOverVC.preferredContentSize = CGSize(width: self.view.bounds.width/2, height: self.view.bounds.width/3)
                 popOverVC.popoverPresentationController?.delegate = self
                 popOverVC.popoverPresentationController?.sourceRect = CGRect(origin: cell.center, size: .zero)
                 popOverVC.popoverPresentationController?.sourceView = tableView
@@ -201,15 +198,19 @@ class InventoryViewController: UIViewController, UITableViewDelegate, UITableVie
 // MARK: - Protocol methods
 
 extension InventoryViewController: ItemControllerDelegate {
+    
     func saleWasMade() {
         presentingViewController?.dismiss(animated: true, completion: nil)
     }
+    
 }
 
 extension InventoryViewController: EditItemDelegate {
+    
     func itemWasEdited() {
         presentingViewController?.dismiss(animated: true, completion: nil)
     }
+    
 }
 
 extension InventoryViewController: UIPopoverPresentationControllerDelegate {

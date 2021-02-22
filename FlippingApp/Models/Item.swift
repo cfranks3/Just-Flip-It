@@ -11,7 +11,7 @@ class Item: NSObject, Codable {
     
     var title: String
     var purchasePrice: Double
-    var listingPrice: Double?
+    var listingPrice: Double
     var soldPrice: Double?
     var quantity: Int
     var tag: String?
@@ -31,9 +31,10 @@ class Item: NSObject, Codable {
     }
     
     // Sold item
-    init(title: String, purchasePrice: Double, soldPrice: Double, quantity: Int, tag: String?, notes: String?, listedDate: Date?, soldDate: Date?) {
+    init(title: String, purchasePrice: Double, listingPrice: Double, soldPrice: Double, quantity: Int, tag: String?, notes: String?, listedDate: Date?, soldDate: Date?) {
         self.title = title
         self.purchasePrice = purchasePrice
+        self.listingPrice = listingPrice
         self.soldPrice = soldPrice
         self.quantity = quantity
         self.tag = tag
