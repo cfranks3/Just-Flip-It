@@ -217,7 +217,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func eraseSoldItems() {
-        let alert = UIAlertController(title: "Warning!", message: "Proceeding will permanently delete all stored user data. This includes all sales, profit, inventory, and tags. This cannot be reversed.", preferredStyle: .alert)
+        let alert = UIAlertController(title: "Warning!", message: "Proceeding will permanently delete all stored sales. This cannot be reversed.", preferredStyle: .alert)
         let confirm = UIAlertAction(title: "I Understand", style: .destructive) { (_) in
             self.itemController?.eraseAllSoldItems()
             self.eraseDelegate?.dataWasErased()
@@ -229,7 +229,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func eraseTags() {
-        let alert = UIAlertController(title: "Warning!", message: "Proceeding will permanently delete all stored user data. This includes all sales, profit, inventory, and tags. This cannot be reversed.", preferredStyle: .alert)
+        let alert = UIAlertController(title: "Warning!", message: "Proceeding will permanently delete all custom tags. This cannot be reversed.", preferredStyle: .alert)
         let confirm = UIAlertAction(title: "I Understand", style: .destructive) { (_) in
             self.itemController?.eraseAllTags()
             self.eraseDelegate?.dataWasErased()
