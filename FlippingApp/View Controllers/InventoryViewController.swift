@@ -94,7 +94,7 @@ class InventoryViewController: UIViewController, UITableViewDelegate, UITableVie
         
         formatter.numberStyle = .currency
         if let soldPrice = filteredItems[indexPath.row].soldPrice {
-            let formattedNumber = formatter.string(from: soldPrice as NSNumber)
+            let formattedNumber = formatter.string(from: soldPrice*Double(filteredItems[indexPath.row].quantity) as NSNumber)
             cell.valueLabel.text = "\(formattedNumber ?? "-1")"
         } else {
             let listingPrice = filteredItems[indexPath.row].listingPrice
