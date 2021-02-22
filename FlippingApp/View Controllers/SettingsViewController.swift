@@ -108,6 +108,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     func whatsNew() {
         let alert = UIAlertController(title: "\(UIApplication.appVersion!) Notes", message:
                                         """
+                - Change: Labels are clearer as to what data they expect.
                 - Bug Fix: Improved performance of the app.
                 """
                                       , preferredStyle: .alert)
