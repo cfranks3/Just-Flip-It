@@ -43,11 +43,40 @@ class ItemController {
         }
     }
     
+    func editItem(with item: Item, replacing oldItem: Item, at index: Int) {
+        if inventory[index] == oldItem {
+            inventory[index] = item
+        }
+        delegate?.itemWasEdited()
+        save()
+    }
+    
+    func deleteItem(with item: Item) {
+        if inventory.contains(item) {
+            inventory.removeAll(where: { $0 == item })
+        } else if soldItems.contains(item) {
+            soldItems.removeAll(where: { $0 == item })
+        } else {
+            NSLog("Error: Could not remove nonexistent item")
+        }
+        save()
+    }
+    
     func deleteTag(with tag: String) {
         if tags.contains(tag) {
             tags.removeAll(where: { $0 == tag })
             save()
         }
+    }
+    
+    func eraseAllInventory() {
+        inventory.removeAll()
+        save()
+    }
+    
+    func eraseAllSoldItems() {
+        soldItems.removeAll()
+        save()
     }
     
     func eraseAllTags() {
@@ -61,15 +90,6 @@ class ItemController {
         save()
     }
     
-    func removeListedItem(with item: Item) {
-        if inventory.contains(item) {
-            inventory.removeAll { $0 == item }
-            save()
-        } else {
-            NSLog("Error: Nonexistent item could not be removed.")
-        }
-    }
-    
     func eraseAllData() {
         soldItems.removeAll()
         inventory.removeAll()
@@ -77,22 +97,23 @@ class ItemController {
         save()
     }
     
-    func deleteItem(with item: Item) {
-        if inventory.contains(item) {
-            inventory.removeAll(where: { $0 == item })
-        } else if soldItems.contains(item) {
-            soldItems.removeAll(where: { $0 == item })
+    func processSale(sold item: Item, listed oldItem: Item) {
+        soldItems.append(item)
+        if oldItem.quantity == 1 {
+            if inventory.contains(oldItem) {
+                inventory.removeAll(where: { $0 == oldItem })
+            }
+        } else {
+            oldItem.quantity -= item.quantity
         }
+        if oldItem.quantity == 0 {
+            inventory.removeAll(where: { $0 == oldItem })
+        }
+        delegate?.saleWasMade()
         save()
     }
     
-    func editItem(with item: Item, replacing oldItem: Item, at index: Int) {
-        if inventory[index] == oldItem {
-            inventory[index] = item
-        }
-        delegate?.itemWasEdited()
-        save()
-    }
+    // MARK: - Calculations
     
     func calculateInventoryValue() -> Double {
         inventoryValue = 0
@@ -173,32 +194,6 @@ class ItemController {
             recentlyListedPrice = recentItem.listingPrice
         }
         return recentlyListedPrice
-    }
-    
-    func processSale(sold item: Item, listed oldItem: Item) {
-        soldItems.append(item)
-        if oldItem.quantity == 1 {
-            if inventory.contains(oldItem) {
-                inventory.removeAll(where: { $0 == oldItem })
-            }
-        } else {
-            oldItem.quantity -= item.quantity
-        }
-        if oldItem.quantity == 0 {
-            inventory.removeAll(where: { $0 == oldItem })
-        }
-        delegate?.saleWasMade()
-        save()
-    }
-    
-    func eraseAllInventory() {
-        inventory.removeAll()
-        save()
-    }
-    
-    func eraseAllSoldItems() {
-        soldItems.removeAll()
-        save()
     }
     
     // MARK: - Persistence
