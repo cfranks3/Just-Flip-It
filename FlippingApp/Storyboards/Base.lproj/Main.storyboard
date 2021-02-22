@@ -780,7 +780,7 @@
                                                         </constraints>
                                                         <color key="tintColor" red="0.27058823529411763" green="0.4823529411764706" blue="0.61568627450980395" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                         <state key="normal" image="plus" catalog="system">
-                                                            <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large" weight="medium"/>
+                                                            <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large" weight="semibold"/>
                                                         </state>
                                                         <connections>
                                                             <segue destination="c8i-jJ-Jcz" kind="presentation" identifier="AddItemSegue" id="hAG-FB-pbB"/>
@@ -883,7 +883,7 @@
                                                             <constraint firstAttribute="width" constant="48" id="LJa-Co-pgI"/>
                                                         </constraints>
                                                         <color key="tintColor" red="0.27058823529999998" green="0.4823529412" blue="0.61568627450000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                                        <state key="normal" image="plus" catalog="system">
+                                                        <state key="normal">
                                                             <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large" weight="medium"/>
                                                         </state>
                                                         <connections>

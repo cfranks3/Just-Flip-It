@@ -88,6 +88,8 @@ class DashboardViewController: UIViewController {
     func updateViews() {
         numberFormatter.numberStyle = .currency
         let inventoryValue = itemController.calculateInventoryValue()
+        recordSaleButton.setTitle("$", for: .normal)
+        recordSaleButton.titleLabel?.font = .boldSystemFont(ofSize: 22)
         profitLabel.text = numberFormatter.string(from: itemController.calculateProfit() as NSNumber)
         if  inventoryValue > 2147483647 {
             inventoryValueLabel.text = "Too High!"
