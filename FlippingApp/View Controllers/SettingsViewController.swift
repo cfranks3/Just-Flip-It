@@ -109,6 +109,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         let alert = UIAlertController(title: "\(UIApplication.appVersion!) Notes", message:
                                         """
                 - Change: Labels are clearer as to what data they expect.
+                - Change: Changed sale icon to a '$' from '+'.
                 - Bug Fix: Improved performance of the app.
                 """
                                       , preferredStyle: .alert)

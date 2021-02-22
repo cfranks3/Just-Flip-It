@@ -183,7 +183,7 @@ class InventoryViewController: UIViewController, UITableViewDelegate, UITableVie
                 popOverVC.item = itemController?.soldItems[indexPath.row]
                 popOverVC.itemController = itemController
                 popOverVC.modalPresentationStyle = .popover
-                popOverVC.preferredContentSize = CGSize(width: self.view.bounds.width/2, height: self.view.bounds.width/3)
+                popOverVC.preferredContentSize = CGSize(width: 220, height: 330)
                 popOverVC.popoverPresentationController?.delegate = self
                 popOverVC.popoverPresentationController?.sourceRect = CGRect(origin: cell.center, size: .zero)
                 popOverVC.popoverPresentationController?.sourceView = tableView

@@ -155,7 +155,7 @@
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="22" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Drk-1p-I89">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-1" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Drk-1p-I89">
                                                         <rect key="frame" x="0.0" y="24.333333333333371" width="87" height="20.333333333333329"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
@@ -739,7 +739,7 @@
                                 <rect key="frame" x="0.0" y="164" width="428" height="616"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vj7-ki-xw0" userLabel="Content View">
-                                        <rect key="frame" x="0.0" y="0.0" width="428" height="1000"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="428" height="900"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BWp-sf-PCM" userLabel="Profit View">
                                                 <rect key="frame" x="32" y="32" width="364" height="120"/>
@@ -1012,7 +1012,7 @@
                                             <constraint firstItem="2GT-GV-bsk" firstAttribute="leading" secondItem="Vj7-ki-xw0" secondAttribute="leading" constant="32" id="1ac-0h-5wE"/>
                                             <constraint firstItem="48m-XM-hP9" firstAttribute="leading" secondItem="Vj7-ki-xw0" secondAttribute="leading" constant="32" id="E9H-bg-DfC"/>
                                             <constraint firstItem="48m-XM-hP9" firstAttribute="top" secondItem="BWp-sf-PCM" secondAttribute="bottom" constant="32" id="Q3b-JF-XoR"/>
-                                            <constraint firstAttribute="height" constant="1000" id="RSc-mA-CX2"/>
+                                            <constraint firstAttribute="height" constant="900" id="RSc-mA-CX2"/>
                                             <constraint firstAttribute="trailing" secondItem="HNd-hs-hbO" secondAttribute="trailing" constant="32" id="VHS-wY-KLN"/>
                                             <constraint firstItem="BWp-sf-PCM" firstAttribute="leading" secondItem="Vj7-ki-xw0" secondAttribute="leading" constant="32" id="aaa-ic-UKH"/>
                                             <constraint firstItem="HNd-hs-hbO" firstAttribute="leading" secondItem="Vj7-ki-xw0" secondAttribute="leading" constant="32" id="bhd-yh-C5T"/>
