@@ -18,4 +18,4 @@ My wife and I have recently started going to garage sales. We wanted a tool that
 ### Feature wishlist:
 * Additional filters such as stale items, hot items, etc.
 * Cloud backups
-* Change color of UI
+* ~~Change color of UI~~
