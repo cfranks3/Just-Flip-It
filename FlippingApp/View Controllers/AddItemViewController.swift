@@ -54,7 +54,8 @@ class AddItemViewController: UIViewController {
         if listingPrice > 1000000 || listingPrice < 0 { rejectOutOfBoundsListingPrice(); return }
         if quantity > 100000 || quantity < 0 { rejectOutOfBoundsQuantity(); return }
         
-        if let title = titleTextField.text, !title.isEmpty {
+        if let title = titleTextField.text,
+           !title.isEmpty {
             let item = Item(title: title,
                             purchasePrice: purchasePrice,
                             listingPrice: listingPrice,
