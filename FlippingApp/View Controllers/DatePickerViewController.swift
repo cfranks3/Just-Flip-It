@@ -15,6 +15,7 @@ class DatePickerViewController: UIViewController {
     
     // MARK: - Properties
     
+    var item: Item?
     var delegate: DateDataDelegate?
     
     // MARK: - IBOutlets
@@ -47,6 +48,10 @@ class DatePickerViewController: UIViewController {
     
     func configureViews() {
         saveButton.layer.cornerRadius = 12
+        
+        if let item = item, let date = item.listedDate {
+            datePicker.date = date
+        }
     }
     
     func configureColors() {

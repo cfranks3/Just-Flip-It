@@ -209,6 +209,7 @@ class EditItemViewController: UIViewController {
         } else if segue.identifier == "DatePopover" {
             guard let datePopoverVC = segue.destination as? DatePickerViewController else { return }
             datePopoverVC.delegate = self
+            datePopoverVC.item = item
             datePopoverVC.modalPresentationStyle = .popover
             datePopoverVC.preferredContentSize = CGSize(width: 340, height: 260)
             datePopoverVC.popoverPresentationController?.delegate = self
