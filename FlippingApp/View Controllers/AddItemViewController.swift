@@ -218,8 +218,8 @@ class AddItemViewController: UIViewController {
 extension AddItemViewController: TagDataDelegate, DateDataDelegate {
     
     func passDate(_ date: Date) {
-        dateTextField.text = dateFormatter.string(from: date)
         self.date = date
+        dateTextField.text = dateFormatter.string(from: date)
     }
     
     func passData(_ tag: String) {

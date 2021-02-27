@@ -259,7 +259,6 @@ class DashboardViewController: UIViewController {
         } else {
             profitLabel.textColor = .white
         }
-        
     }
 
     // MARK: - Navigation

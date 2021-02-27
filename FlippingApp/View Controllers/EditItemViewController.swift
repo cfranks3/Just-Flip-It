@@ -19,6 +19,8 @@ class EditItemViewController: UIViewController {
     var delegate: EditItemDelegate?
     var item: Item?
     var index: Int?
+    var date: Date?
+    let dateFormatter = DateFormatter()
     
     // MARK: - IBOutlets
     
@@ -32,7 +34,10 @@ class EditItemViewController: UIViewController {
     @IBOutlet weak var tagLabel: UILabel!
     @IBOutlet weak var tagTextView: UITextView!
     @IBOutlet weak var tagButton: UIButton!
+    @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var dateButton: UIButton!
     @IBOutlet weak var notesLabel: UILabel!
+    @IBOutlet weak var dateTextView: UITextView!
     @IBOutlet weak var notesTextView: UITextView!
     @IBOutlet weak var saveButton: UIButton!
     
@@ -58,7 +63,7 @@ class EditItemViewController: UIViewController {
                                   quantity: quantity,
                                   tag: tagTextView.text,
                                   notes: notesTextView.text,
-                                  listedDate: item.listedDate)
+                                  listedDate: date)
             itemController?.editItem(with: editedItem, replacing: item, at: index)
             delegate?.itemWasEdited()
             presentingViewController?.dismiss(animated: true, completion: nil)
@@ -69,30 +74,52 @@ class EditItemViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        updateViews()
+        configureViews()
         configureColors()
     }
     
-    func updateViews() {
+    func configureViews() {
         guard let item = item else { return }
-        
+        dateFormatter.dateFormat = "MMMM d, yyyy"
         titleTextField.text = item.title
         purchasePriceTextField.text = "\(item.purchasePrice)"
         listingPriceTextField.text = "\(item.listingPrice)"
         quantityTextField.text = "\(item.quantity)"
         tagTextView.text = item.tag
+        if let itemDate = item.listedDate {
+            self.date = itemDate
+            dateTextView.text = dateFormatter.string(from: itemDate)
+        } else {
+            self.date = Date()
+            dateTextView.text = dateFormatter.string(from: Date())
+        }
+        
         notesTextView.text = item.notes
         
         tagTextView.layer.cornerRadius = 4
+        dateTextView.layer.cornerRadius = 4
         notesTextView.layer.cornerRadius = 4
         tagButton.layer.cornerRadius = 10
+        dateButton.layer.cornerRadius = 10
         saveButton.layer.cornerRadius = 12
+        
+        dateButton.layer.shadowOpacity = 0.7
+        dateButton.layer.shadowColor = UIColor(rgb: 0x1d3557).cgColor
+        dateButton.layer.shadowRadius = 1
+        dateButton.layer.shadowOffset = CGSize(width: -1, height: 1)
+        dateButton.layer.masksToBounds = false
         
         saveButton.layer.shadowOpacity = 0.7
         saveButton.layer.shadowColor = UIColor(rgb: 0x1d3557).cgColor
         saveButton.layer.shadowRadius = 1
         saveButton.layer.shadowOffset = CGSize(width: -1, height: 1)
         saveButton.layer.masksToBounds = false
+        
+        tagButton.layer.shadowOpacity = 0.7
+        tagButton.layer.shadowColor = UIColor(rgb: 0x1d3557).cgColor
+        tagButton.layer.shadowRadius = 1
+        tagButton.layer.shadowOffset = CGSize(width: -1, height: 1)
+        tagButton.layer.masksToBounds = false
     }
     
     func configureColors() {
@@ -101,6 +128,7 @@ class EditItemViewController: UIViewController {
         listingPriceTextField.backgroundColor = UIColor(named: "Foreground")
         purchasePriceTextField.backgroundColor = UIColor(named: "Foreground")
         quantityTextField.backgroundColor = UIColor(named: "Foreground")
+        dateTextView.backgroundColor = UIColor(named: "Foreground")
         notesTextView.backgroundColor = UIColor(named: "Foreground")
         tagTextView.backgroundColor = UIColor(named: "Foreground")
         
@@ -108,9 +136,11 @@ class EditItemViewController: UIViewController {
         quantityLabel.textColor = UIColor(named: "Text")
         notesLabel.textColor = UIColor(named: "Text")
         tagLabel.textColor = UIColor(named: "Text")
+        dateLabel.textColor = UIColor(named: "Text")
         purchasePriceLabel.textColor = UIColor(named: "Text")
         
         tagButton.backgroundColor = UIColor(named: "Foreground")
+        dateButton.backgroundColor = UIColor(named: "Foreground")
         saveButton.backgroundColor = UIColor(named: "Foreground")
     }
     
@@ -176,12 +206,25 @@ class EditItemViewController: UIViewController {
             popOverVC.popoverPresentationController?.delegate = self
             popOverVC.popoverPresentationController?.sourceRect = CGRect(origin: tagTextView.center, size: .zero)
             popOverVC.popoverPresentationController?.sourceView = tagTextView
+        } else if segue.identifier == "DatePopover" {
+            guard let datePopoverVC = segue.destination as? DatePickerViewController else { return }
+            datePopoverVC.delegate = self
+            datePopoverVC.modalPresentationStyle = .popover
+            datePopoverVC.preferredContentSize = CGSize(width: 340, height: 260)
+            datePopoverVC.popoverPresentationController?.delegate = self
+            datePopoverVC.popoverPresentationController?.sourceRect = CGRect(origin: dateTextView.center, size: .zero)
+            datePopoverVC.popoverPresentationController?.sourceView = dateTextView
         }
     }
     
 }
 
-extension EditItemViewController: TagDataDelegate {
+extension EditItemViewController: TagDataDelegate, DateDataDelegate {
+    
+    func passDate(_ date: Date) {
+        self.date = date
+        dateTextView.text = dateFormatter.string(from: date)
+    }
     
     func passData(_ tag: String) {
         tagTextView.text = tag
