@@ -111,7 +111,7 @@ class AddItemViewController: UIViewController {
         saveButton.layer.shadowOffset = CGSize(width: -1, height: 1)
         saveButton.layer.masksToBounds = false
         
-        dateFormatter.dateFormat = "MMM d, yyyy"
+        dateFormatter.dateFormat = "MMMM d, yyyy"
         dateTextField.text = "\(dateFormatter.string(from: date))"
     }
     
