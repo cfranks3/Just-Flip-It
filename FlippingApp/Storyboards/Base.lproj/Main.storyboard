@@ -447,8 +447,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="428" height="872"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title of Item" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zg5-sR-SR9">
-                                <rect key="frame" x="143.66666666666666" y="19.999999999999996" width="140.99999999999997" height="33.666666666666657"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title of Item" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" translatesAutoresizingMaskIntoConstraints="NO" id="Zg5-sR-SR9">
+                                <rect key="frame" x="114" y="19.999999999999996" width="200" height="33.666666666666657"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="Zse-AM-5CH"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -1576,7 +1579,7 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="L0o-xc-iKq"/>
-        <segue reference="6ka-oV-goe"/>
+        <segue reference="ffy-NI-BcD"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="JFILogo" width="1024" height="1024"/>

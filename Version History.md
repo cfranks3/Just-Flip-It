@@ -2,7 +2,7 @@
 # Version History
 
 ## 1.9 (2/27/21)
-* Feature: Added the ability to pick custom purchase and listing dates.
+* Feature: Added the ability to pick custom purchase and sale dates.
 * Feature: Confetti now rains when you're recording a sale! Woohoo!
 * Change: Adjusted some constraints to make things fit better on smaller phones.
 * Bug fix: Fixed some typos.
