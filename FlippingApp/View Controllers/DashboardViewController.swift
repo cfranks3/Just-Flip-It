@@ -265,10 +265,7 @@ class DashboardViewController: UIViewController {
     func load() {
         let loaded = itemController.load()
         if !loaded {
-            let alert = UIAlertController(title: "Error loading", message: "Something went wrong when trying to load saved data. Try reloading the app. If this issue persists, send me an email at bronsonmullens@icloud.com or a tweet @bronsonmullens.", preferredStyle: .alert)
-            let action = UIAlertAction(title: "Ok", style: .default, handler: nil)
-            alert.addAction(action)
-            present(alert, animated: true, completion: nil)
+            NSLog("Could not load data")
         } else {
             NSLog("Loaded data successfully")
         }

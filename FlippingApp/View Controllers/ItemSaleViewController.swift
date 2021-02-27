@@ -140,7 +140,7 @@ class ItemSaleViewController: UIViewController {
             confettiView.type = .image(scaledImage)
         } else {
             confettiView.type = .confetti
-            confettiView.intensity = 1
+            confettiView.intensity = 0.5
             confettiView.colors = [UIColor.systemRed, UIColor.systemGreen, UIColor.systemBlue]
         }
         

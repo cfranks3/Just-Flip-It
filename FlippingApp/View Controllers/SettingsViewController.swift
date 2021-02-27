@@ -112,7 +112,6 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
                 - Feature: Confetti now rains when you're recording a sale! Woohoo!
                 - Change: Adjusted some constraints to make things fit better on smaller phones.
                 - Bug fix: Fixed some typos.
-                - Bug fix: Improved overall performance.
                 """
                                       , preferredStyle: .alert)
         let action = UIAlertAction(title: "Awesome!", style: .cancel, handler: nil)

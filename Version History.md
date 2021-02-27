@@ -1,6 +1,18 @@
 
 # Version History
 
+## 1.9 (2/27/21)
+* Feature: Added the ability to pick custom purchase and listing dates.
+* Feature: Confetti now rains when you're recording a sale! Woohoo!
+* Change: Adjusted some constraints to make things fit better on smaller phones.
+* Bug fix: Fixed some typos.
+
+## 1.8 (2/22/21)
+* Change: Labels are clearer as to what data they expect.
+* Change: Changed sale icon to a '$' from '+'.
+* Bug Fix: Improved performance of the app.
+* Bug Fix: Fixed typos in the alerts before erasing tags and sold items.
+
 ## 1.7 (2/21/21)
 * Feature: Your recently added item and oldest item now appear in a card within the dashboard view.
 * Bug Fix: Changed the profit and item labels in the sold item popover to stand out better in dark mode.
