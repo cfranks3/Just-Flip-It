@@ -35,7 +35,7 @@ class AddItemViewController: UIViewController {
     @IBOutlet weak var tagTextField: UITextView!
     @IBOutlet weak var tagButton: UIButton!
     @IBOutlet weak var dateLabel: UILabel!
-    @IBOutlet weak var dateTextField: UITextView!
+    @IBOutlet weak var dateTextView: UITextView!
     @IBOutlet weak var dateButton: UIButton!
     @IBOutlet weak var notesLabel: UILabel!
     @IBOutlet weak var notesTextField: UITextView!
@@ -87,7 +87,7 @@ class AddItemViewController: UIViewController {
     
     func configureViews() {
         tagTextField.layer.cornerRadius = 4
-        dateTextField.layer.cornerRadius = 4
+        dateTextView.layer.cornerRadius = 4
         notesTextField.layer.cornerRadius = 4
         
         tagButton.layer.shadowOpacity = 0.7
@@ -112,7 +112,7 @@ class AddItemViewController: UIViewController {
         saveButton.layer.masksToBounds = false
         
         dateFormatter.dateFormat = "MMMM d, yyyy"
-        dateTextField.text = "\(dateFormatter.string(from: date))"
+        dateTextView.text = "\(dateFormatter.string(from: date))"
     }
     
     func configureColors() {
@@ -124,7 +124,7 @@ class AddItemViewController: UIViewController {
         listingPriceTextField.backgroundColor = UIColor(named: "Foreground")
         quantityTextField.backgroundColor = UIColor(named: "Foreground")
         tagTextField.backgroundColor = UIColor(named: "Foreground")
-        dateTextField.backgroundColor = UIColor(named: "Foreground")
+        dateTextView.backgroundColor = UIColor(named: "Foreground")
         notesTextField.backgroundColor = UIColor(named: "Foreground")
         
         titleLabel.textColor = UIColor(named: "Text")
@@ -208,8 +208,8 @@ class AddItemViewController: UIViewController {
             datePopoverVC.modalPresentationStyle = .popover
             datePopoverVC.preferredContentSize = CGSize(width: 340, height: 260)
             datePopoverVC.popoverPresentationController?.delegate = self
-            datePopoverVC.popoverPresentationController?.sourceRect = CGRect(origin: dateTextField.center, size: .zero)
-            datePopoverVC.popoverPresentationController?.sourceView = dateTextField
+            datePopoverVC.popoverPresentationController?.sourceRect = CGRect(origin: dateTextView.center, size: .zero)
+            datePopoverVC.popoverPresentationController?.sourceView = dateTextView
         }
     }
     
@@ -219,7 +219,7 @@ extension AddItemViewController: TagDataDelegate, DateDataDelegate {
     
     func passDate(_ date: Date) {
         self.date = date
-        dateTextField.text = dateFormatter.string(from: date)
+        dateTextView.text = dateFormatter.string(from: date)
     }
     
     func passData(_ tag: String) {

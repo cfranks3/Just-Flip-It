@@ -14,6 +14,9 @@ class ItemSaleViewController: UIViewController {
     var itemController: ItemController?
     var item: Item?
     var delegate: ItemControllerDelegate?
+    var date: Date = Date()
+    let dateFormatter = DateFormatter()
+    let numberFormatter = NumberFormatter()
     
     // MARK: - IBOutlets
     
@@ -23,6 +26,9 @@ class ItemSaleViewController: UIViewController {
     @IBOutlet weak var amountSoldTextField: UITextField!
     @IBOutlet weak var soldPriceLabel: UILabel!
     @IBOutlet weak var soldPriceTextField: UITextField!
+    @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var dateTextView: UITextView!
+    @IBOutlet weak var dateButton: UIButton!
     @IBOutlet weak var doneButton: UIButton!
     
     // MARK: - IBAction
@@ -54,12 +60,15 @@ class ItemSaleViewController: UIViewController {
                                     tag: item.tag ?? "",
                                     notes: item.notes,
                                     listedDate: item.listedDate,
-                                    soldDate: Date())
+                                    soldDate: date)
                 itemController?.processSale(sold: soldItem, listed: item)
                 presentingViewController?.dismiss(animated: true, completion: nil)
                 delegate?.saleWasMade()
             }
         }
+    }
+    
+    @IBAction func dateButtonTapped(_ sender: UIButton) {
     }
     
     // MARK: - Lifecycle
@@ -72,30 +81,70 @@ class ItemSaleViewController: UIViewController {
     
     func updateViews() {
         guard let item = item else { return }
-        let formatter = NumberFormatter()
-        formatter.numberStyle = .decimal
+        dateFormatter.dateFormat = "MMMM d, yyyy"
+        numberFormatter.numberStyle = .decimal
         
         titleLabel.text = item.title
-        quantityLabel.text = "Quantity: \(formatter.string(from: item.quantity as NSNumber) ?? "-1")"
+        quantityLabel.text = "Quantity: \(numberFormatter.string(from: item.quantity as NSNumber) ?? "-1")"
         amountSoldTextField.text = "\(item.quantity)"
         soldPriceTextField.text = "\(item.listingPrice)"
         
         doneButton.layer.cornerRadius = 12
+        dateButton.layer.cornerRadius = 10
+        
+        dateTextView.layer.cornerRadius = 4
+        dateTextView.text = dateFormatter.string(from: date)
+        
         configureColors()
     }
     
     func configureColors() {
         view.backgroundColor = UIColor(named: "Background")
         titleLabel.textColor = UIColor(named: "Text")
+        dateTextView.textColor = .white
         currentQuantityLabel.textColor = UIColor(named: "Text")
         quantityLabel.textColor = UIColor(named: "Text")
         soldPriceLabel.textColor = UIColor(named: "Text")
+        dateLabel.textColor = UIColor(named: "Text")
         
         amountSoldTextField.backgroundColor = UIColor(named: "Foreground")
         soldPriceTextField.backgroundColor = UIColor(named: "Foreground")
+        dateTextView.backgroundColor = UIColor(named: "Foreground")
         
         doneButton.backgroundColor = UIColor(named: "Foreground")
+        dateButton.backgroundColor = UIColor(named: "Foreground")
         doneButton.tintColor = .white
+        dateButton.tintColor = .white
+    }
+    
+    // MARK: - Navigation
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "DatePopover" {
+            guard let datePopoverVC = segue.destination as? DatePickerViewController else { return }
+            datePopoverVC.delegate = self
+            datePopoverVC.modalPresentationStyle = .popover
+            datePopoverVC.preferredContentSize = CGSize(width: 340, height: 260)
+            datePopoverVC.popoverPresentationController?.delegate = self
+            datePopoverVC.popoverPresentationController?.sourceRect = CGRect(origin: dateTextView.center, size: .zero)
+            datePopoverVC.popoverPresentationController?.sourceView = dateTextView
+        }
+    }
+}
+
+extension ItemSaleViewController: DateDataDelegate {
+    
+    func passDate(_ date: Date) {
+        self.date = date
+        dateTextView.text = dateFormatter.string(from: date)
+    }
+    
+}
+
+extension ItemSaleViewController: UIPopoverPresentationControllerDelegate {
+    
+    func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
+        return .none
     }
     
 }
