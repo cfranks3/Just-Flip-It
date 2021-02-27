@@ -17,6 +17,8 @@ class AddItemViewController: UIViewController {
     
     var itemController: ItemController?
     var delegate: AddItemViewControllerDelegate?
+    var date = Date()
+    let dateFormatter = DateFormatter()
     
     // MARK: - IBOutlets
     
@@ -30,10 +32,13 @@ class AddItemViewController: UIViewController {
     @IBOutlet weak var quantityLabel: UILabel!
     @IBOutlet weak var quantityTextField: UITextField!
     @IBOutlet weak var tagLabel: UILabel!
-    @IBOutlet weak var tagTextView: UITextView!
+    @IBOutlet weak var tagTextField: UITextView!
     @IBOutlet weak var tagButton: UIButton!
+    @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var dateTextField: UITextView!
+    @IBOutlet weak var dateButton: UIButton!
     @IBOutlet weak var notesLabel: UILabel!
-    @IBOutlet weak var notesTextView: UITextView!
+    @IBOutlet weak var notesTextField: UITextView!
     @IBOutlet weak var saveButton: UIButton!
     
     // MARK: - IBActions
@@ -60,8 +65,8 @@ class AddItemViewController: UIViewController {
                             purchasePrice: purchasePrice,
                             listingPrice: listingPrice,
                             quantity: quantity,
-                            tag: tagTextView.text,
-                            notes: notesTextView.text,
+                            tag: tagTextField.text,
+                            notes: notesTextField.text,
                             listedDate: Date())
             itemController?.addListedItem(with: item)
             delegate?.itemWasAdded()
@@ -81,8 +86,9 @@ class AddItemViewController: UIViewController {
     }
     
     func configureViews() {
-        tagTextView.layer.cornerRadius = 4
-        notesTextView.layer.cornerRadius = 4
+        tagTextField.layer.cornerRadius = 4
+        dateTextField.layer.cornerRadius = 4
+        notesTextField.layer.cornerRadius = 4
         
         tagButton.layer.shadowOpacity = 0.7
         tagButton.layer.cornerRadius = 10
@@ -91,12 +97,22 @@ class AddItemViewController: UIViewController {
         tagButton.layer.shadowOffset = CGSize(width: -1, height: 1)
         tagButton.layer.masksToBounds = false
         
+        dateButton.layer.shadowOpacity = 0.7
+        dateButton.layer.cornerRadius = 10
+        dateButton.layer.shadowColor = UIColor(rgb: 0x1d3557).cgColor
+        dateButton.layer.shadowRadius = 1
+        dateButton.layer.shadowOffset = CGSize(width: -1, height: 1)
+        dateButton.layer.masksToBounds = false
+        
         saveButton.layer.shadowOpacity = 0.7
         saveButton.layer.cornerRadius = 12
         saveButton.layer.shadowColor = UIColor(rgb: 0x1d3557).cgColor
         saveButton.layer.shadowRadius = 1
         saveButton.layer.shadowOffset = CGSize(width: -1, height: 1)
         saveButton.layer.masksToBounds = false
+        
+        dateFormatter.dateFormat = "MMM d, yyyy"
+        dateTextField.text = "\(dateFormatter.string(from: date))"
     }
     
     func configureColors() {
@@ -107,17 +123,20 @@ class AddItemViewController: UIViewController {
         purchasePriceTextField.backgroundColor = UIColor(named: "Foreground")
         listingPriceTextField.backgroundColor = UIColor(named: "Foreground")
         quantityTextField.backgroundColor = UIColor(named: "Foreground")
-        tagTextView.backgroundColor = UIColor(named: "Foreground")
-        notesTextView.backgroundColor = UIColor(named: "Foreground")
+        tagTextField.backgroundColor = UIColor(named: "Foreground")
+        dateTextField.backgroundColor = UIColor(named: "Foreground")
+        notesTextField.backgroundColor = UIColor(named: "Foreground")
         
         titleLabel.textColor = UIColor(named: "Text")
         purchasePriceLabel.textColor = UIColor(named: "Text")
         listingPriceLabel.textColor = UIColor(named: "Text")
         quantityLabel.textColor = UIColor(named: "Text")
         tagLabel.textColor = UIColor(named: "Text")
+        dateLabel.textColor = UIColor(named: "Text")
         notesLabel.textColor = UIColor(named: "Text")
         
         tagButton.backgroundColor = UIColor(named: "Foreground")
+        dateButton.backgroundColor = UIColor(named: "Foreground")
         saveButton.backgroundColor = UIColor(named: "Foreground")
     }
     
@@ -174,24 +193,36 @@ class AddItemViewController: UIViewController {
     // MARK: - Navigation
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "ShowPopOver" {
-            guard let popOverVC = segue.destination as? TagTableViewController else { return }
-            popOverVC.itemController = itemController
-            popOverVC.delegate = self
-            popOverVC.modalPresentationStyle = .popover
-            popOverVC.preferredContentSize = CGSize(width: self.view.bounds.width/2, height: self.view.bounds.height/2.5)
-            popOverVC.popoverPresentationController?.delegate = self
-            popOverVC.popoverPresentationController?.sourceRect = CGRect(origin: tagTextView.center, size: .zero)
-            popOverVC.popoverPresentationController?.sourceView = tagTextView
+        if segue.identifier == "TagPopover" {
+            guard let tagPopoverVC = segue.destination as? TagTableViewController else { return }
+            tagPopoverVC.itemController = itemController
+            tagPopoverVC.delegate = self
+            tagPopoverVC.modalPresentationStyle = .popover
+            tagPopoverVC.preferredContentSize = CGSize(width: self.view.bounds.width/2, height: self.view.bounds.height/2.5)
+            tagPopoverVC.popoverPresentationController?.delegate = self
+            tagPopoverVC.popoverPresentationController?.sourceRect = CGRect(origin: tagTextField.center, size: .zero)
+            tagPopoverVC.popoverPresentationController?.sourceView = tagTextField
+        } else if segue.identifier == "DatePopover" {
+            guard let datePopoverVC = segue.destination as? DatePickerViewController else { return }
+            datePopoverVC.delegate = self
+            datePopoverVC.modalPresentationStyle = .popover
+            datePopoverVC.preferredContentSize = CGSize(width: 340, height: 260)
+            datePopoverVC.popoverPresentationController?.delegate = self
+            datePopoverVC.popoverPresentationController?.sourceRect = CGRect(origin: dateTextField.center, size: .zero)
+            datePopoverVC.popoverPresentationController?.sourceView = dateTextField
         }
     }
     
 }
 
-extension AddItemViewController: TagDataDelegate {
+extension AddItemViewController: TagDataDelegate, DateDataDelegate {
+    
+    func passDate(_ date: Date) {
+        dateTextField.text = dateFormatter.string(from: date)
+    }
     
     func passData(_ tag: String) {
-        tagTextView.text = tag
+        tagTextField.text = tag
     }
     
 }

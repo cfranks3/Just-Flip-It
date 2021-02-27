@@ -94,17 +94,17 @@
             <objects>
                 <viewController id="WtO-Vn-Jqb" customClass="DatePickerViewController" customModule="FlippingApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Q9z-6V-fxi">
-                        <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
+                        <rect key="frame" x="0.0" y="0.0" width="428" height="872"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="ogG-V3-33C">
-                                <rect key="frame" x="0.0" y="134" width="428" height="160"/>
+                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" style="wheels" translatesAutoresizingMaskIntoConstraints="NO" id="ogG-V3-33C">
+                                <rect key="frame" x="0.0" y="90" width="428" height="160"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="160" id="d3E-uG-AX5"/>
                                 </constraints>
                             </datePicker>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="u6y-qs-zBI">
-                                <rect key="frame" x="184" y="64" width="60" height="50"/>
+                                <rect key="frame" x="184" y="20" width="60" height="50"/>
                                 <color key="backgroundColor" name="Foreground"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="7Yr-rp-TYa"/>
@@ -606,7 +606,7 @@
                                                         </state>
                                                         <connections>
                                                             <action selector="tagButtonTapped:" destination="c8i-jJ-Jcz" eventType="touchUpInside" id="6fP-S8-aMU"/>
-                                                            <segue destination="qSw-tB-prq" kind="popoverPresentation" identifier="ShowPopOver" popoverAnchorView="6Nl-t6-y49" id="ePE-Ci-Ugi">
+                                                            <segue destination="qSw-tB-prq" kind="popoverPresentation" identifier="TagPopover" popoverAnchorView="6Nl-t6-y49" id="ePE-Ci-Ugi">
                                                                 <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
                                                             </segue>
                                                         </connections>
@@ -746,7 +746,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6Mj-bq-Hup" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="952" y="-95"/>
+            <point key="canvasLocation" x="939" y="284"/>
         </scene>
         <!--Dashboard View Controller-->
         <scene sceneID="9jb-26-VIZ">
@@ -1264,7 +1264,7 @@
                                                                             <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large" weight="medium"/>
                                                                         </state>
                                                                         <connections>
-                                                                            <segue destination="qSw-tB-prq" kind="popoverPresentation" identifier="ShowPopOver" popoverAnchorView="bkm-nK-Hl5" id="L0o-xc-iKq">
+                                                                            <segue destination="qSw-tB-prq" kind="popoverPresentation" identifier="TagPopover" popoverAnchorView="bkm-nK-Hl5" id="L0o-xc-iKq">
                                                                                 <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
                                                                             </segue>
                                                                         </connections>
@@ -1284,7 +1284,7 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="67L-CA-QSr" userLabel="Notes Stack View">
-                                                <rect key="frame" x="20" y="264.66666666666669" width="388" height="140"/>
+                                                <rect key="frame" x="20" y="345.66666666666669" width="388" height="160"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Want to add some notes?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y5p-c1-zYA">
                                                         <rect key="frame" x="0.0" y="0.0" width="388" height="18"/>
@@ -1293,7 +1293,7 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="t2R-oR-MWP">
-                                                        <rect key="frame" x="0.0" y="26" width="388" height="114"/>
+                                                        <rect key="frame" x="0.0" y="26" width="388" height="134"/>
                                                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
@@ -1301,26 +1301,70 @@
                                                     </textView>
                                                 </subviews>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="140" id="9R5-bg-iJV"/>
+                                                    <constraint firstAttribute="height" constant="160" id="9R5-bg-iJV"/>
                                                 </constraints>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="HM3-5u-xWM" userLabel="Tag Stack View">
+                                                <rect key="frame" x="20" y="264.66666666666669" width="388" height="61"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Want to change the purchase date?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4BT-tD-ATB" userLabel="Tag Prompt">
+                                                        <rect key="frame" x="0.0" y="0.0" width="388" height="18"/>
+                                                        <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="15"/>
+                                                        <color key="textColor" red="0.1137254902" green="0.20784313730000001" blue="0.3411764706" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="CoG-Fp-NMd" userLabel="Tag Stack View">
+                                                        <rect key="frame" x="0.0" y="26" width="388" height="35"/>
+                                                        <subviews>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A3g-ED-m74" userLabel="Tag Button">
+                                                                <rect key="frame" x="0.0" y="0.0" width="35" height="35"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="width" secondItem="A3g-ED-m74" secondAttribute="height" multiplier="1:1" id="qdd-wl-MKl"/>
+                                                                    <constraint firstAttribute="width" constant="35" id="scL-fE-Tiy"/>
+                                                                </constraints>
+                                                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <state key="normal">
+                                                                    <imageReference key="image" image="plus" catalog="system" symbolScale="large"/>
+                                                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large" weight="medium"/>
+                                                                </state>
+                                                                <connections>
+                                                                    <segue destination="WtO-Vn-Jqb" kind="popoverPresentation" identifier="DatePopover" popoverAnchorView="A3g-ED-m74" id="6ka-oV-goe">
+                                                                        <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                                                    </segue>
+                                                                </connections>
+                                                            </button>
+                                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="center" adjustsFontForContentSizeCategory="YES" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tue-RW-zK2">
+                                                                <rect key="frame" x="45" y="0.0" width="343" height="35"/>
+                                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
+                                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                            </textView>
+                                                        </subviews>
+                                                    </stackView>
+                                                </subviews>
                                             </stackView>
                                         </subviews>
                                         <color key="backgroundColor" red="0.94509803920000002" green="0.98039215690000003" blue="0.93333333330000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <constraints>
+                                            <constraint firstItem="67L-CA-QSr" firstAttribute="top" secondItem="HM3-5u-xWM" secondAttribute="bottom" constant="20" id="8IF-eG-BYB"/>
                                             <constraint firstAttribute="trailing" secondItem="6bq-x2-6Dr" secondAttribute="trailing" constant="20" id="A89-UV-TGA"/>
                                             <constraint firstItem="67L-CA-QSr" firstAttribute="leading" secondItem="KEE-5M-bYe" secondAttribute="leading" constant="20" id="DVS-fs-96I"/>
                                             <constraint firstAttribute="trailing" secondItem="f0x-DD-A8V" secondAttribute="trailing" constant="20" id="DZQ-jJ-Vok"/>
                                             <constraint firstItem="f0x-DD-A8V" firstAttribute="leading" secondItem="KEE-5M-bYe" secondAttribute="leading" constant="20" id="KsL-jn-ohm"/>
+                                            <constraint firstAttribute="trailing" secondItem="HM3-5u-xWM" secondAttribute="trailing" constant="20" id="LWr-Hg-NMS"/>
                                             <constraint firstAttribute="height" constant="1100" id="Xzx-Zr-v8s"/>
                                             <constraint firstItem="6bq-x2-6Dr" firstAttribute="leading" secondItem="KEE-5M-bYe" secondAttribute="leading" constant="20" id="YSD-CY-0HP"/>
                                             <constraint firstItem="6bq-x2-6Dr" firstAttribute="top" secondItem="9rX-3B-ZBr" secondAttribute="bottom" constant="20" id="a7o-s7-2db"/>
                                             <constraint firstAttribute="trailing" secondItem="v7p-MY-vLT" secondAttribute="trailing" constant="20" id="e9o-QA-VUn"/>
-                                            <constraint firstItem="67L-CA-QSr" firstAttribute="top" secondItem="f0x-DD-A8V" secondAttribute="bottom" constant="20" id="fy4-zx-oA3"/>
                                             <constraint firstItem="9rX-3B-ZBr" firstAttribute="top" secondItem="KEE-5M-bYe" secondAttribute="top" constant="20" id="h6u-hD-qpr"/>
                                             <constraint firstItem="f0x-DD-A8V" firstAttribute="top" secondItem="6bq-x2-6Dr" secondAttribute="bottom" constant="20" id="kp0-qK-Q4k"/>
                                             <constraint firstAttribute="trailing" secondItem="67L-CA-QSr" secondAttribute="trailing" constant="20" id="mLW-hN-4On"/>
                                             <constraint firstItem="v7p-MY-vLT" firstAttribute="top" secondItem="KEE-5M-bYe" secondAttribute="top" constant="40" id="qzh-Yf-G0y"/>
+                                            <constraint firstItem="HM3-5u-xWM" firstAttribute="leading" secondItem="KEE-5M-bYe" secondAttribute="leading" constant="20" id="rze-Au-Kic"/>
                                             <constraint firstItem="9rX-3B-ZBr" firstAttribute="leading" secondItem="KEE-5M-bYe" secondAttribute="leading" constant="20" id="wGJ-4M-WuE"/>
+                                            <constraint firstItem="HM3-5u-xWM" firstAttribute="top" secondItem="f0x-DD-A8V" secondAttribute="bottom" constant="20" id="wLc-SL-c4O"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -1346,10 +1390,13 @@
                     </view>
                     <connections>
                         <outlet property="contentView" destination="KEE-5M-bYe" id="19e-O3-0Di"/>
+                        <outlet property="dateButton" destination="A3g-ED-m74" id="VY4-uV-D49"/>
+                        <outlet property="dateLabel" destination="4BT-tD-ATB" id="z6c-3r-8dp"/>
+                        <outlet property="dateTextField" destination="Tue-RW-zK2" id="gSa-JM-iTi"/>
                         <outlet property="listingPriceLabel" destination="dzO-EK-ELQ" id="mlO-St-GUe"/>
                         <outlet property="listingPriceTextField" destination="Osp-WY-Uda" id="Wtb-Wp-2jI"/>
                         <outlet property="notesLabel" destination="y5p-c1-zYA" id="T4h-S6-sf7"/>
-                        <outlet property="notesTextView" destination="t2R-oR-MWP" id="6ys-Ja-CXU"/>
+                        <outlet property="notesTextField" destination="t2R-oR-MWP" id="6ys-Ja-CXU"/>
                         <outlet property="purchasePriceLabel" destination="0po-3f-Sv6" id="0kr-AO-0jU"/>
                         <outlet property="purchasePriceTextField" destination="ZLN-26-cPg" id="s87-eW-2we"/>
                         <outlet property="quantityLabel" destination="gMQ-AR-L9s" id="fMR-jL-kFL"/>
@@ -1357,7 +1404,7 @@
                         <outlet property="saveButton" destination="v7p-MY-vLT" id="zMk-qh-TqP"/>
                         <outlet property="tagButton" destination="Xs5-yf-Ayv" id="bNB-cZ-AGh"/>
                         <outlet property="tagLabel" destination="S1G-zy-JEv" id="2sJ-CM-AQ5"/>
-                        <outlet property="tagTextView" destination="bkm-nK-Hl5" id="RTm-Jl-Qt5"/>
+                        <outlet property="tagTextField" destination="bkm-nK-Hl5" id="RTm-Jl-Qt5"/>
                         <outlet property="titleLabel" destination="vQI-iD-lwZ" id="4uq-6J-0fH"/>
                         <outlet property="titleTextField" destination="zPp-SC-LdD" id="vKp-L5-BZ3"/>
                     </connections>

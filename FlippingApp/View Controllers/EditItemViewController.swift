@@ -167,7 +167,7 @@ class EditItemViewController: UIViewController {
     // MARK: - Navigation
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "ShowPopOver" {
+        if segue.identifier == "TagPopover" {
             guard let popOverVC = segue.destination as? TagTableViewController else { return }
             popOverVC.itemController = itemController
             popOverVC.delegate = self
