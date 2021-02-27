@@ -196,6 +196,22 @@ class ItemController {
         return recentlyListedPrice
     }
     
+    // MARK: - Searches
+    
+    func findOldestItem() -> Item? {
+        var count = 0
+        var oldestItem = inventory.first
+        for item in inventory {
+            count += 1
+            if let itemDate = item.listedDate, let oldestDate = oldestItem?.listedDate {
+                if itemDate < oldestDate {
+                    oldestItem = item
+                }
+            }
+        }
+        return oldestItem
+    }
+    
     // MARK: - Persistence
     
     var inventoryURL: URL? {

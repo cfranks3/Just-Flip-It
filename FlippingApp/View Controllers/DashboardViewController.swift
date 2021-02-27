@@ -138,9 +138,9 @@ class DashboardViewController: UIViewController {
             }
             
             numberFormatter.numberStyle = .decimal
-            if let oldestItem = itemController.inventory.first {
+            if let oldestItem = itemController.findOldestItem(){
                 oldestItemNameLabel.text = oldestItem.title
-                if let oldestItemDate = itemController.inventory.first?.listedDate {
+                if let oldestItemDate = oldestItem.listedDate {
                     let differenceInDays = Calendar.current.dateComponents([.day], from: oldestItemDate, to: Date()).day
                     oldestItemDaysLabel.text = "\(numberFormatter.string(from: differenceInDays! as NSNumber) ?? "") days"
                 } else {

@@ -67,7 +67,7 @@ class AddItemViewController: UIViewController {
                             quantity: quantity,
                             tag: tagTextField.text,
                             notes: notesTextField.text,
-                            listedDate: Date())
+                            listedDate: date)
             itemController?.addListedItem(with: item)
             delegate?.itemWasAdded()
             self.dismiss(animated: true, completion: nil)
@@ -219,6 +219,7 @@ extension AddItemViewController: TagDataDelegate, DateDataDelegate {
     
     func passDate(_ date: Date) {
         dateTextField.text = dateFormatter.string(from: date)
+        self.date = date
     }
     
     func passData(_ tag: String) {
