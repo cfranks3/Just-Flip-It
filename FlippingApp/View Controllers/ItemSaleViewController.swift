@@ -123,10 +123,29 @@ class ItemSaleViewController: UIViewController {
     
     func confetti() {
         let confettiView = SwiftConfettiView(frame: self.view.bounds)
-        confettiView.type = .confetti
-        confettiView.colors = [UIColor.systemRed, UIColor.systemGreen, UIColor.systemBlue]
+        if UserDefaults.standard.bool(forKey: "gnomes") {
+            guard let image = UIImage(named: "gnome") else { return }
+            let targetSize = CGSize(width: 8, height: 12)
+            let widthScaleRatio = targetSize.width / image.size.width
+            let heightScaleRatio = targetSize.height / image.size.height
+            let scaleFactor = min(widthScaleRatio, heightScaleRatio)
+            let scaledImageSize = CGSize(width: image.size.width * scaleFactor,
+                                         height: image.size.height * scaleFactor)
+            let renderer = UIGraphicsImageRenderer(size: scaledImageSize)
+            let scaledImage = renderer.image { _ in
+                image.draw(in: CGRect(origin: .zero, size: scaledImageSize))
+            }
+            confettiView.intensity = 0.4
+            confettiView.layer.opacity = 0.3
+            confettiView.type = .image(scaledImage)
+        } else {
+            confettiView.type = .confetti
+            confettiView.intensity = 1
+            confettiView.colors = [UIColor.systemRed, UIColor.systemGreen, UIColor.systemBlue]
+        }
+        
         confettiView.isUserInteractionEnabled = false
-        confettiView.intensity = 1
+        
         self.view.addSubview(confettiView)
         confettiView.startConfetti()
     }

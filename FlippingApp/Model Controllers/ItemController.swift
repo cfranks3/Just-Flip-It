@@ -255,16 +255,16 @@ class ItemController {
     }
     
     // Loading data
-    func load() {
+    func load() -> Bool {
         let decoder = PropertyListDecoder()
         let fm = FileManager.default
         
         guard let inventoryURL = inventoryURL,
-              fm.fileExists(atPath: inventoryURL.path) else { return }
+              fm.fileExists(atPath: inventoryURL.path) else { return false }
         
-        guard let soldItemsURL = soldItemsURL, fm.fileExists(atPath: soldItemsURL.path) else { return }
+        guard let soldItemsURL = soldItemsURL, fm.fileExists(atPath: soldItemsURL.path) else { return false }
         
-        guard let tagsURL = tagsURL, fm.fileExists(atPath: tagsURL.path) else { return }
+        guard let tagsURL = tagsURL, fm.fileExists(atPath: tagsURL.path) else { return false }
         
         do {
             let inventoryData = try Data(contentsOf: inventoryURL)
@@ -280,6 +280,7 @@ class ItemController {
         } catch {
             NSLog("Error decoding items: \(error.localizedDescription)")
         }
+        return true
     }
     
 }

@@ -930,7 +930,7 @@
                                                         </connections>
                                                     </button>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="3Lk-9E-HSs" userLabel="Value Stack View">
-                                                        <rect key="frame" x="20" y="107.33333333333331" width="151.33333333333334" height="72.666666666666686"/>
+                                                        <rect key="frame" x="20" y="107.33333333333331" width="150" height="72.666666666666686"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total Value" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vHF-Er-FYw">
                                                                 <rect key="frame" x="0.0" y="0.0" width="119.33333333333333" height="28.666666666666668"/>
@@ -938,8 +938,11 @@
                                                                 <color key="textColor" red="0.94509803920000002" green="0.98039215690000003" blue="0.93333333330000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$000,000" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="8" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7f8-cq-6HS">
-                                                                <rect key="frame" x="0.0" y="28.666666666666686" width="151.33333333333334" height="44"/>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$000,000" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7f8-cq-6HS">
+                                                                <rect key="frame" x="0.0" y="28.666666666666686" width="150" height="44"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="width" constant="150" id="26Y-gH-sUN"/>
+                                                                </constraints>
                                                                 <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="36"/>
                                                                 <color key="textColor" red="0.94509803920000002" green="0.98039215690000003" blue="0.93333333330000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                                 <nil key="highlightedColor"/>
@@ -949,7 +952,7 @@
                                                         </subviews>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="nd7-DE-UjN" userLabel="Quantity Stack View">
-                                                        <rect key="frame" x="212.66666666666663" y="107.33333333333331" width="131.33333333333337" height="72.666666666666686"/>
+                                                        <rect key="frame" x="214" y="107.33333333333331" width="130" height="72.666666666666686"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Items" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eZu-GK-NAX">
                                                                 <rect key="frame" x="0.0" y="0.0" width="61.666666666666664" height="28.666666666666668"/>
@@ -957,8 +960,11 @@
                                                                 <color key="textColor" red="0.94509803920000002" green="0.98039215690000003" blue="0.93333333330000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="000,000" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kWq-Ma-xlF">
-                                                                <rect key="frame" x="0.0" y="28.666666666666686" width="131.33333333333334" height="44"/>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="000,000" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="kWq-Ma-xlF">
+                                                                <rect key="frame" x="0.0" y="28.666666666666686" width="130" height="44"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="width" constant="130" id="bsm-JD-bML"/>
+                                                                </constraints>
                                                                 <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="36"/>
                                                                 <color key="textColor" red="0.94509803920000002" green="0.98039215690000003" blue="0.93333333330000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                                 <nil key="highlightedColor"/>
@@ -1084,10 +1090,11 @@
                                                         <color key="shadowColor" red="0.1137254902" green="0.20784313730000001" blue="0.3411764706" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                         <size key="shadowOffset" width="-1" height="1"/>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$000,000" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="12y-Ee-Tr1" userLabel="Recent Item Price">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$000,000" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="12y-Ee-Tr1" userLabel="Recent Item Price">
                                                         <rect key="frame" x="224" y="15.000000000000002" width="120" height="29.666666666666671"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="120" id="dR8-ic-mur"/>
+                                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="120" id="eTd-qk-Iii"/>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="24"/>
                                                         <color key="textColor" red="0.94509803920000002" green="0.98039215690000003" blue="0.93333333330000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -1568,8 +1575,8 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="ePE-Ci-Ugi"/>
-        <segue reference="ffy-NI-BcD"/>
+        <segue reference="L0o-xc-iKq"/>
+        <segue reference="6ka-oV-goe"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="JFILogo" width="1024" height="1024"/>

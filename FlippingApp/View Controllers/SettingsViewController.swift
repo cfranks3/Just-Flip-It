@@ -108,10 +108,11 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     func whatsNew() {
         let alert = UIAlertController(title: "\(UIApplication.appVersion!) Notes", message:
                                         """
-                - Change: Labels are clearer as to what data they expect.
-                - Change: Changed sale icon to a '$' from '+'.
-                - Bug Fix: Improved performance of the app.
-                - Bug Fix: Fixed typos in the alerts before erasing tags and sold items.
+                - Feature: Added the ability to pick custom purchase and listing dates.
+                - Feature: Confetti now rains when you're recording a sale! Woohoo!
+                - Change: Adjusted some constraints to make things fit better on smaller phones.
+                - Bug fix: Fixed some typos.
+                - Bug fix: Improved overall performance.
                 """
                                       , preferredStyle: .alert)
         let action = UIAlertAction(title: "Awesome!", style: .cancel, handler: nil)

@@ -13,5 +13,4 @@ class ItemTableViewCell: UITableViewCell {
     @IBOutlet weak var itemQuantityLabel: UILabel!
     @IBOutlet weak var valueLabel: UILabel!
     
-
 }

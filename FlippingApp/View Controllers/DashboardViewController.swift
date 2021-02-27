@@ -78,7 +78,7 @@ class DashboardViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        itemController.load()
+        load()
         itemController.delegate = self
         updateViews()
         configureViews()
@@ -257,6 +257,20 @@ class DashboardViewController: UIViewController {
             profitLabel.textColor = .systemRed
         } else {
             profitLabel.textColor = .white
+        }
+    }
+    
+    // MARK: - Methods
+    
+    func load() {
+        let loaded = itemController.load()
+        if !loaded {
+            let alert = UIAlertController(title: "Error loading", message: "Something went wrong when trying to load saved data. Try reloading the app. If this issue persists, send me an email at bronsonmullens@icloud.com or a tweet @bronsonmullens.", preferredStyle: .alert)
+            let action = UIAlertAction(title: "Ok", style: .default, handler: nil)
+            alert.addAction(action)
+            present(alert, animated: true, completion: nil)
+        } else {
+            NSLog("Loaded data successfully")
         }
     }
 
