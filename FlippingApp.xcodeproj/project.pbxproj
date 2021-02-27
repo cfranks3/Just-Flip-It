@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -29,6 +29,7 @@
 		E3B2BF6325D682C60026DBB9 /* AddItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3B2BF6225D682C60026DBB9 /* AddItemViewController.swift */; };
 		E3B2BF6925D69A060026DBB9 /* ItemGroupCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3B2BF6825D69A060026DBB9 /* ItemGroupCollectionViewCell.swift */; };
 		E3BAC7FC25E9CF18005C71F4 /* DatePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3BAC7FB25E9CF18005C71F4 /* DatePickerViewController.swift */; };
+		E3BAC83425EA5C2D005C71F4 /* SwiftConfettiView in Frameworks */ = {isa = PBXBuildFile; productRef = E3BAC83325EA5C2D005C71F4 /* SwiftConfettiView */; };
 		E3CB66B625E136F600C71C2B /* SoldItemInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3CB66B525E136F600C71C2B /* SoldItemInfoViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -67,6 +68,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E36A329625DD387E006286DA /* StoreKit.framework in Frameworks */,
+				E3BAC83425EA5C2D005C71F4 /* SwiftConfettiView in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -193,6 +195,9 @@
 			dependencies = (
 			);
 			name = FlippingApp;
+			packageProductDependencies = (
+				E3BAC83325EA5C2D005C71F4 /* SwiftConfettiView */,
+			);
 			productName = FlippingApp;
 			productReference = E3B2BF3A25D675010026DBB9 /* FlippingApp.app */;
 			productType = "com.apple.product-type.application";
@@ -220,6 +225,9 @@
 				Base,
 			);
 			mainGroup = E3B2BF3125D675010026DBB9;
+			packageReferences = (
+				E3BAC83225EA5C2D005C71F4 /* XCRemoteSwiftPackageReference "SwiftConfettiView" */,
+			);
 			productRefGroup = E3B2BF3B25D675010026DBB9 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -471,6 +479,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		E3BAC83225EA5C2D005C71F4 /* XCRemoteSwiftPackageReference "SwiftConfettiView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/theoriginalbit/SwiftConfettiView";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.1.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		E3BAC83325EA5C2D005C71F4 /* SwiftConfettiView */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E3BAC83225EA5C2D005C71F4 /* XCRemoteSwiftPackageReference "SwiftConfettiView" */;
+			productName = SwiftConfettiView;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = E3B2BF3225D675010026DBB9 /* Project object */;
 }

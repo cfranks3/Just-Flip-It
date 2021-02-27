@@ -81,6 +81,8 @@ class DashboardViewController: UIViewController {
         itemController.load()
         itemController.delegate = self
         updateViews()
+        configureViews()
+        configureColors()
     }
     
     // MARK: - View configuration
@@ -157,9 +159,6 @@ class DashboardViewController: UIViewController {
         } else {
             titleLabel.text = "Dashboard"
         }
-        
-        configureViews()
-        configureColors()
     }
     
     func configureViews() {

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SwiftConfettiView
 
 class ItemSaleViewController: UIViewController {
     
@@ -77,6 +78,7 @@ class ItemSaleViewController: UIViewController {
         super.viewDidLoad()
         amountSoldTextField.becomeFirstResponder()
         updateViews()
+        confetti()
     }
     
     func updateViews() {
@@ -115,6 +117,18 @@ class ItemSaleViewController: UIViewController {
         dateButton.backgroundColor = UIColor(named: "Foreground")
         doneButton.tintColor = .white
         dateButton.tintColor = .white
+    }
+    
+    // MARK: - Methods
+    
+    func confetti() {
+        let confettiView = SwiftConfettiView(frame: self.view.bounds)
+        confettiView.type = .confetti
+        confettiView.colors = [UIColor.systemRed, UIColor.systemGreen, UIColor.systemBlue]
+        confettiView.isUserInteractionEnabled = false
+        confettiView.intensity = 1
+        self.view.addSubview(confettiView)
+        confettiView.startConfetti()
     }
     
     // MARK: - Navigation
