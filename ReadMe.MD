@@ -1,21 +1,18 @@
+# <center>Just Flip It!</center>
 
-# Just Flip It!
-### By Bronson Mullens
+### <center>A profit tracker and inventory management tool for resellers.</center>
 
-## A profit log and inventory management tool for resellers. Written in Swift. 100% free.
+## Features
+* Log your current inventory
+* Set listing prices of your items to see your total value
+* Record sales to see your profit update automatically
+* Light & Dark mode support
 
-### What?
-This app allows users to log items that they have purchased and include what they'd like to sell it for. This builds up an inventory value. When an item sells, a user can report the sale and profit will be automatically calculated and added to the profit tracker.
+## Showcase
+![enter image description here](https://i.imgur.com/MSVxGJM.mp4)![enter image description here](https://i.imgur.com/reIX0RM.mp4)![enter image description here](https://i.imgur.com/cZynGlp.mp4)
 
-### Why?
-My wife and I have recently started going to garage sales. We wanted a tool that would accomplish what this app does, but without the bloat of a large spreadsheet or aggresive in-app purchase models.
+## Libraries
+[SwiftConfettiView](https://github.com/theoriginalbit/SwiftConfettiView)
 
-### Feature overview:
-* Track profits
-* Log inventory
-* Specify quantity for items
-
-### Feature wishlist:
-* Additional filters such as stale items, hot items, etc.
-* Cloud backups
-* ~~Change color of UI~~
+## Found this repository useful?
+Why not [star the project](https://github.com/bronsonmullens/FlippingApp/stargazers)?
