@@ -108,10 +108,10 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     func whatsNew() {
         let alert = UIAlertController(title: "\(UIApplication.appVersion!) Notes", message:
                                         """
-                - Feature: Added the ability to pick custom purchase and sale dates.
-                - Feature: Confetti now rains when you're recording a sale! Woohoo!
-                - Change: Adjusted some constraints to make things fit better on smaller phones.
-                - Bug fix: Fixed some typos.
+                - Bug fix: Tapping on a sold item while filtering by tag no longer displays the wrong item.
+                - Bug fix: Fixed the scaling of the sold item popover to better display info on smaller screens.
+                - Bug fix: Corrected inconsistent capitalization.
+                - Bug fix: Added a bug. Then I removed it.
                 """
                                       , preferredStyle: .alert)
         let action = UIAlertAction(title: "Awesome!", style: .cancel, handler: nil)

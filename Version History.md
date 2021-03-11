@@ -1,6 +1,12 @@
 
 # Version History
 
+## 2.0 (3/11/21)
+* Bug fix: Tapping on a sold item while filtering by tag no longer displays the wrong item.
+* Bug fix: Fixed the scaling of the sold item popover to better display info on smaller screens.
+* Bug fix: Corrected inconsistent capitalization.
+* Bug fix: Added a bug. Then I removed it.
+
 ## 1.9 (2/27/21)
 * Feature: Added the ability to pick custom purchase and sale dates.
 * Feature: Confetti now rains when you're recording a sale! Woohoo!

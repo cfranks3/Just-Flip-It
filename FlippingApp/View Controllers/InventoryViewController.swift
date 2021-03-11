@@ -180,10 +180,10 @@ class InventoryViewController: UIViewController, UITableViewDelegate, UITableVie
             } else if searchType == "soldItems" {
                 guard let popOverVC = storyboard?.instantiateViewController(identifier: "SoldItemInfoVC") as? SoldItemInfoViewController else { return }
                 guard let cell = tableView.cellForRow(at: indexPath) else { return }
-                popOverVC.item = itemController?.soldItems[indexPath.row]
+                popOverVC.item = filteredItems[indexPath.row]
                 popOverVC.itemController = itemController
                 popOverVC.modalPresentationStyle = .popover
-                popOverVC.preferredContentSize = CGSize(width: 220, height: 330)
+                popOverVC.preferredContentSize = CGSize(width: 220, height: self.view.bounds.height/2)
                 popOverVC.popoverPresentationController?.delegate = self
                 popOverVC.popoverPresentationController?.sourceRect = CGRect(origin: cell.center, size: .zero)
                 popOverVC.popoverPresentationController?.sourceView = tableView

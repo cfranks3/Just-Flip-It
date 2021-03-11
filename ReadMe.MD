@@ -1,6 +1,7 @@
 # <center>Just Flip It!</center>
 
 ### <center>A profit tracker and inventory management tool for resellers.</center>
+### <center>By Bronson Mullens.</center>
 
 ## Features
 * Log your current inventory
@@ -14,5 +15,5 @@
 ## Libraries
 [SwiftConfettiView](https://github.com/theoriginalbit/SwiftConfettiView)
 
-## Found this repository useful?
+## ⭐️ Found this repository useful? ⭐️
 Why not [star the project](https://github.com/bronsonmullens/FlippingApp/stargazers)?
