@@ -9,7 +9,7 @@
 * Light & Dark mode support
 
 ## Showcase
-![enter image description here](https://i.imgur.com/MSVxGJM.mp4)![enter image description here](https://i.imgur.com/reIX0RM.mp4)![enter image description here](https://i.imgur.com/cZynGlp.mp4)
+![Creating an item](https://i.imgur.com/fWT1ioz.gif)![Making a sale](https://i.imgur.com/U22LALL.gif)![Editing an item](https://i.imgur.com/rlcTZYv.gif)
 
 ## Libraries
 [SwiftConfettiView](https://github.com/theoriginalbit/SwiftConfettiView)
