@@ -161,6 +161,10 @@ class InventoryViewController: UIViewController, UITableViewDelegate, UITableVie
         if filteredItems.count == 0 { dismiss(animated: true, completion: nil) }
     }
     
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        self.searchBar.endEditing(true)
+    }
+    
     // MARK: - Row selection
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

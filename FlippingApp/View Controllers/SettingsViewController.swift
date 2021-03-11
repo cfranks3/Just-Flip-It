@@ -111,6 +111,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
                 - Bug fix: Tapping on a sold item while filtering by tag no longer displays the wrong item.
                 - Bug fix: Fixed the scaling of the sold item popover to better display info on smaller screens.
                 - Bug fix: Corrected inconsistent capitalization.
+                - Bug fix: Keyboard in inventory now hides after search is pressed.
                 - Bug fix: Added a bug. Then I removed it.
                 """
                                       , preferredStyle: .alert)
