@@ -1,7 +1,5 @@
-# <center>Just Flip It!</center>
-
-### <center>A profit tracker and inventory management tool for resellers.</center>
-### <center>By Bronson Mullens.</center>
+<h1 align="center">Just Flip It!</h1></br>
+<p align="center">A profit tracker and inventory management tool for resellers.</br> By Bronson Mullens.</p></br>
 
 ## Features
 * Log your current inventory
